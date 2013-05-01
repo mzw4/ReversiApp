@@ -117,9 +117,22 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_object('conf.Config')
 
-app.config['MONGO_URI'] = "mongodb://heroku_app15232410:6gcfdj39cetjlabuvfv3vpove1@ds061777.mongolab.com:61777/heroku_app15232410"
-mongo = PyMongo(app)
-mongo.db.pokemon.insert({name: "Pika"})
+mongodb_uri = "mongodb://heroku_app15232410:6gcfdj39cetjlabuvfv3vpove1@ds061777.mongolab.com:61777/heroku_app15232410"
+db_name = "reversi_db"
+
+try:
+    connection = pymongo.Connection(mongodb_uri)
+    db = connection[db_name]
+except:
+    print('Error: Unable to connect to database')
+    connection = None
+
+if connection is not None:
+    db.pokemon.insert({name: "Pika"})
+
+# app.config['MONGO_URI'] = "mongodb://heroku_app15232410:6gcfdj39cetjlabuvfv3vpove1@ds061777.mongolab.com:61777/heroku_app15232410"
+# mongo = PyMongo(app)
+# mongo.db.pokemon.insert({name: "Pika"})
 
 def get_home():
     return 'https://' + request.host + '/'
