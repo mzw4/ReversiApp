@@ -128,7 +128,7 @@ except:
     connection = None
 
 if connection is not None:
-    db.pokemon.insert({name: "Pika"})
+    db.pokemon.insert({"name": "Pika"})
 
 # app.config['MONGO_URI'] = "mongodb://heroku_app15232410:6gcfdj39cetjlabuvfv3vpove1@ds061777.mongolab.com:61777/heroku_app15232410"
 # mongo = PyMongo(app)
