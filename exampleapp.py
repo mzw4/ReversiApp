@@ -14,6 +14,7 @@ from pymongo import MongoClient
 
 import requests
 from flask import Flask, request, redirect, render_template, url_for
+from flask.ext.pymongo import PyMongo
 
 FB_APP_ID = os.environ.get('FACEBOOK_APP_ID')
 requests = requests.session()
