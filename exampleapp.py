@@ -17,7 +17,7 @@ from flask import Flask, request, redirect, render_template, url_for
 
 client = MongoClient()
 db = client.reversi_db
-db.pokemon.insert(name: "Pika")
+db.pokemon.insert({name: "Pika"})
 
 FB_APP_ID = os.environ.get('FACEBOOK_APP_ID')
 requests = requests.session()
