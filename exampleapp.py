@@ -15,10 +15,6 @@ from pymongo import MongoClient
 import requests
 from flask import Flask, request, redirect, render_template, url_for
 
-client = MongoClient()
-db = client.reversi_db
-db.pokemon.insert({name: "Pika"})
-
 FB_APP_ID = os.environ.get('FACEBOOK_APP_ID')
 requests = requests.session()
 
@@ -120,6 +116,11 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_object('conf.Config')
 
+app.config['MONGO_URI'] = "mongodb://heroku_app15232410:" +...
+"6gcfdj39cetjlabuvfv3vpove1@ds061777.mongolab.com:61777/heroku_app15232410"
+mongo = PyMongo(app)
+db = mongo.db
+db.pokemon.insert({name: "Pika"})
 
 def get_home():
     return 'https://' + request.host + '/'
