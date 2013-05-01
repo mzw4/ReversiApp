@@ -116,8 +116,7 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_object('conf.Config')
 
-app.config['MONGO_URI'] = "mongodb://heroku_app15232410:" +...
-"6gcfdj39cetjlabuvfv3vpove1@ds061777.mongolab.com:61777/heroku_app15232410"
+app.config['MONGO_URI'] = "mongodb://heroku_app15232410:6gcfdj39cetjlabuvfv3vpove1@ds061777.mongolab.com:61777/heroku_app15232410"
 mongo = PyMongo(app)
 db = mongo.db
 db.pokemon.insert({name: "Pika"})
