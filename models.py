@@ -67,8 +67,8 @@ class Challenge(Document):
 	use_dot_notation = True
 	use_autorefs = True
 	structure = {
-		'sender' = User,
-		'reciever' = User,
+		'sender': User,
+		'reciever': User,
 	}
 	required_fields = ['sender', 'receiver']
 
