@@ -51,7 +51,7 @@ class Game(Document):
 		}],
 		'states_list': [[[int]]],	# list of board states, 2d arrays
 		'chat_log': basestring,
-		'creation_time': datetime.datetime,
+		'creation_time': datetime,
 	}
 	required_fields = ['white', 'black', 'timed']
 	default_values = {
