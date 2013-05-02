@@ -224,7 +224,7 @@ def home():
 
         current_user = db.users.find_one({'_id': me['id']})
         if not current_user:
-            # db.users.remove()
+            db.users.remove()
             current_user = db.User()
             current_user['_id'] = me['id']
             current_user.name = me['name']
