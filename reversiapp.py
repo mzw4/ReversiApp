@@ -221,7 +221,7 @@ def home():
 
 
         current_user = db.users.find({'_id': me['id']})
-        if not user:
+        if not current_user:
             current_user = {'_id': me['id'], 'name': me['name']}
             db.users.insert(current_user)
 
