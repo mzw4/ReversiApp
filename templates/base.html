@@ -131,7 +131,7 @@
 
     <div class="global_wrapper">
     <!-- Start HEADER block -->
-    {%- block header -%}
+    {% block header %}
     <div class="nav_wrapper">
       <ul id="nav">
         <li id="reversi_logo">
@@ -152,7 +152,7 @@
         <li id="profile" style="background: #a0a">
           <a href="#">
             <img src="" alt="PROFILE PIC HERE" id="profile_pic">
-            <span id="profile_name">NAME HERE</span>
+            <span id="profile_name">{{current_user.name}}</span>
           </a>
           <ul id="profile_menu">
             <li><a href="#">Your Stats</a></li>
@@ -162,7 +162,7 @@
         </li>
       </ul> 
     </div>
-    {%- endblock -%}
+    {% endblock %}
     <!-- End HEADER block -->
     <!-- Start CONTENT block -->
     <div class="content">
