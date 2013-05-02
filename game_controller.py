@@ -61,7 +61,7 @@ def perform_move(game, y, x):
 	else:
 		return False
 	# validate move
-	if !validate_move(state, y, x, piece):
+	if not validate_move(state, y, x, piece):
 		return False
 	# update moves list
 	game.moves_list.append({ 'team': game.turn, 'x': x, 'y': y})
@@ -99,28 +99,28 @@ def perform_move(game, y, x):
 			break
 
 	xoffset = 0
-	for i in range(y-1, -1, -1) # NE
+	for i in range(y-1, -1, -1): # NE
 		xoffset += 1
 		if state[i][x+xoffset] == piece:
 			toggle(y-1, i, "NE")
 			break
 
 	xoffset = 0
-	for i in range(y-1, -1, -1) # NW
+	for i in range(y-1, -1, -1): # NW
 		xoffset -= 1
 		if state[i][x+xoffset] == piece:
 			toggle(y-1, i, "NW")
 			break
 
 	xoffset = 0
-	for i in range(y+1, len(state)) # SE
+	for i in range(y+1, len(state)): # SE
 		xoffset += 1
 		if state[i][x+xoffset] == piece:
 			toggle(y+1, i, "SE")
 			break
 
 	xoffset = 0
-	for i in range(y+1, len(state)) # SW
+	for i in range(y+1, len(state)): # SW
 		xoffset -= 1
 		if state[i][x+xoffset] == piece:
 			toggle(y+1, i, "SW")
@@ -178,32 +178,32 @@ def perform_move(game, y, x):
 				state[y][i] = state[y][i] ^ 1
 		elif dir == "NE":
 			xoffset = 0
-			for i in range(start, -1, end) # NE
+			for i in range(start, -1, end): # NE
 				xoffset += 1
 				state[i][x+xoffset] = state[i][xoffset] ^ 1
 		elif dir == "NW":
 			xoffset = 0
-			for i in range(start, -1, end) # NW
+			for i in range(start, -1, end): # NW
 				xoffset -= 1
 				state[i][x+xoffset] = state[i][xoffset] ^ 1
 		elif dir == "SE":
 			xoffset = 0
-			for i in range(start, end) # SE
+			for i in range(start, end): # SE
 				xoffset += 1
 				state[i][x+xoffset] = state[i][xoffset] ^ 1
 		else:
 			xoffset = 0
-			for i in range(start, end) # SW
+			for i in range(start, end): # SW
 				xoffset -= 1
 				state[i][x+xoffset] = state[i][xoffset] ^ 1
 
 	def validate_move(state, y, x, piece):
-		if state[y][x] != -1 || y >= game.size || y < 0 ||
-			x >= game.size || x < 0:
+		if state[y][x] != -1 or y >= game.size or y < 0 or \
+			x >= game.size or x < 0:
 			return False
 
 		valid = False
-		if y > 0 && state[y-1][x] == (piece ^ 1):				# N
+		if y > 0 and state[y-1][x] == (piece ^ 1):				# N
 			for i in range (y-1, -1, -1):
 				if state[i][x] == piece:
 					valid = True
@@ -211,25 +211,25 @@ def perform_move(game, y, x):
 				elif state[i][x] == -1:
 					valid = False
 					break
-		if y < game.size-1 && state[y+1][x] == (piece ^ 1):		# S
+		if y < game.size-1 and state[y+1][x] == (piece ^ 1):		# S
 			for i in range (y+1, game.size):
 				if state[i][x] == piece:
 					valid = True
-		if x < game.size-1 && state[y][x+1] == (piece ^ 1):		# E
+		if x < game.size-1 and state[y][x+1] == (piece ^ 1):		# E
 			for i in range (x+1, game.size):
 				if state[y][i] == piece:
 					valid = True
-		if x > 0 && state[y][x-1] == (piece ^ 1):				# W
+		if x > 0 and state[y][x-1] == (piece ^ 1):				# W
 			for i in range (x-1, -1, -1):
 				if state[y][i] == piece:
 					valid = True
-		if x > 0 && y > 0 && state[y-1][x+1] == (piece ^ 1):	# NE
+		if x > 0and y > 0 and state[y-1][x+1] == (piece ^ 1):	# NE
 			xoffset = 0
 			for i in range (y-1, -1, -1):
 				xoffset += 1
 				if state[i][x+xoffset] == piece:
 					valid = True
-		if x > 0 && y > 0 && state[y-1][x+1] == (piece ^ 1):	# NE
+		if x > 0 and y > 0 and state[y-1][x+1] == (piece ^ 1):	# NE
 			xoffset = 0
 			for i in range (y-1, -1, -1):
 				xoffset -= 1
@@ -243,11 +243,11 @@ def update_scores(game):
 	white_score = 0
 	black_score = 0
 
-	for i in range(len(state))
-		for j in range(len(state[i]))
-			if state[i][j] == 0
+	for i in range(len(state)):
+		for j in range(len(state[i])):
+			if state[i][j] == 0:
 				white_score += 1
-			elif state[i][j] == 1
+			elif state[i][j] == 1:
 				black_score += 1
 
 	game.white_score = white_score

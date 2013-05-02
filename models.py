@@ -68,7 +68,7 @@ class Challenge(Document):
 	use_autorefs = True
 	structure = {
 		'sender': User,
-		'reciever': User,
+		'receiver': User,
 	}
 	required_fields = ['sender', 'receiver']
 
