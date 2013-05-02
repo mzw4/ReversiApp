@@ -17,7 +17,7 @@ class User(Document):
 		'elo_rating': int,
 		'wins': int,
 		'losses': int,
-		'join_date': datetime.datetime,
+		'join_date': datetime,
 		'sent_challenges': [int],
 		'recieved_challenges': [int],
 		'current_games': [int],
