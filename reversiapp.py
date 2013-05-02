@@ -244,6 +244,7 @@ def home():
         online_friends = []
 
         recent_games = []
+        
         for gid in current_user['past_games']:
             g = db.games.find_one({'_id':gid})
             if g:
