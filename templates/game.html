@@ -9,7 +9,12 @@
 	<div id="player_turn">{{ is it my turn? }}</div>
 	<div id="your_score"> {{ player.score }} </div>
 	<div id="opponent_score">{{ opponent.score }}</div>
-	<div id="timer">{{ timer }}</div>
+	<!-- timer.enabled is a boolean -->
+	{% if NOT timer.enabled %} 
+	<div id="timer" class="disabled">{{ timer }}</div>
+	{% elif %}
+	<div id="timer" class="enabled">{{ timer }}</div>
+	{% endif %}
 </div>
 <div class="gameboard">
 	<div class="row_wrapper rowA">
