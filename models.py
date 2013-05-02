@@ -65,6 +65,7 @@ class Challenge(Document):
 	__collection__ = 'challenges'
 	__database__ = 'reversi_db'
 	use_dot_notation = True
+	use_autorefs = True
 	structure = {
 		'sender' = User,
 		'reciever' = User,
