@@ -234,7 +234,8 @@ def home():
 
         for gid in user['current_games']:
             g = db.games.find({'_id':gid})
-            recent_games.append(g)
+            if g:
+                recent_games.append(g)
 
         return render_template(
             'index.html', app_id=FB_APP_ID, token=access_token,
