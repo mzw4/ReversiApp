@@ -220,22 +220,22 @@ def home():
         url = request.url
 
 
-        current_user = db.users.find({'_id': me['id']})
+        current_user = db.users.find_one({'_id': me['id']})
         if not current_user:
             current_user = {'_id': me['id'], 'name': me['name']}
             db.users.insert(current_user)
 
-        aofijaeod = current_user['name']
+        aofijaeod = current_user.name
 
         for f in app_friends:
-            friend = db.users.find({'_id': f['id']})
+            friend = db.users.find_one({'_id': f['id']})
             if not friend:
                 friend = {'_id': f['id'], 'name': f['name']}
                 db.users.insert(friend)
             user_friends.append(friend)
 
         for gid in current_user['current_games']:
-            g = db.games.find({'_id':gid})
+            g = db.games.find_one({'_id':gid})
             if g:
                 recent_games.append(g)
 
@@ -276,7 +276,7 @@ def profile():
         url = request.url
 
         for f in app_friends:
-            friend = db.users.find({'_id': f['id']})
+            friend = db.users.find_one({'_id': f['id']})
             if not friend:
                 friend = {'_id': f['id'], 'name': f['name']}
                 db.users.insert(friend)
@@ -291,6 +291,8 @@ def profile():
     else:
         return render_template('login.html', app_id=FB_APP_ID, token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
 
+
+@app.route('/play.html', methods=['GET', 'POST'])
 
 
 @app.route('/channel.html', methods=['GET', 'POST'])
