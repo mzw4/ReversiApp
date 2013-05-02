@@ -247,7 +247,7 @@ def home():
 
         return render_template(
             'index.html', app_id=FB_APP_ID, token=access_token,
-            friends=friends, app_friends=app_friends, app=fb_app,
+            app_friends=app_friends, app=fb_app,
             user_friends=user_friends, me=me, current_user=current_user,
             recent_games=recent_games, POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO,
             url=url, channel_url=channel_url, name=FB_APP_NAME)
