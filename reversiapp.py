@@ -20,6 +20,7 @@ from flask.ext.mongokit import MongoKit, Document
 
 # app imports
 import models
+import game_controller
 
 FB_APP_ID = os.environ.get('FACEBOOK_APP_ID')
 requests = requests.session()
@@ -122,11 +123,8 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_object('conf.Config')
 
-MONGODB_URI = "mongodb://heroku_app15232410:6gcfdj39cetjlabuvfv3vpove1@ds061777.mongolab.com:61777/heroku_app15232410"
-DB_NAME = "reversi_db"
-
-app.config["MONGODB_DATABASE"] = DB_NAME
-app.config["MONGODB_HOST"] = MONGODB_URI
+# app.config["MONGODB_DATABASE"] = DB_NAME
+# app.config["MONGODB_HOST"] = MONGODB_URI
 
 db = MongoKit(app)
 
@@ -188,7 +186,6 @@ def get_token():
 
         return token
 
-
 @app.route('/', methods=['GET', 'POST'])
 def home():
     access_token = get_token()
@@ -199,12 +196,12 @@ def home():
 
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
-        likes = fb_call('me/likes',
-                        args={'access_token': access_token, 'limit': 4})
-        friends = fb_call('me/friends',
-                          args={'access_token': access_token, 'limit': 4})
-        photos = fb_call('me/photos',
-                         args={'access_token': access_token, 'limit': 16})
+        # likes = fb_call('me/likes',
+        #                 args={'access_token': access_token, 'limit': 4})
+        # friends = fb_call('me/friends',
+        #                   args={'access_token': access_token, 'limit': 4})
+        # photos = fb_call('me/photos',
+        #                  args={'access_token': access_token, 'limit': 16})
 
         redir = get_home() + 'close/'
         POST_TO_WALL = ("https://www.facebook.com/dialog/feed?redirect_uri=%s&"
@@ -222,10 +219,27 @@ def home():
 
         url = request.url
 
+
+        user = db.users.find({'_id': me.id})
+        if not user:
+            db.users.insert({'_id': me.id, 'name': me.name})
+
+        for f in app_friends['data']:
+            friend = db.users.find({'_id': f.id})
+            if not friend:
+                friend = {'_id': f.id, 'name': f.name}
+                db.users.insert(friend)
+            user_friends.append(friend)
+
+        for gid in user.recent_games:
+            g = db.games.find({'_id':gid})
+            recent_games.append(g)
+
         return render_template(
-            'index.html', app_id=FB_APP_ID, token=access_token, likes=likes,
-            friends=friends, photos=photos, app_friends=app_friends, app=fb_app,
-            me=me, POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO, url=url,
+            'index.html', app_id=FB_APP_ID, token=access_token,
+            friends=friends, app_friends=app_friends, app=fb_app,
+            user_friends=user_friends, me=me, user=user, recent_games=recent_games,
+            POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO, url=url,
             channel_url=channel_url, name=FB_APP_NAME)
     else:
         return render_template('login.html', app_id=FB_APP_ID, token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
