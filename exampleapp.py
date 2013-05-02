@@ -8,13 +8,18 @@ import hmac
 import json
 import hashlib
 from base64 import urlsafe_b64decode, urlsafe_b64encode
+from datetime import datetime
 
+# framework imports
 import pymongo
-from pymongo import MongoClient
-
+# from pymongo import MongoClient
 import requests
 from flask import Flask, request, redirect, render_template, url_for
-from flask.ext.pymongo import PyMongo
+from flask.ext.mongokit import MongoKit, Document
+# from flask.ext.pymongo import PyMongo
+
+# app imports
+import models
 
 FB_APP_ID = os.environ.get('FACEBOOK_APP_ID')
 requests = requests.session()
@@ -117,26 +122,30 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_object('conf.Config')
 
-mongodb_uri = "mongodb://heroku_app15232410:6gcfdj39cetjlabuvfv3vpove1@ds061777.mongolab.com:61777/heroku_app15232410"
-db_name = "reversi_db"
+MONGODB_URI = "mongodb://heroku_app15232410:6gcfdj39cetjlabuvfv3vpove1@ds061777.mongolab.com:61777/heroku_app15232410"
+DB_NAME = "reversi_db"
 
-try:
-    connection = pymongo.Connection(mongodb_uri)
-    db = connection[db_name]
-except:
-    print('Error: Unable to connect to database')
-    connection = None
+app.config["MONGODB_DATABASE"] = DB_NAME
+app.config["MONGODB_HOST"] = MONGODB_URI
 
-if connection is not None:
-    db.pokemon.insert({"name": "Pika"})
+db = MongoKit(app)
+
+# try:
+#     connection = pymongo.Connection(MONGODB_URI)
+#     db = connection[DB_NAME]
+# except:
+#     print('Error: Unable to connect to database')
+#     connection = None
+
+# if connection is not None:
+#     db.pokemon.insert({"name": "Pika"})
 
 # app.config['MONGO_URI'] = "mongodb://heroku_app15232410:6gcfdj39cetjlabuvfv3vpove1@ds061777.mongolab.com:61777/heroku_app15232410"
-# mongo = PyMongo(app)
+# mongo = PyMongo(app
 # mongo.db.pokemon.insert({name: "Pika"})
 
 def get_home():
     return 'https://' + request.host + '/'
-
 
 def get_token():
 
@@ -181,10 +190,7 @@ def get_token():
 
 
 @app.route('/', methods=['GET', 'POST'])
-def index():
-    # print get_home()
-
-
+def home():
     access_token = get_token()
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
