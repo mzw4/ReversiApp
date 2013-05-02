@@ -26,9 +26,9 @@ def end_game(game):
 	game.completed = True
 
 	if game.white_score > game.black_score:
-		return white
+		return white['id']
 	elif game.black_score > game.white_score:
-		return black
+		return black['id']
 	else:
 		return None
 
@@ -45,9 +45,9 @@ def forfeit(game, player):
 	game.completed = True
 
 	if white.id == player.id:
-		return black
+		return black['id']
 	else:
-		return white
+		return white['id']
 
 
 def perform_move(game, y, x):

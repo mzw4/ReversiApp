@@ -14,6 +14,7 @@ class User(Document):
 	structure = {
 		'name': basestring,
 		'elo_rating': int,
+		'rank': int,
 		'wins': int,
 		'losses': int,
 		'draws': int,
@@ -40,7 +41,6 @@ class Game(Document):
 		'turn': basestring,
 		'white_score': int,
 		'black_score': int,
-		'completed': bool,
 		'timed': bool,
 		'size': int,
 		'move_list': [{
@@ -52,6 +52,9 @@ class Game(Document):
 		'chat_log': basestring,
 		'creation_time': datetime,
 		'end_time': datetime,
+		'completed': bool,
+		'winner_id': int
+
 	}
 	required_fields = ['white', 'black', 'timed']
 	default_values = {

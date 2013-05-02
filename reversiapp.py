@@ -241,8 +241,10 @@ def home():
                 friend.save()
             user_friends.append(friend)
 
+        online_friends = []
+
         recent_games = []
-        for gid in current_user['current_games']:
+        for gid in current_user['past_games']:
             g = db.games.find_one({'_id':gid})
             if g:
                 recent_games.append(g)
@@ -252,7 +254,8 @@ def home():
         return render_template(
             'index.html', app_id=FB_APP_ID, token=access_token,
             app_friends=app_friends, app=fb_app,
-            user_friends=user_friends, me=me, current_user=current_user,
+            user_friends=user_friends, online_friends=online_friends,
+            me=me, current_user=current_user,
             recent_games=recent_games, num_games=num_games,
             POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO,
             url=url, channel_url=channel_url, name=FB_APP_NAME)

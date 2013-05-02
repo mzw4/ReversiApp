@@ -48,9 +48,9 @@
 {% block content %}
 <div class="left_col">
   <div class="greeting">
-    <h2 class="block_header">GREETINGS, {{ name }}</h2>
-    <h3 class="rank">Rank: {{ rank }}</h3>
-    <h3 class="elo">ELO: {{ elo }}</h3>
+    <h2 class="block_header">GREETINGS, {{ current_usr.name }}</h2>
+    <h3 class="rank">Rank: {{ current_user.rank }}</h3>
+    <h3 class="elo">ELO: {{ current_user.elo_rating }}</h3>
   </div>
   <div class="recent_games">
     <h2 class="block_header">Your Recent Games: </h2>
@@ -58,20 +58,20 @@
     
     <div class="recent_games_list">
     <!-- IF STATEMENT: IF 0 GAMES, DISPLAY FOLLOWING -->
-    {% if (recent_games_array.length == 0) %}
+    {% if len(recent_games) == 0 %}
       <h3>No games played</h3>
     <!-- ELSE IF STATEMENT: IF NUM OF GAMES > 0, DISPLAY THE FOLLOWING TABLE -->
-    {% elif (recent_games_array.length > 0) %}
+    {% elif len(recent_games)> 0) %}
       <table>
         <tbody>
           <!-- LOOP through the recent games array -->
-          {% foreach recent_games_array as recent_game %}
+          {% for g in recent_games %}
             
             <!-- IF STATEMENT: DID USER WIN? -->
-            {% if (recent_game.status == win) %}
+            {% if g.winner_id == current_user._id %}
           <tr class="win">
-            {% elif (recent_game.status == loss %}
-          <tr class="loss">
+            {% else %}
+          <tr class ="loss">
             {% endif %}
 
             <td class="recent_games_pic" style="background-image: url('')">
@@ -79,16 +79,16 @@
             </td>   
             <td class="recent_games_profile">
               <div>
-                {% if (recent_game.status == win) %}
+                {% if g.winner_id == current_user._id %}
                 <span class="status win">WIN</span>
-                {% elif %}
+                {% else %}
                 <span class="status loss">LOSS</span>
                 {% endif %}
               </div>
             </td>
           </tr>
 
-          {% end foreach %}
+          {% endfor %}
 
         </tbody>
       </table>
@@ -101,20 +101,20 @@
   <div class="friends_rank">
     <h2 class="block_header">Play With a Friend!</h2>
     <div class="friends_rank_list">
-      {% if (friends_rank_array.length == 0 %}
+      {% if len(online_friends) == 0 %}
       <h3> None of your friends are on Reversi with Friends. <a href="#">Invite them!</a></h3>
 
-      {% elif %}
+      {% else %}
       <table>
         <tbody>
-          {% foreach friends_rank_array as friend %}
+          {% for friend in online_friends %}
           <tr>
             <td class="friends_rank_pic" style="background-image: url('')">
               <!-- Insert image as background -->
             </td>
             <td class="friends_rank_profile">
               <span class="rank">Rank: {{ friend.rank }}</span>
-              <span class="elo">ELO: {{ friend.elo }}1350</span>
+              <span class="elo">ELO: {{ friend.elo_rating }}1350</span>
             </td>
           </tr>
           {% end foreach %}
