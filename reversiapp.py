@@ -326,7 +326,7 @@ def play_game():
                    % (redir, FB_APP_ID, get_home()))
 
         url = request.url
-
+        
         return render_template(
             'index.html', app_id=FB_APP_ID, token=access_token,
             friends=friends, app_friends=app_friends, app=fb_app,

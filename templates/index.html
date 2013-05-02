@@ -10,11 +10,6 @@
   <div>
     <h1>Welcome, <strong>{{me.name}}</strong></h1>
     <p class="tagline">
-      Your current elo rating is {{current_user.elo_rating}} <br>
-      Wins: {{current_user.wins}} <br>
-      Losses: {{current_user.losses}} <br>
-    </p>
-    <p class="tagline">
       This is your app
       <a href="{{app.link}}">{{app.name}}</a>
     </p>
@@ -44,8 +39,15 @@
 
 {% block content %}
 <section class="clearfix" id="samples">
-      <h1>Examples of the Facebook Graph API</h1>
-
+      <h1>Stats</h1>
+      <div class="list">
+        <p> Your current elo rating is {{current_user.elo_rating}} <br>
+          Wins: {{current_user.wins}} <br>
+          Losses: {{current_user.losses}} <br>
+          Games played: {{len(current_user.past_games)}} <br>
+          Popular opponent: {{}}
+        </p>
+      </div>
       <div class="list">
         <h3>Friends using this app</h3>
         <ul class="friends">{% for friend in app_friends %}
