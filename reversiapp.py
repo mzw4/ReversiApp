@@ -19,7 +19,7 @@ from flask.ext.mongokit import MongoKit, Document
 # from flask.ext.pymongo import PyMongo
 
 # app imports
-import models
+from models import User, Game, Challenge
 import game_controller
 
 FB_APP_ID = os.environ.get('FACEBOOK_APP_ID')
