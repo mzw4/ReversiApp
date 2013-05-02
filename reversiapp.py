@@ -223,11 +223,11 @@ def home():
 
         # current_user = db.users.find_one({'_id': me['id']})
         # if not current_user:
-            current_user = db.User()
-            current_user['id'] = me['id']
-            current_user['name'] = me['name']
-            current_user['current_games'] = []
-            current_user.save()
+        current_user = db.User()
+        current_user['id'] = me['id']
+        current_user['name'] = me['name']
+        current_user['current_games'] = []
+        current_user.save()
 
         aofijaeod = current_user['name']
 
@@ -299,7 +299,40 @@ def profile():
 
 
 @app.route('/play.html', methods=['GET', 'POST'])
+def play_game():
+    access_token = get_token()
+    channel_url = url_for('get_channel', _external=True)
+    channel_url = channel_url.replace('http:', '').replace('https:', '')
 
+    if access_token:
+
+        me = fb_call('me', args={'access_token': access_token})
+        fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
+
+        redir = get_home() + 'close/'
+        POST_TO_WALL = ("https://www.facebook.com/dialog/feed?redirect_uri=%s&"
+                        "display=popup&app_id=%s" % (redir, FB_APP_ID))
+
+        app_friends = fql(
+            "SELECT uid, name, is_app_user, pic_square "
+            "FROM user "
+            "WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND "
+            "  is_app_user = 1", access_token)
+
+        SEND_TO = ('https://www.facebook.com/dialog/send?'
+                   'redirect_uri=%s&display=popup&app_id=%s&link=%s'
+                   % (redir, FB_APP_ID, get_home()))
+
+        url = request.url
+
+        return render_template(
+            'index.html', app_id=FB_APP_ID, token=access_token,
+            friends=friends, app_friends=app_friends, app=fb_app,
+            user_friends=user_friends, me=me, current_user=current_user,
+            POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO, url=url,
+            channel_url=channel_url, name=FB_APP_NAME)
+    else:
+        return render_template('login.html', app_id=FB_APP_ID, token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
 
 @app.route('/channel.html', methods=['GET', 'POST'])
 def get_channel():
