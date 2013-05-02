@@ -1,0 +1,148 @@
+///*** INDEX.SCSS - STYLING FOR INDEX PAGE ***///
+
+
+// Don't worry about resets!
+
+/*** CONTENT MODULE ***/
+div.left_col, div.right_col {
+	width: 50%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+div.left_col {
+	float: left;
+}
+
+div.right_col {
+	float: right;
+}
+
+/*** GREETING MODULE ***/
+
+div.greeting {
+	height: auto;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+/*** RECENT GAMES MODULE ***/
+div.recent_games {
+	width: 100%;
+}
+	$recentGamesWidth: 367px;
+	$recentGamesHeight: 300px;
+	$scrollbarWidth: 17px;
+	$picWidth: 80px;
+	$profileHeight: 80px;
+	div.recent_games_list {
+		width: $recentGamesWidth;
+		height: $recentGamesHeight;
+		overflow-x: hidden;
+		overflow-y: scroll;
+
+		background: #ccc;
+
+		position: relative;
+
+		& > table {
+			width: $recentGamesWidth - $scrollbarWidth;
+		}
+
+		tbody {
+		}
+
+		tr {
+			height: $profileHeight;
+			max-height: $profileHeight - 7;
+		}
+		
+		tr.win {
+			background: #0b0;
+		}
+
+		tr.loss {
+			background: #b00;
+		}
+		td {
+			height: $profileHeight;
+			border: 0;
+			border-spacing: 0;
+			margin: 0;
+			padding: 0;
+		}
+
+		td.recent_games_pic {
+			width: $picWidth;
+
+			img {
+				height: 100%;
+				width: 100%;
+			}
+		}
+
+		td.recent_games_profile {
+			width: $recentGamesWidth - $scrollbarWidth - $picWidth - 1;
+			
+			$innerTableWidth: 270px;
+			& > table {
+				width: $innerTableWidth;
+			}
+
+			td {
+				width: $innerTableWidth / 4;
+			}
+		}
+	}
+
+/*** FRIENDS RANK MODULE ***/
+
+div.friends_rank {
+	height: 100%;
+	width: 100%;
+}
+
+	$rankListWidth: 400px;
+	$rankListHeight: 430px;
+	$rankScrollbarWidth: 17px;
+	$rankPicWidth: 100px;
+	$rankProfileHeight: 70px;
+	div.friends_rank_list {
+		width: $rankListWidth;
+		height: $rankListHeight;
+		overflow-x: hidden;
+		overflow-y: scroll;
+
+		background: #ccc;
+
+		position: relative;
+
+		table {
+			width: $rankListWidth - $rankScrollbarWidth;
+		}
+
+		tbody {
+		}
+
+		tr {
+			height: $rankProfileHeight;
+		}
+
+		td {
+			height: $rankProfileHeight;
+			border: 0;
+			border-spacing: 0;
+		}
+
+		td.friends_rank_pic {
+			width: $rankPicWidth;
+			background: #0bb;
+
+		}
+
+		td.friends_rank_profile {
+			width: $rankListWidth - $rankPicWidth;
+			background: #b0b;
+		}
+	}
