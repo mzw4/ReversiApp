@@ -8,6 +8,8 @@
     <title>{{ name }}</title>
     <link rel="stylesheet" href="static/screen.css" media="Screen" type="text/css" />
     <link rel="stylesheet" href="static/mobile.css" media="handheld, only screen and (max-width: 480px), only screen and (max-device-width: 480px)" type="text/css" />
+    {% block additional_styling %} 
+    {% endblock %}
 
     <!--[if IEMobile]>
       <link rel="stylesheet" href="static/mobile.css" media="screen" type="text/css"  />
@@ -27,7 +29,7 @@
     <meta content="{{app_id}}" property="fb:app_id" />
 
     <script type="text/javascript" src="/static/jquery-1.7.1.min.js"></script>
-       <script type="text/javascript">
+    <script type="text/javascript">
       function logResponse(response) {
         if (console && console.log) {
           console.log('The response was', response);
@@ -93,7 +95,7 @@
 
   </head>
   <body>
-      <script type="text/javascript">
+    <script type="text/javascript">
       window.fbAsyncInit = function() {
         FB.init({
           appId      : '{{ app_id }}', // App ID
@@ -127,18 +129,49 @@
       }(document, 'script', 'facebook-jssdk'));
     </script>
 
-    <header class="clearfix">
-      {% block topbar %}
+    <div class="global_wrapper">
+    <!-- Start HEADER block -->
+    {%- block header -%}
+    <div class="nav_wrapper">
+      <ul id="nav">
+        <li id="reversi_logo">
+          <a href="#" class="header_link">
+            <img src="" alt="Reversi with Friends!" style="background: #a00">
+          </a>
+        </li>
+        <li id="quick_play" style="background: #0a0">
+          <a href="#">
+            Quick Play
+          </a>
+        </li>
+        <li id="past_games" style="background: #00a">
+          <a href="#">
+            Past Games
+          </a>
+        </li>
+        <li id="profile" style="background: #a0a">
+          <a href="#">
+            <img src="" alt="PROFILE PIC HERE" id="profile_pic">
+            <span id="profile_name">NAME HERE</span>
+          </a>
+          <ul id="profile_menu">
+            <li><a href="#">Your Stats</a></li>
+            <li><a href="#">Item2</a></li>
+            <li><a href="#">SIGNOUT</a></li>
+          </ul>
+        </li>
+      </ul> 
+    </div>
+    {%- endblock -%}
+    <!-- End HEADER block -->
+    <!-- Start CONTENT block -->
+    <div class="content">
+    {% block content %} 
 
-      {% endblock %}
-    </header>
-    <section id="get-started">
-      <p>Welcome to your Facebook app, running on
-      <span>heroku</span>!</p>
-      <a class="button" href="https://devcenter.heroku.com/articles/facebook">Learn How to Edit This App</a>
-    </section>
-    {% block content%}
     {% endblock %}
+    </div>
+    <!-- End CONTENT block -->
+  </div>
     <section class="clearfix" id="guides">
       <h1>Learn More About Heroku &amp; Facebook Apps</h1>
       <ul>
