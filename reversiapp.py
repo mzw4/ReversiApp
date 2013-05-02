@@ -221,14 +221,14 @@ def home():
         url = request.url
 
 
-        user = db.users.find({'_id': me.id})
+        user = db.users.find({'_id': me['id']})
         if not user:
-            db.users.insert({'_id': me.id, 'name': me.name})
+            db.users.insert({'_id': me['id'], 'name': me['name']})
 
         for f in app_friends['data']:
-            friend = db.users.find({'_id': f.id})
+            friend = db.users.find({'_id': f['id']})
             if not friend:
-                friend = {'_id': f.id, 'name': f.name}
+                friend = {'_id': f['id'], 'name': f['name']}
                 db.users.insert(friend)
             user_friends.append(friend)
 
