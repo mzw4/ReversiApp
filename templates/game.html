@@ -5,7 +5,12 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="gameboard_header">
+	<div id="player_turn">{{ is it my turn? }}</div>
+	<div id="your_score"> {{ player.score }} </div>
+	<div id="opponent_score">{{ opponent.score }}</div>
+	<div id="timer">{{ timer }}</div>
+</div>
 <div class="gameboard">
 	<div class="row_wrapper rowA">
 		<div class="boardspot rowA col1">A1</div>
