@@ -11,7 +11,6 @@ def name_validator(name):
 class User(Document):
 	__collection__ = 'users'
 	__database__ = 'reversi_db'
-	use_dot_notation = True
 	structure = {
 		'name': basestring,
 		'elo_rating': int,
@@ -28,13 +27,12 @@ class User(Document):
 	validators = {
 		'name': name_validator,
 	}
+	use_dot_notation = True
 
 # @connection.register
 class Game(Document):
 	__collection__ = 'games'
 	__database__ = 'reversi_db'
-	use_dot_notation = True
-	use_autorefs = True
 	structure = {
 		'white': User,
 		'black': User,
@@ -59,18 +57,20 @@ class Game(Document):
 		'size': 8,
 		'turn': 'white',
 	}
+	use_dot_notation = True
+	use_autorefs = True
 
 # @connection.register
 class Challenge(Document):
 	__collection__ = 'challenges'
 	__database__ = 'reversi_db'
-	use_dot_notation = True
-	use_autorefs = True
 	structure = {
 		'sender': User,
 		'receiver': User,
 	}
 	required_fields = ['sender', 'receiver']
+	use_dot_notation = True
+	use_autorefs = True
 
 
 # class User(Document):
