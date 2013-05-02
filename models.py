@@ -38,7 +38,7 @@ class Game(Document):
 	structure = {
 		'white': User,
 		'black': User,
-		'turn': IS('white', 'black'),
+		'turn': basestring,
 		'white_score': int,
 		'black_score': int,
 		'completed': bool,
