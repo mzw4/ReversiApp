@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+<!-- We're not using this so we can ignore it/delete it later -->
 {% block topbar %}
 
   <!-- By passing a valid access token here, we are able to display -->
@@ -42,19 +43,92 @@
 
 {% endblock %}
 
-{% block content %}
-<section class="clearfix" id="samples">
-      <h1>Examples of the Facebook Graph API</h1>
 
-      <div class="list">
-        <h3>Friends using this app</h3>
-        <ul class="friends">{% for friend in app_friends %}
-        <li>
-          <a href="#" onclick="window.open('http://www.facebook.com/{{friend.uid}}')">
-            <img src="https://graph.facebook.com/{{friend.uid}}/picture?type=square" alt="{{friend.name}}">
-            {{friend.name}}
-            </a>
-        </li>{% endfor %}</ul>
-      </div>
-    </section>
-{% endblock%}
+<!-- We're actually using this part -->
+{% block additional_styling %}
+<link rel="stylesheet" href="../static/index.css"> 
+{% endblock %}
+
+
+{% block content %}
+
+<div class="left_col">
+  <div class="greeting">
+    <h2 class="block_header">GREETINGS, {{ name }}</h2>
+    <h3 class="rank">Rank: {{ rank }}</h3>
+    <h3 class="elo">ELO: {{ elo }}</h3>
+  </div>
+  <div class="recent_games">
+    <h2 class="block_header">Your Recent Games: </h2>
+    <!-- Start RECENT GAMES LIST block -->
+    
+    <div class="recent_games_list">
+    <!-- IF STATEMENT: IF 0 GAMES, DISPLAY FOLLOWING -->
+    {% if (recent_games_array.length == 0) %}
+      <h3>No games played</h3>
+    <!-- ELSE IF STATEMENT: IF NUM OF GAMES > 0, DISPLAY THE FOLLOWING TABLE -->
+    {% elif (recent_games_array.length > 0) %}
+      <table>
+        <tbody>
+          <!-- LOOP through the recent games array -->
+          {% foreach recent_games_array as recent_game %}
+            
+            <!-- IF STATEMENT: DID USER WIN? -->
+            {% if (recent_game.status == win) %}
+          <tr class="win">
+            {% elif (recent_game.status == loss %}
+          <tr class="loss">
+            {% endif %}
+
+            <td class="recent_games_pic" style="background-image: url('')">
+              <!-- Insert image as background -->
+            </td>   
+            <td class="recent_games_profile">
+              <div>
+                {% if (recent_game.status == win) %}
+                <span class="status win">WIN</span>
+                {% elif %}
+                <span class="status loss">LOSS</span>
+                {% endif %}
+              </div>
+            </td>
+          </tr>
+
+          {% end foreach %}
+
+        </tbody>
+      </table>
+    {% endif %}
+    </div>
+    <!-- End RECENT GAMES LIST block -->
+  </div>
+</div>
+<div class="right_col">
+  <div class="friends_rank">
+    <h2 class="block_header">Play With a Friend!</h2>
+    <div class="friends_rank_list">
+      {% if (friends_rank_array.length == 0 %}
+      <h3> None of your friends are on Reversi with Friends. <a href="#">Invite them!</a></h3>
+
+      {% elif %}
+      <table>
+        <tbody>
+          {% foreach friends_rank_array as friend %}
+          <tr>
+            <td class="friends_rank_pic" style="background-image: url('')">
+              <!-- Insert image as background -->
+            </td>
+            <td class="friends_rank_profile">
+              <span class="rank">Rank: {{ friend.rank }}</span>
+              <span class="elo">ELO: {{ friend.elo }}1350</span>
+            </td>
+          </tr>
+          {% end foreach %}
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
