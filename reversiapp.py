@@ -225,8 +225,8 @@ def home():
             current_user = {'_id': me['id'], 'name': me['name']}
             db.users.insert(current_user)
 
-        aofijaeod = current_user.name
-
+        aofijaeod = current_user['name']
+        
         for f in app_friends:
             friend = db.users.find_one({'_id': f['id']})
             if not friend:
