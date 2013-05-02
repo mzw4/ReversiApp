@@ -41,6 +41,7 @@ app.config.from_object('conf.Config')
 
 db = MongoKit(app)
 db.register([User, Game, Challenge])
+db.users.remove()
 
 # try:
 #     connection = pymongo.Connection(MONGODB_URI)
