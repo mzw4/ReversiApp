@@ -12,6 +12,7 @@ from datetime import datetime
 
 # framework imports
 import pymongo
+from pymongo.son_manipulator import AutoReference, NamespaceInjector
 # from pymongo import MongoClient
 import requests
 from flask import Flask, request, redirect, render_template, url_for
@@ -222,16 +223,20 @@ def home():
 
         current_user = db.users.find_one({'_id': me['id']})
         if not current_user:
-            current_user = {'_id': me['id'], 'name': me['name']}
-            db.users.insert(current_user)
+            current_user = db.User()
+            current_user._id = me['id']
+            current_user.name = me['name']
+            current_user.save()
 
         aofijaeod = current_user['name']
-        
+
         for f in app_friends:
             friend = db.users.find_one({'_id': f['id']})
             if not friend:
-                friend = {'_id': f['id'], 'name': f['name']}
-                db.users.insert(friend)
+                friend = db.User()
+                friend._id = f['id']
+                friend.name = f['name']
+                friend.save()
             user_friends.append(friend)
 
         for gid in current_user['current_games']:
