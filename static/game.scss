@@ -1,0 +1,49 @@
+///*** GAME.SCSS -- STYLING FOR GAMES PAGES ***///
+
+// Don't worry about resets!
+
+/*** CONTENT MODULE ***/
+
+$boardWidth: 500px;
+$boardHeight: 500px;
+div.gameboard {
+	float: left;
+	margin: 20px;
+
+	width: $boardWidth;
+	height: $boardHeight;
+}
+
+$rowHeight: $boardHeight / 8;
+div.row_wrapper {
+	position: relative;
+	width: $boardWidth;
+	height: $rowHeight;
+}
+
+$spotWidth: $boardWidth / 8;
+$spotHeight: $boardHeight / 8;
+div.boardspot {
+	position: absolute;
+	width: $spotWidth;
+	height: $spotHeight;
+	color: #fff;
+	line-height: $spotHeight;
+	text-align: center;
+	border: 1px #fff solid;
+	opacity: 1;
+	cursor: pointer;
+
+	&:hover {
+		opacity: 0.7;
+	}
+}
+
+// Setting up boardpieces
+@for $i from 1 through 8 {
+	div.col#{$i} {
+		left: 0 + ($i - 1) * $spotWidth;
+		// optional background color stuff
+		background: rgba(20+$i*20, 50+$i*10, 80+$i*8, 1);
+	}
+}
