@@ -25,17 +25,6 @@ class User(Document):
 		'achievements': [int],
 	}
 	required_fields = ['name']
-	# default_values = {
-	# 	'elo_rating': 0,
-	# 	'wins': 0,
-	# 	'losses': 0,
-	# 	'draws': 0,
-	# 	'sent_challenges': [],
-	# 	'recieved_challenges': [],
-	# 	'current_games': [],
-	# 	'past_games': [],
-	# 	'achievements': [],
-	# }
 	validators = {
 		'name': name_validator,
 	}
