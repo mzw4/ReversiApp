@@ -226,6 +226,7 @@ def home():
             current_user = db.User()
             current_user._id = me['id']
             current_user.name = me['name']
+            current_user.current_games = []
             current_user.save()
 
         aofijaeod = current_user['name']
@@ -239,7 +240,7 @@ def home():
                 friend.save()
             user_friends.append(friend)
 
-        for gid in current_user['current_games']:
+        for gid in current_user.current_games:
             g = db.games.find_one({'_id':gid})
             if g:
                 recent_games.append(g)
