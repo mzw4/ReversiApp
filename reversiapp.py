@@ -225,12 +225,11 @@ def home():
         # if not current_user:
         current_user = db.User()
         current_user['_id'] = me['id']
-        current_user['name'] = me['name']
+        current_user.name = me['name']
         current_user['current_games'] = []
         current_user.save()
 
-        aofijaeod = current_user['name']
-
+        user_friends = []
         for f in app_friends:
             friend = db.users.find_one({'_id': f['id']})
             if not friend:
@@ -240,6 +239,7 @@ def home():
                 friend.save()
             user_friends.append(friend)
 
+        recent_games = []
         for gid in current_user['current_games']:
             g = db.games.find_one({'_id':gid})
             if g:
