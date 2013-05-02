@@ -223,7 +223,8 @@ def home():
 
         user = db.users.find({'_id': me['id']})
         if not user:
-            db.users.insert({'_id': me['id'], 'name': me['name']})
+            user = {'_id': me['id'], 'name': me['name']}
+            db.users.insert(user)
 
         for f in app_friends:
             friend = db.users.find({'_id': f['id']})
@@ -232,7 +233,7 @@ def home():
                 db.users.insert(friend)
             user_friends.append(friend)
 
-        for gid in user['current_games']:
+        for gid in user.current_games:
             g = db.games.find({'_id':gid})
             if g:
                 recent_games.append(g)
