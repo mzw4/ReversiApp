@@ -233,7 +233,7 @@ def home():
                 db.users.insert(friend)
             user_friends.append(friend)
 
-        for gid in user.current_games:
+        for gid in user['current_games']:
             g = db.games.find({'_id':gid})
             if g:
                 recent_games.append(g)
