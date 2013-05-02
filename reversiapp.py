@@ -127,6 +127,7 @@ app.config.from_object('conf.Config')
 # app.config["MONGODB_HOST"] = MONGODB_URI
 
 db = MongoKit(app)
+db.register([User, Game, Challenge])
 
 # try:
 #     connection = pymongo.Connection(MONGODB_URI)

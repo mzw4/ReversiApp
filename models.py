@@ -7,7 +7,7 @@ from mongokit import Document, Connection, IS
 def name_validator(name):
 	return True 
 
-@connection.register
+# @connection.register
 class User(Document):
 	__collection__ = 'users'
 	__database__ = 'reversi_db'
@@ -29,7 +29,7 @@ class User(Document):
 		'name': name_validator,
 	}
 
-@connection.register
+# @connection.register
 class Game(Document):
 	__collection__ = 'games'
 	__database__ = 'reversi_db'
@@ -60,7 +60,7 @@ class Game(Document):
 		'turn': 'white',
 	}
 
-@connection.register
+# @connection.register
 class Challenge(Document):
 	__collection__ = 'challenges'
 	__database__ = 'reversi_db'
