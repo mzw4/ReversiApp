@@ -310,8 +310,8 @@ def profile():
         return render_template('login.html', app_id=FB_APP_ID, token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
 
 
-@app.route('/play', methods=['GET', 'POST'])
-def play_game():
+@app.route('/quickplay', methods=['GET', 'POST'])
+def quickplay():
     access_token = get_token()
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')

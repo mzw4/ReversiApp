@@ -141,14 +141,10 @@
           </a>
         </li>
         <li id="quick_play" style="background: #0a0">
-          <a href="#">
-            Quick Play
-          </a>
+          <a href="{{ url_for('quickplay') }}"> Quick Play </a>
         </li>
         <li id="past_games" style="background: #00a">
-          <a href="#">
-            Past Games
-          </a>
+          <a href="{{ url_for('game_history') }}"> Past Games </a>
         </li>
         <li id="profile" style="background: #a0a">
           <a href="#">
@@ -156,7 +152,7 @@
             <span id="profile_name">{{current_user.name}}</span>
           </a>
           <ul id="profile_menu">
-            <li><a href="#">Your Stats</a></li>
+            <li><a href=" {{ url_for('profile') }}"> Your Stats </a></li>
             <li><a href="#">SIGNOUT</a></li>
           </ul>
         </li>
