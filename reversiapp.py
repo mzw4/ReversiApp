@@ -246,6 +246,7 @@ def home():
         u1['name'] = "Dummy User"
         u2 = db.User()
         u2['name'] = "Another Dummy"
+        u2['_id'] = 12345
         u3 = db.User()
         u3['name'] = "Edward the Dastardly"
         online_friends.append(u1)
@@ -267,7 +268,7 @@ def home():
         g3['white'] = current_user
         g3['black'] = u3
         g3['timed'] = False
-        g3['winner'] = current_user['_id']
+        g3['winner_id'] = current_user['_id']
         recent_games.append(g1)
         recent_games.append(g2)
         recent_games.append(g3)
