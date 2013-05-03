@@ -6,16 +6,16 @@
 
 {% block content %}
 
-<h2>{{ name }}'s Stats</h2>
+<h2>{{ current_user.name }}'s Stats</h2>
 
-<p>Wins: {{ wins }}</p>
-<p>Percent Wins as Black: {{ }}</p>
-<p>Percent Wings as White: {{ }}</p>
-<p>Losses: {{ losses }}</p>
-<p>Draws: {{ draws }}</p>
+<p>Wins: {{ current_user.wins }}</p>
+<p>Percent Wins as Black: {{ current_user.wins }}</p>
+<p>Percent Wins as White: {{ current_user.wins }}</p>
+<p>Losses: {{ current_user.losses }}</p>
+<p>Draws: {{ current_user.draws }}</p>
 
-<p>Rank Amongst Friends: {{ rank }}</p>
-<p>Elo: {{ elo }}</p>
+<p>Rank Amongst Friends: {{ current_user.rank }}</p>
+<p>Elo: {{ current_user.elo_rating }}</p>
 
 
 {% endblock %}
