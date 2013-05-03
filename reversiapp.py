@@ -336,6 +336,15 @@ def play_game():
 
         url = request.url
 
+        current_user = db.users.find_one({'_id': me['id']})
+        if not current_user:
+            db.users.remove()
+            current_user = db.User()
+            current_user['_id'] = me['id']
+            current_user.name = me['name']
+            current_user['current_games'] = []
+            current_user.save()
+            
         opponent_dummy = db.User()
         opponent_dummy['name'] = 'Poopface'
         opponent_dummy.save()
