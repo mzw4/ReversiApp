@@ -297,14 +297,13 @@ def profile():
         current_user['_id'] = me['id']
         current_user['name'] = me['name']
         current_user.save()
-        
+
         num_games = len(current_user['past_games'])
 
         return render_template(
             'profile.html', app_id=FB_APP_ID, token=access_token,
-            friends=friends, app_friends=app_friends, app=fb_app,
-            num_games=num_games,
-            me=me, current_user=current_user,
+            app_friends=app_friends, app=fb_app,
+            num_games=num_games, me=me, current_user=current_user,
             POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO, url=url,
             channel_url=channel_url, name=FB_APP_NAME)
     else:
