@@ -336,9 +336,13 @@ def play_game():
 
         url = request.url
 
+        opponent_dummy = db.User()
+        opponent_dummy['name'] = 'Poopface'
+        opponent_dummy.save()
+
         game = db.Game()
         game['white'] = current_user
-        game['black'] = None
+        game['black'] = opponent_dummy
         game['timed'] = False
         game.save()
 
