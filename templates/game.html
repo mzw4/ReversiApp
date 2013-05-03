@@ -6,15 +6,15 @@
 
 {% block content %}
 <div class="gameboard_header">
-	<div id="player_turn">{{ is it my turn? }}</div>
-	<div id="your_score"> {{ player.score }} </div>
-	<div id="opponent_score">{{ opponent.score }}</div>
+	<div id="player_turn">{{ my_turn }}</div>
+	<div id="your_score"> {{ player_score }} </div>
+	<div id="opponent_score">{{ opponent_score }}</div>
 	<!-- timer.enabled is a boolean -->
-	{% if NOT timer.enabled %} 
+<!-- 	{% if NOT timer.enabled %} 
 	<div id="timer" class="disabled">{{ timer }}</div>
-	{% elif %}
+	{% else %}
 	<div id="timer" class="enabled">{{ timer }}</div>
-	{% endif %}
+	{% endif %} -->
 </div>
 <div class="gameboard">
 	<div class="row_wrapper rowA">

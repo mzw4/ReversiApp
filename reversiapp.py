@@ -252,7 +252,7 @@ def home():
 
         num_games = len(current_user['past_games'])
         num_online_friends = len(user_friends)
-        
+
         return render_template(
             'index.html', app_id=FB_APP_ID, token=access_token,
             app_friends=app_friends, app=fb_app,
@@ -336,10 +336,26 @@ def play_game():
 
         url = request.url
 
+        game = db.Game()
+        game['white'] = current_user
+        game['black'] = None
+        game['timed'] = False
+        game.save()
+
+        if game['turn'] == 'white' and game['white']['id'] == current_user['id']:
+            my_turn = "Your turn!"
+            player_score = game['white_score']
+            opponent_score = game['black_score']
+        else:
+            my_turn = "Opponent's turn!"
+            player_score = game['black_score']
+            opponent_score = game['white_score']
+
         return render_template(
             'game.html', app_id=FB_APP_ID, token=access_token,
-            friends=friends, app_friends=app_friends, app=fb_app,
-            user_friends=user_friends, me=me, current_user=current_user,
+            app_friends=app_friends, app=fb_app,
+            my_turn=my_turn, player_score=player_score, opponent_score=opponent_score,
+            me=me, current_user=current_user,
             POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO, url=url,
             channel_url=channel_url, name=FB_APP_NAME)
     else:
