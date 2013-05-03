@@ -81,13 +81,13 @@
               <div>
                 {% if g.white._id == current_user._id %}
                 <span class="opponent">
-                  Opponent: {{game.black.name}} <br>
-                  ELO: {{game.black.elo_rating}}
+                  Opponent: {{g.black.name}} <br>
+                  ELO: {{g.black.elo_rating}}
                 </span>
                 {% else %}
                 <span class="opponent">
-                  Opponent: {{game.white.name}} <br>
-                  ELO: {{game.white.elo_rating}}
+                  Opponent: {{g.white.name}} <br>
+                  ELO: {{g.white.elo_rating}}
                 </span>
                 {% endif %}
                 {% if g.winner_id == current_user._id %}
