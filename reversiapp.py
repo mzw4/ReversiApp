@@ -292,17 +292,13 @@ def profile():
 
         url = request.url
 
-        for f in app_friends:
-            friend = db.users.find_one({'_id': f['id']})
-            if not friend:
-                friend = {'_id': f['id'], 'name': f['name']}
-                db.users.insert(friend)
-            user_friends.append(friend)
+        num_games = len(current_user['past_games'])
 
         return render_template(
             'profile.html', app_id=FB_APP_ID, token=access_token,
             friends=friends, app_friends=app_friends, app=fb_app,
-            user_friends=user_friends, me=me, current_user=current_user,
+            num_games=num_games,
+            me=me, current_user=current_user,
             POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO, url=url,
             channel_url=channel_url, name=FB_APP_NAME)
     else:
