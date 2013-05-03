@@ -338,7 +338,7 @@ def play_game():
 
         # current_user = db.users.find_one({'_id': me['id']})
         # if not current_user:
-        #     db.users.remove()
+        db.users.remove()
         current_user = db.User()
         current_user['_id'] = me['id']
         current_user['name'] = me['name']
@@ -348,6 +348,7 @@ def play_game():
         opponent_dummy['name'] = 'Poopface'
         opponent_dummy.save()
 
+        db.games.remove()
         game = db.Game()
         game['white'] = current_user
         game['black'] = opponent_dummy
