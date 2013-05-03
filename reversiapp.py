@@ -355,7 +355,7 @@ def play_game():
         game['timed'] = False
         game.save()
 
-        if game['turn'] == 'white' and game['white']['id'] == current_user['_id']:
+        if game['turn'] == 'white' and game['white']['_id'] == current_user['_id']:
             my_turn = "Your turn!"
             player_score = game['white_score']
             opponent_score = game['black_score']
