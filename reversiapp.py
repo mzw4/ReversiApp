@@ -244,6 +244,22 @@ def home():
         online_friends = []
 
         recent_games = []
+        g1 = db.Game()
+        g1['white'] = current_user
+        g1['black'] = current_user
+        g1['timed'] = False
+        g2 = db.Game()
+        g2['white'] = current_user
+        g2['black'] = current_user
+        g2['timed'] = False
+        g3 = db.Game()
+        g3['white'] = current_user
+        g3['black'] = current_user
+        g3['timed'] = False
+        recent_games.append(g1)
+        recent_games.append(g2)
+        recent_games.append(g3)
+
 
         for gid in current_user['past_games']:
             g = db.games.find_one({'_id':gid})
@@ -339,7 +355,6 @@ def quickplay():
 
         # current_user = db.users.find_one({'_id': me['id']})
         # if not current_user:
-        db.users.remove()
         current_user = db.User()
         current_user['_id'] = me['id']
         current_user['name'] = me['name']
@@ -369,7 +384,7 @@ def quickplay():
             'game.html', app_id=FB_APP_ID, token=access_token,
             app_friends=app_friends, app=fb_app,
             my_turn=my_turn, player_score=player_score, opponent_score=opponent_score,
-            me=me, current_user=current_user,
+            me=me, current_user=current_user, opponent
             POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO, url=url,
             channel_url=channel_url, name=FB_APP_NAME)
     else:
@@ -404,7 +419,7 @@ def game_history():
 
         return render_template(
             'index.html', app_id=FB_APP_ID, token=access_token,
-            friends=friends, app_friends=app_friends, app=fb_app,
+            app_friends=app_friends, app=fb_app,
             user_friends=user_friends, me=me, current_user=current_user,
             POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO, url=url,
             channel_url=channel_url, name=FB_APP_NAME)
