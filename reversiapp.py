@@ -251,7 +251,8 @@ def home():
                 recent_games.append(g)
 
         num_games = len(current_user['past_games'])
-
+        num_online_friends = len(user_friends)
+        
         return render_template(
             'index.html', app_id=FB_APP_ID, token=access_token,
             app_friends=app_friends, app=fb_app,
