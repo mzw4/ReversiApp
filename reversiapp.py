@@ -244,7 +244,7 @@ def home():
         online_friends = []
 
         recent_games = []
-        
+
         for gid in current_user['past_games']:
             g = db.games.find_one({'_id':gid})
             if g:
@@ -256,6 +256,7 @@ def home():
             'index.html', app_id=FB_APP_ID, token=access_token,
             app_friends=app_friends, app=fb_app,
             user_friends=user_friends, online_friends=online_friends,
+            num_online_friends=num_online_friends,
             me=me, current_user=current_user,
             recent_games=recent_games, num_games=num_games,
             POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO,
@@ -298,7 +299,7 @@ def profile():
             user_friends.append(friend)
 
         return render_template(
-            'index.html', app_id=FB_APP_ID, token=access_token,
+            'profile.html', app_id=FB_APP_ID, token=access_token,
             friends=friends, app_friends=app_friends, app=fb_app,
             user_friends=user_friends, me=me, current_user=current_user,
             POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO, url=url,
@@ -335,7 +336,7 @@ def play_game():
         url = request.url
 
         return render_template(
-            'index.html', app_id=FB_APP_ID, token=access_token,
+            'game.html', app_id=FB_APP_ID, token=access_token,
             friends=friends, app_friends=app_friends, app=fb_app,
             user_friends=user_friends, me=me, current_user=current_user,
             POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO, url=url,
@@ -343,7 +344,7 @@ def play_game():
     else:
         return render_template('login.html', app_id=FB_APP_ID, token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
 
-@app.route('/play', methods=['GET', 'POST'])
+@app.route('/history', methods=['GET', 'POST'])
 def game_history():
     access_token = get_token()
     channel_url = url_for('get_channel', _external=True)

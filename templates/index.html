@@ -58,7 +58,7 @@
     
     <div class="recent_games_list">
     <!-- IF STATEMENT: IF 0 GAMES, DISPLAY FOLLOWING -->
-    {% if len(recent_games) == 0 %}
+    {% if num_games == 0 %}
       <h3>No games played</h3>
     <!-- ELSE IF STATEMENT: IF NUM OF GAMES > 0, DISPLAY THE FOLLOWING TABLE -->
     {% else %}
@@ -101,7 +101,7 @@
   <div class="friends_rank">
     <h2 class="block_header">Play With a Friend!</h2>
     <div class="friends_rank_list">
-      {% if len(online_friends) == 0 %}
+      {% if num_online_friends == 0 %}
       <h3> None of your friends are on Reversi with Friends. <a href="#">Invite them!</a></h3>
 
       {% else %}
