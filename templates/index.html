@@ -79,6 +79,17 @@
             </td>   
             <td class="recent_games_profile">
               <div>
+                {% if g.white._id == current_user._id %}
+                <span class="opponent">
+                  Opponent: {{game.black.name}} <br>
+                  ELO: {{game.black.elo_rating}}
+                </span>
+                {% else %}
+                <span class="opponent">
+                  Opponent: {{game.white.name}} <br>
+                  ELO: {{game.white.elo_rating}}
+                </span>
+                {% endif %}
                 {% if g.winner_id == current_user._id %}
                 <span class="status win">WIN</span>
                 {% else %}
@@ -113,8 +124,9 @@
               <!-- Insert image as background -->
             </td>
             <td class="friends_rank_profile">
+              <span class="name">{{ friend.name }}</span>
               <span class="rank">Rank: {{ friend.rank }}</span>
-              <span class="elo">ELO: {{ friend.elo_rating }}1350</span>
+              <span class="elo">ELO: {{ friend.elo_rating }}</span>
             </td>
           </tr>
           {% endfor %}

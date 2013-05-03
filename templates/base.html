@@ -147,7 +147,7 @@
           <a href="#"> Past Games </a>
         </li>
         <li id="profile" style="background: #a0a">
-          <a href="#">
+          <a href="{{ current_user.link }}">
             <img src="" alt="PROFILE PIC HERE" id="profile_pic">
             <span id="profile_name">{{current_user.name}}</span>
           </a>
@@ -156,7 +156,7 @@
             <li><a href="#">SIGNOUT</a></li>
           </ul>
         </li>
-      </ul> 
+      </ul>
     </div>
     {% endblock %}
     <!-- End HEADER block -->
