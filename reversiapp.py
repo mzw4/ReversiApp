@@ -232,14 +232,14 @@ def home():
             current_user.save()
 
         user_friends = []
-        for f in app_friends:
-            friend = db.users.find_one({'_id': f['id']})
-            if not friend:
-                friend = db.User()
-                friend['_id'] = f['id']
-                friend['name'] = f['name']
-                friend.save()
-            user_friends.append(friend)
+        # for f in app_friends:
+        #     friend = db.users.find_one({'_id': f['id']})
+        #     if not friend:
+        #         friend = db.User()
+        #         friend['_id'] = f['id']
+        #         friend['name'] = f['name']
+        #         friend.save()
+        #     user_friends.append(friend)
 
         online_friends = []
 
