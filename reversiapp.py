@@ -257,14 +257,17 @@ def home():
         g1['white'] = u1
         g1['black'] = current_user
         g1['timed'] = False
+        g1['winner_id'] = current_user['_id']
         g2 = db.Game()
         g2['white'] = current_user
         g2['black'] = u2
         g2['timed'] = False
+        g2['winner_id'] = u2['_id']
         g3 = db.Game()
         g3['white'] = current_user
         g3['black'] = u3
         g3['timed'] = False
+        g3['winner'] = current_user['_id']
         recent_games.append(g1)
         recent_games.append(g2)
         recent_games.append(g3)
