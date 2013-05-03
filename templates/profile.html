@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block additional_styling %}
+<link rel="stylesheet" href="static/profile.css">
+{% endblock %}
+
+{% block content %}
+
+<h2>{{ name }}'s Stats</h2>
+
+<p>Wins: {{ wins }}</p>
+<p>Percent Wins as Black: {{ }}</p>
+<p>Percent Wings as White: {{ }}</p>
+<p>Losses: {{ losses }}</p>
+<p>Draws: {{ draws }}</p>
+
+<p>Rank Amongst Friends: {{ rank }}</p>
+<p>Elo: {{ elo }}</p>
+
+
+{% endblock %}

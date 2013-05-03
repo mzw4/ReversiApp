@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block additional_styling %}
+<link rel="stylsheet" href="static/game.css" >
+{% endblock %}
+
+{% block content %}
+<div class="gameboard_header">
+	<div id="player_turn">{{ is it my turn? }}</div>
+	<div id="your_score"> {{ player.score }} </div>
+	<div id="opponent_score">{{ opponent.score }}</div>
+	<!-- timer.enabled is a boolean -->
+	{% if NOT timer.enabled %} 
+	<div id="timer" class="disabled">{{ timer }}</div>
+	{% elif %}
+	<div id="timer" class="enabled">{{ timer }}</div>
+	{% endif %}
+</div>
+<div class="gameboard">
+	<div class="row_wrapper rowA">
+		<div class="boardspot rowA col1">A1</div>
+		<div class="boardspot rowA col2">A2</div>
+		<div class="boardspot rowA col3">A3</div>
+		<div class="boardspot rowA col4">A4</div>
+		<div class="boardspot rowA col5">A5</div>
+		<div class="boardspot rowA col6">A6</div>
+		<div class="boardspot rowA col7">A7</div>
+		<div class="boardspot rowA col8">A8</div>
+	</div>
+	<div class="row_wrapper rowB">
+		<div class="boardspot rowB col1">B1</div>
+		<div class="boardspot rowB col2">B2</div>
+		<div class="boardspot rowB col3">B3</div>
+		<div class="boardspot rowB col4">B4</div>
+		<div class="boardspot rowB col5">B5</div>
+		<div class="boardspot rowB col6">B6</div>
+		<div class="boardspot rowB col7">B7</div>
+		<div class="boardspot rowB col8">B8</div>
+	</div>
+	<div class="row_wrapper rowC">
+		<div class="boardspot rowC col1">C1</div>
+		<div class="boardspot rowC col2">C2</div>
+		<div class="boardspot rowC col3">C3</div>
+		<div class="boardspot rowC col4">C4</div>
+		<div class="boardspot rowC col5">C5</div>
+		<div class="boardspot rowC col6">C6</div>
+		<div class="boardspot rowC col7">C7</div>
+		<div class="boardspot rowC col8">C8</div>
+	</div>
+	<div class="row_wrapper rowD">
+		<div class="boardspot rowD col1">D1</div>
+		<div class="boardspot rowD col2">D2</div>
+		<div class="boardspot rowD col3">D3</div>
+		<div class="boardspot rowD col4">D4</div>
+		<div class="boardspot rowD col5">D5</div>
+		<div class="boardspot rowD col6">D6</div>
+		<div class="boardspot rowD col7">D7</div>
+		<div class="boardspot rowD col8">D8</div>
+	</div>
+	<div class="row_wrapper rowE">
+		<div class="boardspot rowE col1">E1</div>
+		<div class="boardspot rowE col2">E2</div>
+		<div class="boardspot rowE col3">E3</div>
+		<div class="boardspot rowE col4">E4</div>
+		<div class="boardspot rowE col5">E5</div>
+		<div class="boardspot rowE col6">E6</div>
+		<div class="boardspot rowE col7">E7</div>
+		<div class="boardspot rowE col8">E8</div>
+	</div>
+	<div class="row_wrapper rowF">
+		<div class="boardspot rowF col1">F1</div>
+		<div class="boardspot rowF col2">F2</div>
+		<div class="boardspot rowF col3">F3</div>
+		<div class="boardspot rowF col4">F4</div>
+		<div class="boardspot rowF col5">F5</div>
+		<div class="boardspot rowF col6">F6</div>
+		<div class="boardspot rowF col7">F7</div>
+		<div class="boardspot rowF col8">F8</div>
+	</div>
+	<div class="row_wrapper rowG">
+		<div class="boardspot rowG col1">G1</div>
+		<div class="boardspot rowG col2">G2</div>
+		<div class="boardspot rowG col3">G3</div>
+		<div class="boardspot rowG col4">G4</div>
+		<div class="boardspot rowG col5">G5</div>
+		<div class="boardspot rowG col6">G6</div>
+		<div class="boardspot rowG col7">G7</div>
+		<div class="boardspot rowG col8">G8</div>
+	</div>
+	<div class="row_wrapper rowH">
+		<div class="boardspot rowH col1">H1</div>
+		<div class="boardspot rowH col2">H2</div>
+		<div class="boardspot rowH col3">H3</div>
+		<div class="boardspot rowH col4">H4</div>
+		<div class="boardspot rowH col5">H5</div>
+		<div class="boardspot rowH col6">H6</div>
+		<div class="boardspot rowH col7">H7</div>
+		<div class="boardspot rowH col8">H8</div>
+	</div>
+</div>
+
+{% block share_with_friends %}
+<div id="share-app">
+  <p>Share your app:</p>
+  <ul>
+    <li>
+      <a href="#" class="facebook-button" id="postToWall" data-url="{{ url }}">
+        <span class="plus">Post to Wall</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="facebook-button speech-bubble" id="sendToFriends" data-url="{{ url }}">
+        <span class="speech-bubble">Send Message</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="facebook-button apprequests" id="sendRequest" data-message="Test this awesome app">
+        <span class="apprequests">Send Requests</span>
+      </a>
+    </li>
+  </ul>
+</div>
+{% endblock %}
+{% endblock %}

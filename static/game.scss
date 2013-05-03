@@ -1,0 +1,103 @@
+///*** GAME.SCSS -- STYLING FOR GAMES PAGES ***///
+
+// Don't worry about resets!
+
+/*** CONTENT MODULE ***/
+
+
+$gameHeaderHeight: 50px;
+$gameHeaderWidth: 500px;
+div.gameboard_header {
+	float: left;
+	position: relative;
+
+	margin-top: 20px;
+	height: $gameHeaderHeight;
+	width: $gameHeaderWidth;
+	background: rgba(0, 158, 95, 1);
+	border: 1px rgba(0, 158, 95, 0.5) solid;
+
+	& > div {
+		display: inline-block;
+		line-height: $gameHeaderHeight;
+	}
+	
+	$playerTurnWidth: 120px;
+	div#player_turn {
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: $playerTurnWidth;
+	}
+	
+	$yourScoreWidth: 150px;
+	div#your_score {
+		position: absolute;
+		left: $playerTurnWidth;
+		top: 0;
+		bottom: 0;
+		width: $yourScoreWidth;
+	}
+
+	$oppScoreWidth: 150px;
+	div#opponent_score {
+		position: absolute;
+		left: $playerTurnWidth + $yourScoreWidth;
+		top: 0;
+		bottom: 0;
+		width: $oppScoreWidth;
+	}
+
+	div#timer {
+		position: absolute;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		width: $gameHeaderWidth - $playerTurnWidth - $yourScoreWidth - $oppScoreWidth;
+	}
+}
+
+$boardWidth: 500px;
+$boardHeight: 500px;
+div.gameboard {
+	float: left;
+	margin-right: 20px;
+
+	width: $boardWidth;
+	height: $boardHeight;
+}
+
+$rowHeight: $boardHeight / 8;
+div.row_wrapper {
+	position: relative;
+	width: $boardWidth;
+	height: $rowHeight;
+}
+
+$spotWidth: $boardWidth / 8;
+$spotHeight: $boardHeight / 8;
+div.boardspot {
+	position: absolute;
+	width: $spotWidth;
+	height: $spotHeight;
+	color: #fff;
+	line-height: $spotHeight;
+	text-align: center;
+	border: 1px #fff solid;
+	opacity: 1;
+	cursor: pointer;
+
+	&:hover {
+		opacity: 0.7;
+	}
+}
+
+// Setting up boardpieces
+@for $i from 1 through 8 {
+	div.col#{$i} {
+		left: 0 + ($i - 1) * $spotWidth;
+		// optional background color stuff
+		background: rgba(20+$i*20, 50+$i*10, 80+$i*8, 1);
+	}
+}

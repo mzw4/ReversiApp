@@ -1,0 +1,124 @@
+/* line 3, C:/xampp/htdocs/docs/ReversiApp/ReversiApp/static/reversi.scss */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 10, C:/xampp/htdocs/docs/ReversiApp/ReversiApp/static/reversi.scss */
+div.global_wrapper {
+  display: block;
+  position: relative;
+  width: 800px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+/*** NAV MODULE ***/
+/* line 21, C:/xampp/htdocs/docs/ReversiApp/ReversiApp/static/reversi.scss */
+div.nav_wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  font-size: 0;
+  background: #aaa;
+}
+/* line 30, C:/xampp/htdocs/docs/ReversiApp/ReversiApp/static/reversi.scss */
+div.nav_wrapper > * {
+  font-size: 16px;
+}
+
+/* line 35, C:/xampp/htdocs/docs/ReversiApp/ReversiApp/static/reversi.scss */
+#nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-weight: bold;
+  width: 100%;
+  z-index: 5;
+}
+/* line 49, C:/xampp/htdocs/docs/ReversiApp/ReversiApp/static/reversi.scss */
+#nav li {
+  float: left;
+  position: relative;
+  height: 60px;
+}
+/* line 57, C:/xampp/htdocs/docs/ReversiApp/ReversiApp/static/reversi.scss */
+#nav li#reversi_logo img {
+  width: 250px;
+  height: 60px;
+}
+/* line 64, C:/xampp/htdocs/docs/ReversiApp/ReversiApp/static/reversi.scss */
+#nav li#quick_play {
+  width: 150px;
+}
+/* line 69, C:/xampp/htdocs/docs/ReversiApp/ReversiApp/static/reversi.scss */
+#nav li#past_games {
+  width: 150px;
+}
+/* line 76, C:/xampp/htdocs/docs/ReversiApp/ReversiApp/static/reversi.scss */
+#nav li#profile {
+  position: absolute;
+  right: 0;
+  width: 250px;
+}
+/* line 81, C:/xampp/htdocs/docs/ReversiApp/ReversiApp/static/reversi.scss */
+#nav li#profile img#profile_pic {
+  position: absolute;
+  right: 0;
+  width: 50px;
+  height: 60px;
+  background: #000;
+}
+/* line 90, C:/xampp/htdocs/docs/ReversiApp/ReversiApp/static/reversi.scss */
+#nav a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  height: 60px;
+}
+/* line 97, C:/xampp/htdocs/docs/ReversiApp/ReversiApp/static/reversi.scss */
+#nav ul {
+  background: #ddd;
+  list-style: none;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  left: -9999px;
+}
+/* line 105, C:/xampp/htdocs/docs/ReversiApp/ReversiApp/static/reversi.scss */
+#nav ul li {
+  padding-top: 1px;
+  float: none;
+}
+/* line 110, C:/xampp/htdocs/docs/ReversiApp/ReversiApp/static/reversi.scss */
+#nav ul a {
+  padding-left: 20px;
+}
+/* line 112, C:/xampp/htdocs/docs/ReversiApp/ReversiApp/static/reversi.scss */
+#nav ul a:hover {
+  background: #345;
+}
+/* line 118, C:/xampp/htdocs/docs/ReversiApp/ReversiApp/static/reversi.scss */
+#nav li:hover ul {
+  left: 0px;
+  right: 0px;
+}
+
+/*** CONTENT Module ***/
+/* line 127, C:/xampp/htdocs/docs/ReversiApp/ReversiApp/static/reversi.scss */
+div.content {
+  position: relative;
+  float: left;
+  top: 60px;
+  width: 100%;
+  height: 100%;
+}
