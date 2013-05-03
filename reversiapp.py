@@ -242,6 +242,15 @@ def home():
         #     user_friends.append(friend)
 
         online_friends = []
+        u1 = db.User()
+        u1['name'] = "Dummy User"
+        u2 = db.User()
+        u2['name'] = "Another Dummy"
+        u3 = db.User()
+        u3['name'] = "Edward the Dastardly"
+        online_friends.append(u1)
+        online_friends.append(u2)
+        online_friends.append(u3)
 
         recent_games = []
         g1 = db.Game()
@@ -265,8 +274,8 @@ def home():
             if g:
                 recent_games.append(g)
 
-        num_games = len(current_user['past_games'])
-        num_online_friends = len(user_friends)
+        num_games = len(recent_games)
+        num_online_friends = len(online_friends)
 
         return render_template(
             'index.html', app_id=FB_APP_ID, token=access_token,
@@ -360,7 +369,7 @@ def quickplay():
         current_user.save()
 
         opponent_dummy = db.User()
-        opponent_dummy['name'] = 'Edward the Dastardly'
+        opponent_dummy['name'] = 'Ed'
         opponent_dummy.save()
 
         opponent = opponent_dummy
