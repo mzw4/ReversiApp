@@ -292,6 +292,12 @@ def profile():
 
         url = request.url
 
+        db.users.remove()
+        current_user = db.User()
+        current_user['_id'] = me['id']
+        current_user['name'] = me['name']
+        current_user.save()
+        
         num_games = len(current_user['past_games'])
 
         return render_template(
