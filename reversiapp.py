@@ -260,7 +260,6 @@ def home():
         recent_games.append(g2)
         recent_games.append(g3)
 
-
         for gid in current_user['past_games']:
             g = db.games.find_one({'_id':gid})
             if g:
@@ -361,8 +360,10 @@ def quickplay():
         current_user.save()
 
         opponent_dummy = db.User()
-        opponent_dummy['name'] = 'Poopface'
+        opponent_dummy['name'] = 'Edward the Dastardly'
         opponent_dummy.save()
+
+        opponent = opponent_dummy
 
         db.games.remove()
         game = db.Game()
@@ -384,7 +385,7 @@ def quickplay():
             'game.html', app_id=FB_APP_ID, token=access_token,
             app_friends=app_friends, app=fb_app,
             my_turn=my_turn, player_score=player_score, opponent_score=opponent_score,
-            me=me, current_user=current_user, opponent
+            me=me, current_user=current_user, opponent=opponent,
             POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO, url=url,
             channel_url=channel_url, name=FB_APP_NAME)
     else:
