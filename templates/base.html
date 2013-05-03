@@ -136,7 +136,7 @@
     <div class="nav_wrapper">
       <ul id="nav">
         <li id="reversi_logo">
-          <a href="#" class="header_link">
+          <a href=" {{ url_for('home') }} " class="header_link">
             <img src="" alt="Reversi with Friends!" style="background: #a00">
           </a>
         </li>
@@ -144,7 +144,7 @@
           <a href="{{ url_for('quickplay') }}"> Quick Play </a>
         </li>
         <li id="past_games" style="background: #00a">
-          <a href="{{ url_for('game_history') }}"> Past Games </a>
+          <a href="#"> Past Games </a>
         </li>
         <li id="profile" style="background: #a0a">
           <a href="#">
