@@ -82,12 +82,12 @@
                 {% if g.white._id == current_user._id %}
                 <span class="opponent">
                   Opponent: {{g.black.name}} <br>
-                  ELO: {{g.black.elo_rating}}
+                  ELO: {{g.black.elo_rating}} <br>
                 </span>
                 {% else %}
                 <span class="opponent">
                   Opponent: {{g.white.name}} <br>
-                  ELO: {{g.white.elo_rating}}
+                  ELO: {{g.white.elo_rating}} <br>
                 </span>
                 {% endif %}
                 {% if g.winner_id == current_user._id %}
@@ -124,9 +124,9 @@
               <!-- Insert image as background -->
             </td>
             <td class="friends_rank_profile">
-              <span class="name">{{ friend.name }}</span>
-              <span class="rank">Rank: {{ friend.rank }}</span>
-              <span class="elo">ELO: {{ friend.elo_rating }}</span>
+              <span class="name">{{ friend.name }}</span> <br>
+              <span class="rank">Rank: {{ friend.rank }}</span> <br>
+              <span class="elo">ELO: {{ friend.elo_rating }}</span> <br>
             </td>
           </tr>
           {% endfor %}

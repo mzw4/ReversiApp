@@ -254,16 +254,16 @@ def home():
 
         recent_games = []
         g1 = db.Game()
-        g1['white'] = current_user
+        g1['white'] = u1
         g1['black'] = current_user
         g1['timed'] = False
         g2 = db.Game()
         g2['white'] = current_user
-        g2['black'] = current_user
+        g2['black'] = u2
         g2['timed'] = False
         g3 = db.Game()
         g3['white'] = current_user
-        g3['black'] = current_user
+        g3['black'] = u3
         g3['timed'] = False
         recent_games.append(g1)
         recent_games.append(g2)
