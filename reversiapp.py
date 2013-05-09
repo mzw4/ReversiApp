@@ -251,10 +251,13 @@ def home():
         u3['name'] = "Edward the Dastardly"
         u4 = db.User()
         u4['name'] = "Batman"
+        u4['_id'] = 12344           
         u5 = db.User()
         u5['name'] = "Pikachu"
+        u5['_id'] = 12343
         u6 = db.User()
         u6['name'] = "Sauron"
+        u6['_id'] = 12342
         # online_friends.append(u1)
         # online_friends.append(u2)
         # online_friends.append(u3)
