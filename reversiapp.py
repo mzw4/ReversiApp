@@ -240,6 +240,8 @@ def home():
                 user_friends.append(friend)
 
         online_friends = []
+        me = db.online_users.find_one({'_id': current_user['_id']})
+        online_friends.append(me)
         for f in user_friends:
             if db.online_users.find_one({'_id': f['_id']}):
                 online_friends.append(f)
