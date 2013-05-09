@@ -232,6 +232,7 @@ def home():
             current_user.save()
 
         user_friends = []
+        user_friends = app_friends
         # for f in app_friends:
         #     friend = db.users.find_one({'_id': f['id']})
         #     if not friend:

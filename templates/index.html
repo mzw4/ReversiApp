@@ -51,6 +51,9 @@
     <h2 class="block_header">GREETINGS, {{ current_user.name }}</h2>
     <h3 class="rank">Rank: {{ current_user.rank }}</h3>
     <h3 class="elo">ELO: {{ current_user.elo_rating }}</h3>
+    {% for f in app_friends%}
+      <span> {{f.name }} </span>
+    {% endfor %}
   </div>
   <div class="recent_games">
     <h2 class="block_header">Your Recent Games: </h2>
