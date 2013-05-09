@@ -130,7 +130,7 @@
       }(document, 'script', 'facebook-jssdk'));
     </script>
 
-    <div class="global_wrapper">
+  <div class="global_wrapper">
     <!-- Start HEADER block -->
     {% block header %}
     <div class="nav_wrapper">
@@ -172,8 +172,28 @@
        <iframe src="https://www.facebook.com/plugins/like.php?href=enigmatic-tundra-1873.herokuapp.com/"
         scrolling="no" frameborder="0"
         style="border:none; width:450px; height:80px"></iframe>
+        <div id="share-app">
+          <p>Share this app!</p>
+          <ul>
+            <li>
+              <a href="#" class="facebook-button" id="postToWall" data-url="{{ url }}">
+                <span class="plus">Post to Wall</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="facebook-button speech-bubble" id="sendToFriends" data-url="{{ url }}">
+                <span class="speech-bubble">Send Message</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="facebook-button apprequests" id="sendRequest" data-message="Test this awesome app">
+                <span class="apprequests">Send Requests</span>
+              </a>
+            </li>
+          </ul>
+        </div>
         {% block footer %}
-        
+
         {% endblock %}
     </div>
   </div>
