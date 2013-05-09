@@ -245,13 +245,13 @@ def home():
             if db.online_users.find_one({'_id': f['_id']}):
                 online_friends.append(f)
 
-        # u1 = db.User()
-        # u1['name'] = "Dummy User"
-        # u2 = db.User()
-        # u2['name'] = "Another Dummy"
-        # u2['_id'] = 12345
-        # u3 = db.User()
-        # u3['name'] = "Edward the Dastardly"
+        u1 = db.User()
+        u1['name'] = "Dummy User"
+        u2 = db.User()
+        u2['name'] = "Another Dummy"
+        u2['_id'] = 12345
+        u3 = db.User()
+        u3['name'] = "Edward the Dastardly"
         # online_friends.append(u1)
         # online_friends.append(u2)
         # online_friends.append(u3)
