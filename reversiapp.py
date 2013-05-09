@@ -249,6 +249,12 @@ def home():
         u2['_id'] = 12345
         u3 = db.User()
         u3['name'] = "Edward the Dastardly"
+        u4 = db.User()
+        u4['name'] = "Batman"
+        u5 = db.User()
+        u5['name'] = "Pikachu"
+        u6 = db.User()
+        u6['name'] = "Sauron"
         # online_friends.append(u1)
         # online_friends.append(u2)
         # online_friends.append(u3)
@@ -269,9 +275,28 @@ def home():
         g3['black'] = u3
         g3['timed'] = False
         g3['winner_id'] = current_user['_id']
+        g4 = db.Game()
+        g4['white'] = current_user
+        g4['black'] = u4
+        g4['timed'] = False
+        g4['winner_id'] = u4['_id']
+        g5 = db.Game()
+        g5['white'] = current_user
+        g5['black'] = u5
+        g5['timed'] = False
+        g5['winner_id'] = u5['_id']
+        g6 = db.Game()
+        g6['white'] = current_user
+        g6['black'] = u6
+        g6['timed'] = False
+        g6['winner_id'] = u6['_id']
         recent_games.append(g1)
         recent_games.append(g2)
         recent_games.append(g3)
+        recent_games.append(g4)
+        recent_games.append(g5)
+        recent_games.append(g6)
+
 
         for gid in current_user['past_games']:
             g = db.games.find_one({'_id':gid})

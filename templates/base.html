@@ -26,7 +26,7 @@
     <meta content="" property="og:url" />
     <meta content="" property="og:image" />
     <meta content="" property="og:site_name" />
-    <meta content="Reversi With Friends" property="og:description"  />
+    <meta content="My First App" property="og:description"  />
     <meta content="{{app_id}}" property="fb:app_id" />
 
     <script type="text/javascript" src="/static/jquery-1.7.1.min.js"></script>
@@ -117,23 +117,6 @@
           window.location = window.location;
         });
 
-        FB.getLoginStatus(function(response) {
-          if (response.status === 'connected') {
-            // the user is logged in and has authenticated your
-            // app, and response.authResponse supplies
-            // the user's ID, a valid access token, a signed
-            // request, and the time the access token 
-            // and signed request each expire
-            var uid = response.authResponse.userID;
-            var accessToken = response.authResponse.accessToken;
-          } else if (response.status === 'not_authorized') {
-            // the user is logged in to Facebook, 
-            // but has not authenticated your app
-          } else {
-            // the user isn't logged in to Facebook.
-          }
-        });
-
         FB.Canvas.setAutoGrow();
       };
 
@@ -186,11 +169,11 @@
     <!-- End CONTENT block -->
 
     <div class="footer">
-       <iframe src="https://www.facebook.com/plugins/like.php?href=enigmatic-tundra-1873.herokuapp.com"
+       <iframe src="https://www.facebook.com/plugins/like.php?href=enigmatic-tundra-1873.herokuapp.com/"
         scrolling="no" frameborder="0"
         style="border:none; width:450px; height:80px"></iframe>
         {% block footer %}
-
+        
         {% endblock %}
     </div>
   </div>
