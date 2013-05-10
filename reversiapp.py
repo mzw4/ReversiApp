@@ -192,9 +192,10 @@ def get_token():
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
-    access_token = get_token()
-    channel_url = url_for('get_channel', _external=True)
-    channel_url = channel_url.replace('http:', '').replace('https:', '')
+    if 'token' in session:
+        access_token = session['token']
+    else:
+        return redirect(url_for('login'))
 
     if access_token:
         # current_user = session['user']
@@ -321,7 +322,7 @@ def home():
             POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO,
             url=url, channel_url=channel_url, name=FB_APP_NAME)
     else:
-        return render_template('login.html', app_id=FB_APP_ID, token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
+        return redirect(url_for('login'))
 
 @app.route('/profile/', methods=['GET', 'POST'])
 def profile():
@@ -341,7 +342,7 @@ def profile():
             num_games=num_games, me=me, current_user=current_user,
             url=url, name=FB_APP_NAME)
     else:
-        return render_template('login.html', app_id=FB_APP_ID, token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
+        return redirect(url_for('login'))
 
 
 @app.route('/quickplay', methods=['GET', 'POST'])
@@ -413,7 +414,7 @@ def quickplay():
             POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO, url=url,
             channel_url=channel_url, name=FB_APP_NAME)
     else:
-        return render_template('login.html', app_id=FB_APP_ID, token=access_token, url=request.url, name=FB_APP_NAME)
+        return redirect(url_for('login'))
 
 @app.route('/history', methods=['GET', 'POST'])
 def game_history():
@@ -432,9 +433,9 @@ def game_history():
             url=url,
             name=FB_APP_NAME)
     else:
-        return render_template('login.html', app_id=FB_APP_ID, token=access_token, url=request.url, name=FB_APP_NAME)
+        return redirect(url_for('login'))
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     access_token = get_token()
     channel_url = url_for('get_channel', _external=True)
@@ -459,7 +460,7 @@ def login():
         session['token'] = access_token
         session['fb_app'] = fb_app
 
-        return redirect(url_for('profile'))
+        return redirect(url_for('home'))
     else:
         return render_template('login.html', app_id=FB_APP_ID,
          token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
