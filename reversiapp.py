@@ -190,7 +190,7 @@ def get_token():
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    access_token = session['token']
+    access_token = get_token()
 
     if access_token:
         redir = get_home() + 'close/'
