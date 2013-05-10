@@ -11,3 +11,4 @@ class Config(object):
     MONGODB_DATABASE = "heroku_app15232410"
     # MONGODB_HOST = "localhost"
     # MONGODB_DATABASE = "reversi_db"
+    

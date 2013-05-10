@@ -190,7 +190,7 @@ def get_token():
 
         return token
 
-@app.route('/home', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def home():
     if 'token' in session:
         access_token = session['token']
@@ -304,7 +304,7 @@ def home():
         recent_games.append(g6)
 
 
-        for gid in current_user['past_games']:
+        for gid in current_user['current_games']:
             g = db.games.find_one({'_id':gid})
             if g:
                 recent_games.append(g)
@@ -459,8 +459,10 @@ def login():
         session['fb_user'] = me
         session['token'] = access_token
         session['fb_app'] = fb_app
-
-        return redirect(url_for('home'))
+        if 'token' in session:
+            return redirect(url_for('profile'))
+        else:
+            return redirect(url_for('quickplay'))
     else:
         return render_template('login.html', app_id=FB_APP_ID,
          token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
