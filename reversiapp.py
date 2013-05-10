@@ -434,7 +434,7 @@ def game_history():
     else:
         return render_template('login.html', app_id=FB_APP_ID, token=access_token, url=request.url, name=FB_APP_NAME)
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def login():
     access_token = get_token()
     channel_url = url_for('get_channel', _external=True)
@@ -459,7 +459,7 @@ def login():
         session['token'] = access_token
         session['fb_app'] = fb_app
 
-        return redirect(url_for('home'))
+        return redirect(url_for('profile'))
     else:
         return render_template('login.html', app_id=FB_APP_ID,
          token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
