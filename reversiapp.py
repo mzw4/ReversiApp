@@ -36,11 +36,13 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_object('conf.Config')
 
+app.secret_key = '\x92\xaa\x81l\x10m\x8c\x97\xc1\xd7\x93\x95\xb9\xfbrC\xf9\xff:~D\xbf\x97\x86'
+
 # app.config["MONGODB_DATABASE"] = DB_NAME
 # app.config["MONGODB_HOST"] = MONGODB_URI
 
 db = MongoKit(app)
-db.register([User, Game, Challenge])
+db.register([User, Game, PlayRequest, Challenge])
 # db.users.drop()
 
 # try:
@@ -200,7 +202,7 @@ def home():
         # app = session['fb_app']
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
-        
+
         redir = get_home() + 'close/'
         POST_TO_WALL = ("https://www.facebook.com/dialog/feed?redirect_uri=%s&"
                         "display=popup&app_id=%s" % (redir, FB_APP_ID))
