@@ -334,8 +334,6 @@ def profile():
         app = session['fb_app']
         url = request.url
 
-	fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
-
         num_games = len(current_user['past_games'])
 
         return render_template(
