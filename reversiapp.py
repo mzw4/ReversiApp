@@ -191,6 +191,8 @@ def get_token():
 @app.route('/', methods=['GET', 'POST'])
 def home():
     access_token = get_token()
+    channel_url = url_for('get_channel', _external=True)
+    channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     if access_token:
         redir = get_home() + 'close/'
@@ -403,7 +405,7 @@ def quickplay():
             POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO, url=url,
             channel_url=channel_url, name=FB_APP_NAME)
     else:
-        return render_template('login.html', app_id=FB_APP_ID, token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
+        return render_template('login.html', app_id=FB_APP_ID, token=access_token, url=request.url, name=FB_APP_NAME)
 
 @app.route('/history', methods=['GET', 'POST'])
 def game_history():
@@ -422,7 +424,7 @@ def game_history():
             url=url,
             name=FB_APP_NAME)
     else:
-        return render_template('login.html', app_id=FB_APP_ID, token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
+        return render_template('login.html', app_id=FB_APP_ID, token=access_token, url=request.url, name=FB_APP_NAME)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -451,7 +453,8 @@ def login():
 
         return redirect(url_for('home'))
     else:
-        return render_template('login.html', app_id=FB_APP_ID, token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
+        return render_template('login.html', app_id=FB_APP_ID,
+         token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
 
 @app.route('/logout')
 def logout():
