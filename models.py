@@ -82,6 +82,28 @@ class Game(Document):
 	use_dot_notation = True
 	use_autorefs = True
 
+class Session(Document):
+	__collection__ = 'sessions'
+	__database__ = 'reversi_db'
+	structure = {
+		'user': User,
+		'token': basestring,
+		'fb_user': basestring,
+	}
+	required_fields = ['user', 'token']
+	use_dot_notation = True
+	use_autorefs = True
+
+class PlayRequest(Document):
+	__collection__ = 'play_requests'
+	__database__ = 'reversi_db'
+	structure = {
+		'user': User,
+	}
+	required_fields = ['user']
+	use_dot_notation = True
+	use_autorefs = True
+
 # @connection.register
 class Challenge(Document):
 	__collection__ = 'challenges'

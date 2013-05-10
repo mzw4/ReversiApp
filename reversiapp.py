@@ -15,7 +15,7 @@ import pymongo
 from pymongo.son_manipulator import AutoReference, NamespaceInjector
 # from pymongo import MongoClient
 import requests
-from flask import Flask, request, redirect, render_template, url_for
+from flask import Flask, session, request, redirect, render_template, url_for
 from flask.ext.mongokit import MongoKit, Document
 # from flask.ext.pymongo import PyMongo
 
@@ -412,6 +412,11 @@ def quickplay():
         game['black'] = opponent_dummy
         game['timed'] = False
         game.save()
+
+        # request a game with the server
+        pr = db.PlayRequest()
+        pr['user'] = current_user
+        pr.save()
 
         if game['turn'] == 'white' and game['white']['_id'] == current_user['_id']:
             my_turn = "Your turn!"
