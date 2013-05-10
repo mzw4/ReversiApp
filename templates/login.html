@@ -1,15 +1,23 @@
 {% extends "base.html" %}
 
+{% block scripts %}
+	<script type="text/javascript">
+	      $(function(){
+	        // Set up so we handle click on the buttons
+	        $('#login_button').click(function() {
+
+	        });
+	</script>
+{% endblock %}
+
 {% block header %}
-
-
   <div id="fb-root"></div>
   <h1>Welcome</h1>
   <div id="login-flow">
-    <fb:login-button perms="email,offline_access" show-faces="true">
-	</fb:login-button>
+    <fb:login-button id="login_button" perms="email,offline_access" show-faces="true">
+      <a href=" {{ url_for('login') }} " class="header_link"></a>
+    </fb:login-button>
   </div>
-
 {% endblock %}
 
 {% block content %}

@@ -190,17 +190,9 @@ def get_token():
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    access_token = get_token()
-    channel_url = url_for('get_channel', _external=True)
-    channel_url = channel_url.replace('http:', '').replace('https:', '')
+    access_token = session['token']
 
     if access_token:
-
-        me = fb_call('me', args={'access_token': access_token})
-        fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
-        # friends = fb_call('me/friends',
-        #                   args={'access_token': access_token, 'limit': 4})
-
         redir = get_home() + 'close/'
         POST_TO_WALL = ("https://www.facebook.com/dialog/feed?redirect_uri=%s&"
                         "display=popup&app_id=%s" % (redir, FB_APP_ID))
@@ -217,7 +209,7 @@ def home():
 
         url = request.url
 
-        # update current_user - should probably be done at login
+        # # update current_user - should probably be done at login
         current_user = db.users.find_one({'_id': me['id']})
         if not current_user:
             current_user = db.User()
@@ -472,6 +464,41 @@ def game_history():
             channel_url=channel_url, name=FB_APP_NAME)
     else:
         return render_template('login.html', app_id=FB_APP_ID, token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    access_token = get_token()
+    channel_url = url_for('get_channel', _external=True)
+    channel_url = channel_url.replace('http:', '').replace('https:', '')
+
+    if access_token:
+
+        me = fb_call('me', args={'access_token': access_token})
+        fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
+
+        # update current_user
+        current_user = db.users.find_one({'_id': me['id']})
+        if not current_user:
+            current_user = db.User()
+            current_user['_id'] = me['id']
+            current_user['name'] = me['name']
+            current_user.save()
+
+        session['uid'] = current_user['_id']
+        session['user'] = me
+        session['token'] = access_token
+        session['fb_app'] = fb_app
+
+        return redirect(url_for('home'))
+    else:
+        return render_template('login.html', app_id=FB_APP_ID, token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
+
+@app.route('/logout')
+def logout():
+    session.pop('uid', None)
+    session.pop('user', None)
+    session.pop('token', None)
+    return redirect(url_for('login'))
 
 @app.route('/channel.html', methods=['GET', 'POST'])
 def get_channel():

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="static/reversi.css" />
     <link rel="stylesheet" href="static/screen.css" media="Screen" type="text/css" />
     <link rel="stylesheet" href="static/mobile.css" media="handheld, only screen and (max-width: 480px), only screen and (max-device-width: 480px)" type="text/css" />
+
     {% block additional_styling %} 
     {% endblock %}
 
@@ -86,6 +87,10 @@
       });
     </script>
 
+    {% block scripts %}
+
+    {% endblock %}
+
     <!--[if IE]>
       <script type="text/javascript">
         var tags = ['header', 'section'];
@@ -160,6 +165,7 @@
     </div>
     {% endblock %}
     <!-- End HEADER block -->
+
     <!-- Start CONTENT block -->
     <div class="content">
     {% block content %} 
@@ -168,7 +174,9 @@
     </div>
     <!-- End CONTENT block -->
 
+    <!-- Start FOOTER block -->
     <div class="footer">
+    {% block footer %}
       <fb:like href="https://stark-brook-9725.herokuapp.com" send="true" width="450" show_faces="true" font="arial"></fb:like>
         <div id="share-app">
           <p>Share this app!</p>
@@ -190,10 +198,10 @@
             </li>
           </ul>
         </div>
-        {% block footer %}
-
-        {% endblock %}
+    {% endblock %}
     </div>
+    <!-- End FOOTER block -->
+    
   </div>
 	<!--
     <section class="clearfix" id="guides">
