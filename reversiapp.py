@@ -195,10 +195,12 @@ def home():
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     if access_token:
-        current_user = session['user']
-        me = session['fb_user']
-        app = session['fb_app']
-
+        # current_user = session['user']
+        # me = session['fb_user']
+        # app = session['fb_app']
+        me = fb_call('me', args={'access_token': access_token})
+        fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
+        
         redir = get_home() + 'close/'
         POST_TO_WALL = ("https://www.facebook.com/dialog/feed?redirect_uri=%s&"
                         "display=popup&app_id=%s" % (redir, FB_APP_ID))
