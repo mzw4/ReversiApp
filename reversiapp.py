@@ -508,9 +508,9 @@ def login():
             current_user.save()
 
         # -- dummy data
-        db.users.update({'_id'=me['id']}, {'$set': {'past_games': [1,2,3,4,5]}})
-        db.users.update({'_id'=me['id']}, {'$set': {'wins': 2}})
-        db.users.update({'_id'=me['id']}, {'$set': {'losses': 32234}})
+        db.users.update({'_id':me['id']}, {'$set': {'past_games': [1,2,3,4,5]}})
+        db.users.update({'_id':me['id']}, {'$set': {'wins': 2}})
+        db.users.update({'_id':me['id']}, {'$set': {'losses': 32234}})
         # -- dummy data
 
         app.config['uid'] = current_user['_id']
