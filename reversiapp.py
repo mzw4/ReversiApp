@@ -449,15 +449,38 @@ def game_history():
     if access_token:
         current_user = session['user']
         me = session['fb_user']
-        app = session['fb_app']
+        fb_app = session['fb_app']
         url = request.url
 
+        past_games = current_user['past_games']
+
         return render_template(
-            'index.html', app_id=FB_APP_ID, token=access_token,
-            app=fb_app,
-            me=me, current_user=current_user,
-            url=url,
-            name=FB_APP_NAME)
+            'game_history.html', past_games=past_games,
+            app_id=FB_APP_ID, token=access_token,
+            app=fb_app, me=me, current_user=current_user,
+            url=url, name=FB_APP_NAME)
+    else:
+        return redirect(url_for('login'))
+
+@app.route('/history', methods=['GET', 'POST'])
+def game_stats(game_id):
+    access_token = session['token']
+
+    if access_token:
+        current_user = session['user']
+        me = session['fb_user']
+        fb_app = session['fb_app']
+        url = request.url
+
+        game = db.games.find_one({'_id': game_id})
+        if not game:
+            return redirect(url_for('game_history'))
+
+        return render_template(
+            'game_stats.html', game=game,
+            app_id=FB_APP_ID, token=access_token,
+            app=fb_app, me=me, current_user=current_user,
+            url=url, name=FB_APP_NAME)
     else:
         return redirect(url_for('login'))
 

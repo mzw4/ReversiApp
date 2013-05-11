@@ -1,0 +1,32 @@
+<!-- Show a list of all past games that a user has played.
+	When a game is clicked, the game statistics page is brought up -->
+% extends "base.html" %}
+
+{% block additional_styling %}
+<link rel="stylesheet" href="static/game_history.css">
+{% endblock %}
+
+{% block content %}
+
+<div class="header">
+	<h1> {{ current_user.name }'s Past Games! }} </h1>
+</div>
+
+<div class="past_games">
+	<<table>
+	    <tbody>
+	      {% for game in past_games %}
+	      <tr>
+	        <td class="game_item">
+	          <span class="players">
+	          	{{ game.white.name }} vs {{ game.black.name }}
+	          </span> <br>
+	          <span class="winner">Winner: {{ game.winner.name }}</span> <br>
+	        </td>
+	      </tr>
+	      {% endfor %}
+	    </tbody>
+	  </table>
+</div>
+
+{% endblock %}

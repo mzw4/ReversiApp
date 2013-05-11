@@ -65,7 +65,10 @@ class Game(Document):
 		'creation_time': datetime,
 		'end_time': datetime,
 		'completed': bool,
-		'winner_id': int
+		'winner': {
+			'id': int,
+			'name': basestring,
+		}
 
 	}
 	required_fields = ['white', 'black']

@@ -1,0 +1,20 @@
+<!-- Shows stats for a particular game that has been completed,
+	including game details and board history -->
+
+{% extends "base.html" %}
+
+{% block additional_styling %}
+<link rel="stylesheet" href="static/game_stats.css">
+{% endblock %}
+
+{% block content %}
+
+<div class="game_stats">
+	<h2>{{ game.white.name }} vs. {{ game.black.name }}</h2>
+	<p>Winner: {{ game.winner.name }}</p>
+</div>
+
+<div class="board_history">
+
+</div>
+{% endblock %}
