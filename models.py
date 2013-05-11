@@ -50,18 +50,18 @@ class Game(Document):
 	structure = {
 		'white': User,
 		'black': User,
-		'turn': basestring,
+		'turn': bool,                    # True=black turn
 		'white_score': int,
 		'black_score': int,
-		'timed': bool,
 		'size': int,
 		'move_list': [{
-			'team': basestring,
+			'team': bool,
 			'x': int,
 			'y': int,
 		}],
-		'states_list': [[[int]]],	# list of board states, 2d arrays
-		'chat_log': basestring,
+		'states_list': [[[int]]],	# list of 2d array board states
+		# states_list: 0 is empty, 1 is white, 2 is black
+		'chat_log': [basestring],       # 1D array of strings
 		'creation_time': datetime,
 		'end_time': datetime,
 		'completed': bool,
@@ -70,13 +70,14 @@ class Game(Document):
 	}
 	required_fields = ['white', 'black', 'timed']
 	default_values = {
-		'turn': 'white',
+		'turn': True,
 		'white_score': 0,
 		'black_score': 0,
 		'timed': False,
 		'size': 8,
 		'move_list': [],
-		'states_list': [],
+		'states_list': [[[0]*8,[0]*8,[0]*8,[0,0,0,1,2,0,0,0],[0,0,0,2,1,0,0,0],[0]*8,[0]*8,[0]*8]],
+		'chat_log': [],
 		'completed': False
 	}
 	use_dot_notation = True

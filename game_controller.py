@@ -14,7 +14,7 @@ def start_game(p1, p2):
 # ends a game instance and returns the winner
 # in the case of a tie, returns None
 def end_game(game):
-	white =game.white
+	white = game.white
 	black = game.black
 
 	white.current_games.remove(game.id)
@@ -33,7 +33,7 @@ def end_game(game):
 
 # ends a game instance
 def forfeit(game, player):
-	white =game.white
+	white = game.white
 	black = game.black
 
 	white.current_games.remove(game.id)
@@ -202,7 +202,7 @@ def perform_move(game, y, x):
 			return False
 
 		valid = False
-		if y > 0 and state[y-1][x] == (piece ^ 1):				# N
+		if y > 0 and state[y-1][x] == (piece ^ 1):		        # N
 			for i in range (y-1, -1, -1):
 				if state[i][x] == piece:
 					valid = True
@@ -222,7 +222,7 @@ def perform_move(game, y, x):
 			for i in range (x-1, -1, -1):
 				if state[y][i] == piece:
 					valid = True
-		if x > 0and y > 0 and state[y-1][x+1] == (piece ^ 1):	# NE
+		if x > 0 and y > 0 and state[y-1][x+1] == (piece ^ 1):	# NE
 			xoffset = 0
 			for i in range (y-1, -1, -1):
 				xoffset += 1
