@@ -198,7 +198,7 @@ def home():
     #     return redirect(url_for('login'))
     access_token = get_token()
     if access_token:
-        uid = session['uid']
+        # uid = session['uid']
         # current_user = session['user']
         # me = session['fb_user']
         # app = session['fb_app']
@@ -327,12 +327,12 @@ def home():
 
 @app.route('/profile/', methods=['GET', 'POST'])
 def profile():
-    access_token = session['token']
+    access_token = app.config['token']
 
     if access_token:
-        current_user = session['user']
-        me = session['fb_user']
-        app = session['fb_app']
+        current_user = app.config['user']
+        me = app.config['fb_user']
+        app = app.config['fb_app']
         url = request.url
 
 	fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
@@ -476,14 +476,14 @@ def login():
             current_user['name'] = me['name']
             current_user.save()
 
-        session['uid'] = current_user['_id']
-        session['user'] = current_user
-        session['fb_user'] = me
-        session['token'] = access_token
-        session['fb_app'] = fb_app
+        app.config['uid'] = current_user['_id']
+        app.config['user'] = current_user
+        app.config['fb_user'] = me
+        app.config['token'] = access_token
+        app.config['fb_app'] = fb_app
         
-        if 'token' in session:
-            return redirect(url_for('home'))
+        if 'token' in app.config:
+            return redirect(url_for('profile'))
         else:
             return redirect(url_for('quickplay'))
     else:
