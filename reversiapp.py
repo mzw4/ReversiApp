@@ -394,20 +394,7 @@ def quickplay():
         current_user = app.config['user']
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
-
-        # redir = get_home() + 'close/'
-        # POST_TO_WALL = ("https://www.facebook.com/dialog/feed?redirect_uri=%s&"
-        #                 "display=popup&app_id=%s" % (redir, FB_APP_ID))
-
-        # SEND_TO = ('https://www.facebook.com/dialog/send?'
-        #            'redirect_uri=%s&display=popup&app_id=%s&link=%s'
-        #            % (redir, FB_APP_ID, get_home()))
-
         url = request.url
-
-        current_user = session['user']
-        me = session['fb_user']
-        app = session['fb_app']
 
         # find an opponent requesting a game
         opponent_request = db.play_requests.find_one()
@@ -433,10 +420,6 @@ def quickplay():
         game = db.Game()
         game['white'] = current_user
         game['black'] = opponent_dummy
-
-        # print game['states_list']
-        # print type(game['states_list'])
-
         game.save()
         # -- dummy data
 
@@ -520,9 +503,9 @@ def login():
             current_user.save()
 
         # -- dummy data
-        current_user['past_games'] = 132
-        current_user['wins'] = 13
-        current_user['losses'] = 119
+        current_user['past_games'] = [1,2,3,4,5]
+        current_user['wins'] = 2
+        current_user['losses'] = 3
         current_user.save()
         # -- dummy data
 
