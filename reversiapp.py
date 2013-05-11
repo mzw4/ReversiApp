@@ -406,6 +406,7 @@ def quickplay():
             game = db.Game()
             game['white'] = current_user
             game['black'] = opponent
+            game['_id'] = 12
             game.creation_time = datetime.now()
             current_user['current_games'].append(game['_id'])
             opponent['current_games'].append(game['_id'])
@@ -429,6 +430,8 @@ def quickplay():
         game = db.Game()
         game['white'] = current_user
         game['black'] = opponent_dummy
+        game['_id'] = 123456
+        game['poopy'] = "wtf"
         current_user['current_games'].append(game['_id'])
         opponent_dummy['current_games'].append(game['_id'])
         game.save()
