@@ -7,7 +7,6 @@ Werkzeug==0.8.3
 argparse==1.2.1
 distribute==0.6.34
 dj-database-url==0.2.1
-gunicorn==0.17.4
 mongokit==0.8.3
 psycopg2==2.4.5
 pymongo==2.5
