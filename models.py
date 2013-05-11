@@ -61,6 +61,7 @@ class Game(Document):
 			'y': int,
 		}],
 		'states_list': [[[int]]],	# list of 2d array board states
+		# states_list: 0 is empty, 1 is white, 2 is black
 		'chat_log': [basestring],       # 1D array of strings
 		'creation_time': datetime,
 		'end_time': datetime,
@@ -76,7 +77,7 @@ class Game(Document):
 		'timed': False,
 		'size': 8,
 		'move_list': [],
-		'states_list': [],
+		'states_list': [[[0]*8,[0]*8,[0]*8,[0,0,0,1,2,0,0,0],[0,0,0,2,1,0,0,0],[0]*8,[0]*8,[0]*8]],
 		'chat_log': [],
 		'completed': False
 	}

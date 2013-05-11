@@ -133,14 +133,17 @@ Keep in mind that we probably will not be able to do any cool JS gradients.
  */
 
 /* This is placeholder css; they are distinguishable but look bad */
-div.white {
+/* white */
+div.type1 {
   background: grey !important;
 }
 
-div.black {
+/* black */
+div.type2 {
   background: black !important;
 }
 
-div.empty {
+/* empty */
+div.type0 {
 
 }

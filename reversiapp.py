@@ -392,6 +392,10 @@ def quickplay():
         game['white'] = current_user
         game['black'] = opponent_dummy
         game['timed'] = False
+
+        print game['states_list']
+        print type(game['states_list'])
+
         game.save()
 
         # request a game with the server
@@ -408,13 +412,15 @@ def quickplay():
             player_score = game['black_score']
             opponent_score = game['white_score']
 
+        current_board = game['states_list'][-1]
+            
         return render_template(
             'game.html', app_id=FB_APP_ID, token=access_token,
             app_friends=app_friends, app=fb_app,
             my_turn=my_turn, player_score=player_score, opponent_score=opponent_score,
             me=me, current_user=current_user, opponent=opponent,
             POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO, url=url,
-            channel_url=channel_url, name=FB_APP_NAME)
+            channel_url=channel_url, name=FB_APP_NAME, board=current_board)
     else:
         return redirect(url_for('login'))
 
