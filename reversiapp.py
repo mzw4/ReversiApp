@@ -197,6 +197,9 @@ def home():
     # else:
     #     return redirect(url_for('login'))
     access_token = get_token()
+    channel_url = url_for('get_channel', _external=True)
+    channel_url = channel_url.replace('http:', '').replace('https:', '')
+
     if access_token:
         # uid = session['uid']
         # current_user = session['user']
@@ -325,8 +328,9 @@ def home():
     else:
         return redirect(url_for('login'))
 
-@app.route('/profile/', methods=['GET', 'POST'])
+@app.route('/profile', methods=['GET', 'POST'])
 def profile():
+    print app.config
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
@@ -481,6 +485,8 @@ def login():
         app.config['fb_user'] = me
         app.config['token'] = access_token
         app.config['fb_app'] = fb_app
+
+        print app.config
         
         if 'token' in app.config:
             return redirect(url_for('profile'))
