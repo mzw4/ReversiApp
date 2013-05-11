@@ -481,7 +481,7 @@ def login():
         session['token'] = access_token
         session['fb_app'] = fb_app
         
-        if 'token' in session and session['modified']:
+        if 'token' in session:
             return redirect(url_for('profile'))
         else:
             return redirect(url_for('quickplay'))
