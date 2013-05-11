@@ -430,7 +430,6 @@ def quickplay():
         game = db.Game()
         game['white'] = current_user
         game['black'] = opponent_dummy
-        game['_id'] = 123456
         current_user['current_games'].append(game['_id'])
         opponent_dummy['current_games'].append(game['_id'])
         game.save()
@@ -509,10 +508,9 @@ def login():
             current_user.save()
 
         # -- dummy data
-        current_user['past_games'] = [1,2,3,4,5]
-        current_user['wins'] = 2
-        current_user['losses'] = 87587
-        current_user.save()
+        db.users.update({'_id'=me['id']}, {'$set': {'past_games': [1,2,3,4,5]}})
+        db.users.update({'_id'=me['id']}, {'$set': {'wins': 2}})
+        db.users.update({'_id'=me['id']}, {'$set': {'losses': 32234}})
         # -- dummy data
 
         app.config['uid'] = current_user['_id']
