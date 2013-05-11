@@ -402,13 +402,22 @@ def quickplay():
         if opponent_request:
             # start a game with an opponent
             opponent = opponent_request['user']
-            game = start_game(current_user, opponent)
-            return redirect(url_for('game', game=game))
-        else:
-            # request a game with the server
-            pr = db.PlayRequest()
-            pr['user'] = current_user
-            pr.save()
+            # game = start_game(current_user, opponent)
+            game = db.Game()
+            game['white'] = current_user
+            game['black'] = opponent
+            game.creation_time = datetime.now()
+            current_user['current_games'].append(game['_id'])
+            opponent['current_games'].append(game['_id'])
+            game.save()
+            return redirect(url_for('game', game_id=game['_id']))
+        # else:
+        #     # request a game with the server
+        #     pr = db.PlayRequest()
+        #     pr['user'] = current_user
+        #     pr.save()
+        #     need to somehow nofity user by pop up that play request has been made
+        #     return redirect(url_for('home'))
 
         # -- dummy data
         opponent_dummy = db.User()
@@ -420,18 +429,13 @@ def quickplay():
         game = db.Game()
         game['white'] = current_user
         game['black'] = opponent_dummy
+        current_user['current_games'].append(game['_id'])
+        opponent_dummy['current_games'].append(game['_id'])
         game.save()
+        return redirect(url_for('game', game_id=game['_id']))
         # -- dummy data
 
-        current_board = game['states_list'][-1]
-            
-        return render_template(
-            'game.html', app_id=FB_APP_ID, token=access_token,
-            app_friends=app_friends, app=fb_app,
-            my_turn=my_turn, player_score=player_score, opponent_score=opponent_score,
-            me=me, current_user=current_user, opponent=opponent,
-            POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO, url=url,
-            channel_url=channel_url, name=FB_APP_NAME, board=current_board)
+        
     else:
         return redirect(url_for('login'))
 
@@ -511,25 +515,15 @@ def login():
 
         app.config['uid'] = current_user['_id']
         app.config['user'] = current_user
-        # app.config['fb_user'] = me
-        # app.config['token'] = access_token
-        # app.config['fb_app'] = fb_app
-
-        print app.config
-        
-        if 'token' in app.config:
-            return redirect(url_for('profile'))
-        else:
-            return redirect(url_for('quickplay'))
+        return redirect(url_for('home'))
     else:
         return render_template('login.html', app_id=FB_APP_ID,
          token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
 
 @app.route('/logout')
 def logout():
-    session.pop('uid', None)
-    session.pop('user', None)
-    session.pop('token', None)
+    app.config.pop('uid', None)
+    app.config.pop('user', None)
     return redirect(url_for('login'))
 
 @app.route('/channel.html', methods=['GET', 'POST'])
