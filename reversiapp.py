@@ -407,7 +407,6 @@ def quickplay():
             game = db.Game()
             game['white'] = current_user
             game['black'] = opponent
-            game['_id'] = 12
             game.creation_time = datetime.now()
             current_user['current_games'].append(game['_id'])
             opponent['current_games'].append(game['_id'])
@@ -432,7 +431,6 @@ def quickplay():
         game['white'] = current_user
         game['black'] = opponent_dummy
         game['_id'] = 123456
-        game['poopy'] = "wtf"
         current_user['current_games'].append(game['_id'])
         opponent_dummy['current_games'].append(game['_id'])
         game.save()
@@ -519,7 +517,10 @@ def login():
 
         app.config['uid'] = current_user['_id']
         app.config['user'] = current_user
-        return redirect(url_for('home'))
+        if app.config['user']:
+            return redirect(url_for('profile'))
+        else:
+            return redirect(url_for('home'))
     else:
         return render_template('login.html', app_id=FB_APP_ID,
          token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)

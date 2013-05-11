@@ -2,7 +2,7 @@ import re
 from datetime import datetime
 import pymongo
 from pymongo.son_manipulator import AutoReference, NamespaceInjector
-from mongokit import Document, Connection, IS
+from mongokit import Document, Connection, IS, ObjectId
 
 def name_validator(name):
 	return True 
@@ -48,6 +48,7 @@ class Game(Document):
 	__collection__ = 'games'
 	__database__ = 'reversi_db'
 	structure = {
+		'_id': ObjectId,
 		'white': User,
 		'black': User,
 		'turn': bool, 	# True = black turn
@@ -73,6 +74,7 @@ class Game(Document):
 	}
 	required_fields = ['white', 'black']
 	default_values = {
+		'_id': ObjectId(),
 		'turn': True,
 		'white_score': 0,
 		'black_score': 0,
