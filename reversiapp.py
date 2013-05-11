@@ -192,19 +192,12 @@ def get_token():
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    # if 'token' in session:
-        # access_token = session['token']
-    # else:
-    #     return redirect(url_for('login'))
     access_token = get_token()
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     if access_token:
-        # uid = session['uid']
-        # current_user = session['user']
-        # me = session['fb_user']
-        # app = session['fb_app']
+        current_user = app.config['user']
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
 
@@ -330,16 +323,14 @@ def home():
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
-    print app.config
+    access_token = get_token()
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
-    access_token = app.config['token']
-
     if access_token:
         current_user = app.config['user']
-        me = app.config['fb_user']
-        fb_app = app.config['fb_app']
+        me = fb_call('me', args={'access_token': access_token})
+        fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
 
         num_games = len(current_user['past_games'])
@@ -354,11 +345,13 @@ def profile():
 @app.route('/game/<game_id>', methods=['GET', 'POST'])
 def game(game_id):
     access_token = get_token()
+    channel_url = url_for('get_channel', _external=True)
+    channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     if access_token:
         current_user = app.config['user']
-        me = app.config['fb_user']
-        fb_app = app.config['fb_app']
+        me = fb_call('me', args={'access_token': access_token})
+        fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
 
         game = db.games.find_one({'_id': game_id})
@@ -393,22 +386,22 @@ def game(game_id):
 
 @app.route('/quickplay', methods=['GET', 'POST'])
 def quickplay():
-    if 'token' in session:
-        access_token = session['token']
-    else:
-        return redirect(url_for('login'))
+    access_token = get_token()
+    channel_url = url_for('get_channel', _external=True)
+    channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     if access_token:
+        current_user = app.config['user']
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
 
-        redir = get_home() + 'close/'
-        POST_TO_WALL = ("https://www.facebook.com/dialog/feed?redirect_uri=%s&"
-                        "display=popup&app_id=%s" % (redir, FB_APP_ID))
+        # redir = get_home() + 'close/'
+        # POST_TO_WALL = ("https://www.facebook.com/dialog/feed?redirect_uri=%s&"
+        #                 "display=popup&app_id=%s" % (redir, FB_APP_ID))
 
-        SEND_TO = ('https://www.facebook.com/dialog/send?'
-                   'redirect_uri=%s&display=popup&app_id=%s&link=%s'
-                   % (redir, FB_APP_ID, get_home()))
+        # SEND_TO = ('https://www.facebook.com/dialog/send?'
+        #            'redirect_uri=%s&display=popup&app_id=%s&link=%s'
+        #            % (redir, FB_APP_ID, get_home()))
 
         url = request.url
 
@@ -461,12 +454,14 @@ def quickplay():
 
 @app.route('/history', methods=['GET', 'POST'])
 def game_history():
-    access_token = session['token']
+    access_token = get_token()
+    channel_url = url_for('get_channel', _external=True)
+    channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     if access_token:
         current_user = session['user']
-        me = session['fb_user']
-        fb_app = session['fb_app']
+        me = fb_call('me', args={'access_token': access_token})
+        fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
 
         past_games = current_user['past_games']
@@ -481,12 +476,14 @@ def game_history():
 
 @app.route('/history', methods=['GET', 'POST'])
 def game_stats(game_id):
-    access_token = session['token']
+    access_token = get_token()
+    channel_url = url_for('get_channel', _external=True)
+    channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     if access_token:
         current_user = session['user']
-        me = session['fb_user']
-        fb_app = session['fb_app']
+        me = fb_call('me', args={'access_token': access_token})
+        fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
 
         game = db.games.find_one({'_id': game_id})
@@ -508,9 +505,11 @@ def login():
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     if access_token:
-
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
+
+        # --temp
+        db.users.remove()
 
         # update current_user
         current_user = db.users.find_one({'_id': me['id']})
@@ -520,11 +519,18 @@ def login():
             current_user['name'] = me['name']
             current_user.save()
 
+        # -- dummy data
+        current_user['past_games'] = 132
+        current_user['wins'] = 13
+        current_user['losses'] = 119
+        current_user.save()
+        # -- dummy data
+
         app.config['uid'] = current_user['_id']
         app.config['user'] = current_user
-        app.config['fb_user'] = me
-        app.config['token'] = access_token
-        app.config['fb_app'] = fb_app
+        # app.config['fb_user'] = me
+        # app.config['token'] = access_token
+        # app.config['fb_app'] = fb_app
 
         print app.config
         
