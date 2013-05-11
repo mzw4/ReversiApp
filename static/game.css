@@ -126,3 +126,21 @@ div.col8 {
   left: 437.5px;
   background: #b48290;
 }
+
+/* Vu: figure out how to make these look like pieces.
+Every cell will have one of these 3 classes.
+Keep in mind that we probably will not be able to do any cool JS gradients.
+ */
+
+/* This is placeholder css; they are distinguishable but look bad */
+div.white {
+  background: grey !important;
+}
+
+div.black {
+  background: black !important;
+}
+
+div.empty {
+
+}
