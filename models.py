@@ -68,7 +68,7 @@ class Game(Document):
 		'winner_id': int
 
 	}
-	required_fields = ['white', 'black', 'timed']
+	required_fields = ['white', 'black']
 	default_values = {
 		'turn': True,
 		'white_score': 0,
