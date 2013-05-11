@@ -192,12 +192,13 @@ def get_token():
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    if 'token' in session:
-        access_token = session['token']
-    else:
-        return redirect(url_for('login'))
-
+    # if 'token' in session:
+        # access_token = session['token']
+    # else:
+    #     return redirect(url_for('login'))
+    access_token = get_token()
     if access_token:
+        uid = session['uid']
         # current_user = session['user']
         # me = session['fb_user']
         # app = session['fb_app']
@@ -482,7 +483,7 @@ def login():
         session['fb_app'] = fb_app
         
         if 'token' in session:
-            return redirect(url_for('profile'))
+            return redirect(url_for('home'))
         else:
             return redirect(url_for('quickplay'))
     else:
