@@ -50,7 +50,7 @@ class Game(Document):
 	structure = {
 		'white': User,
 		'black': User,
-		'turn': bool,                    # True=black turn
+		'turn': bool, 	# True = black turn
 		'white_score': int,
 		'black_score': int,
 		'size': int,
@@ -60,7 +60,7 @@ class Game(Document):
 			'y': int,
 		}],
 		'states_list': [[[int]]],	# list of 2d array board states
-		# states_list: 0 is empty, 1 is white, 2 is black
+		# states_list: -1 is empty, 0 is white, 1 is black
 		'chat_log': [basestring],       # 1D array of strings
 		'creation_time': datetime,
 		'end_time': datetime,
@@ -73,10 +73,9 @@ class Game(Document):
 		'turn': True,
 		'white_score': 0,
 		'black_score': 0,
-		'timed': False,
 		'size': 8,
 		'move_list': [],
-		'states_list': [[[0]*8,[0]*8,[0]*8,[0,0,0,1,2,0,0,0],[0,0,0,2,1,0,0,0],[0]*8,[0]*8,[0]*8]],
+		'states_list': [[[-1]*8,[-1]*8,[-1]*8,[-1,-1,-1,0,1,-1,-1,-1],[-1,-1,-1,1,0,-1,-1,-1],[-1]*8,[-1]*8,[-1]*8]],
 		'chat_log': [],
 		'completed': False
 	}

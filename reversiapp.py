@@ -15,7 +15,7 @@ import pymongo
 from pymongo.son_manipulator import AutoReference, NamespaceInjector
 # from pymongo import MongoClient
 import requests
-from flask import Flask, session, request, redirect, render_template, url_for
+from flask import Flask, session, request, redirect, render_template, url_for, g
 from flask.ext.mongokit import MongoKit, Document
 # from flask.ext.pymongo import PyMongo
 
