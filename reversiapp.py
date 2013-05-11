@@ -344,15 +344,24 @@ def profile():
     else:
         return redirect(url_for('login'))
 
+@app.route('/game', methods=['GET', 'POST'])
+def game(game):
+    if 'token' in session:
+        access_token = session['token']
+    else:
+        return redirect(url_for('login'))
+
+
+
 
 @app.route('/quickplay', methods=['GET', 'POST'])
 def quickplay():
-    access_token = get_token()
-    channel_url = url_for('get_channel', _external=True)
-    channel_url = channel_url.replace('http:', '').replace('https:', '')
+    if 'token' in session:
+        access_token = session['token']
+    else:
+        return redirect(url_for('login'))
 
     if access_token:
-
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
 
@@ -360,42 +369,45 @@ def quickplay():
         POST_TO_WALL = ("https://www.facebook.com/dialog/feed?redirect_uri=%s&"
                         "display=popup&app_id=%s" % (redir, FB_APP_ID))
 
-        app_friends = fql(
-            "SELECT uid, name, is_app_user, pic_square "
-            "FROM user "
-            "WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND "
-            "  is_app_user = 1", access_token)
-
         SEND_TO = ('https://www.facebook.com/dialog/send?'
                    'redirect_uri=%s&display=popup&app_id=%s&link=%s'
                    % (redir, FB_APP_ID, get_home()))
 
         url = request.url
 
-        # current_user = db.users.find_one({'_id': me['id']})
-        # if not current_user:
-        current_user = db.User()
-        current_user['_id'] = me['id']
-        current_user['name'] = me['name']
-        current_user.save()
+        current_user = session['user']
+        me = session['fb_user']
+        app = session['fb_app']
 
+        # find an opponent requesting a game
+        opponent_request = db.play_requests.find_one()
+
+        if opponent_request:
+            # start a game with an opponent
+            opponent = opponent_request['user']
+            game = start_game(current_user, opponent)
+            return render_template(
+                'game.html', app_id=FB_APP_ID, token=access_token,
+                app=fb_app, game=game,
+                me=me, current_user=current_user, opponent=opponent,
+                url=url, name=FB_APP_NAME)
+        else:
+            # request a game with the server
+            pr = db.PlayRequest()
+            pr['user'] = current_user
+            pr.save()
+
+        # -- dummy data
         opponent_dummy = db.User()
         opponent_dummy['name'] = 'Ed'
         opponent_dummy.save()
-
         opponent = opponent_dummy
 
         db.games.remove()
         game = db.Game()
         game['white'] = current_user
         game['black'] = opponent_dummy
-        game['timed'] = False
         game.save()
-
-        # request a game with the server
-        pr = db.PlayRequest()
-        pr['user'] = current_user
-        pr.save()
 
         if game['turn'] == 'white' and game['white']['_id'] == current_user['_id']:
             my_turn = "Your turn!"
@@ -405,6 +417,7 @@ def quickplay():
             my_turn = "Opponent's turn!"
             player_score = game['black_score']
             opponent_score = game['white_score']
+        # -- dummy data
 
         return render_template(
             'game.html', app_id=FB_APP_ID, token=access_token,
@@ -459,6 +472,7 @@ def login():
         session['fb_user'] = me
         session['token'] = access_token
         session['fb_app'] = fb_app
+        
         if 'token' in session:
             return redirect(url_for('profile'))
         else:

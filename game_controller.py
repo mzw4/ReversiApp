@@ -2,11 +2,10 @@ from datetime import datetime
 
 # starts a game instance between specified players p1 and p2
 # returns the game
-def start_game(p1, p2, timed):
+def start_game(p1, p2):
 	game = db.Game()
 	game.white = p1
 	game.black = p2
-	game.timed = timed
 	game.creation_time = datetime.now()
 	p1.current_games.append(game.id)
 	p2.current_games.append(game.id)
