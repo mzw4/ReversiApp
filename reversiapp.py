@@ -397,6 +397,7 @@ def quickplay():
         url = request.url
 
         # find an opponent requesting a game
+        db.play_requests.remove()
         opponent_request = db.play_requests.find_one()
 
         if opponent_request:
