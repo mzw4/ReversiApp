@@ -327,6 +327,9 @@ def home():
 
 @app.route('/profile/', methods=['GET', 'POST'])
 def profile():
+    channel_url = url_for('get_channel', _external=True)
+    channel_url = channel_url.replace('http:', '').replace('https:', '')
+
     access_token = app.config['token']
 
     if access_token:
@@ -335,13 +338,10 @@ def profile():
         app = app.config['fb_app']
         url = request.url
 
-	fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
-
         num_games = len(current_user['past_games'])
 
         return render_template(
             'profile.html', app_id=FB_APP_ID, token=access_token,
-            app=fb_app,
             num_games=num_games, me=me, current_user=current_user,
             url=url, name=FB_APP_NAME)
     else:
