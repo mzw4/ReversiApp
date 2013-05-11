@@ -498,7 +498,7 @@ def login():
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
 
         # --temp
-        db.users.remove()
+        # db.users.remove()
 
         # update current_user
         current_user = db.users.find_one({'_id': me['id']})
@@ -511,12 +511,13 @@ def login():
         # -- dummy data
         current_user['past_games'] = [1,2,3,4,5]
         current_user['wins'] = 2
-        current_user['losses'] = 3
+        current_user['losses'] = 87587
         current_user.save()
         # -- dummy data
 
         app.config['uid'] = current_user['_id']
         app.config['user'] = current_user
+
         if app.config['user']:
             return redirect(url_for('profile'))
         else:
