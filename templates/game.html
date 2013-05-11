@@ -6,10 +6,14 @@
 
 {% block content %}
 <div class="gameboard_header">
-	<div id="player_turn">{{ my_turn }}</div>
+	<div id="player_turn">
+		{% if turn %} <p> Your turn! </p>
+		{% else %} <p> Opponent's turn! </p>
+		{% endif %}
+	</div>
 	<div id="your_score"> Your score: {{ player_score }} </div>
-	<div id="opponent_score"> {{opponent.name}}'s score: {{ opponent_score }} </div>
-	<!-- timer.enabled is a boolean -->
+	<div id="opponent_score"> {{opponent.name}}'s score: {{ opponent_score }}
+	</div>
 </div>
 <div class="gameboard">
 	<div class="row_wrapper rowA">

@@ -6,8 +6,14 @@
 <link rel="stylesheet" href="static/game_history.css">
 {% endblock %}
 
-{% block content %}
+{% block scripts %}
+<script type="text/javascript">
+	//on load, if just_started = True, raise a pop up alert saying "You just started a game with {{opponent.name}}!"
+</script>
+{% endblock %}
 
+
+{% block content %}
 <div class="header">
 	<h1> {{ current_user.name }'s Past Games! }} </h1>
 </div>
@@ -28,5 +34,4 @@
 	    </tbody>
 	  </table>
 </div>
-
 {% endblock %}
