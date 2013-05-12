@@ -520,8 +520,8 @@ def login():
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
-    # # --temp
-    db.users.remove()
+    # --temp
+    # db.reversi_db.users.remove()
 
     if access_token:
         me = fb_call('me', args={'access_token': access_token})
@@ -535,7 +535,7 @@ def login():
             current_user['name'] = me['name']
             # -- dummy data
             current_user['past_games'] = [ObjectId(),ObjectId(),ObjectId(),ObjectId()]
-            current_user['wins'] = 12345
+            current_user['wins'] = 111111
             current_user['losses'] = 12345
             # -- dummy data
             current_user.save()
