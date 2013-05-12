@@ -436,12 +436,11 @@ def quickplay():
         opponent_dummy['name'] = 'Ed'
         opponent_dummy['_id'] = 12345
         opponent_dummy.save()
-        opponent = opponent_dummy
 
         current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
         game = db.Game()
         game['white'] = current_user
-        game['black'] = opponent
+        game['black'] = opponent_dummy
         # game_update = db.games.Game(game)
         # game_update.save()
         db.games.insert(game)
