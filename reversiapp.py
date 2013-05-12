@@ -433,18 +433,18 @@ def quickplay():
         game = db.Game()
         game['white'] = current_user
         game['black'] = opponent
-        # game_update = db.Game(game)
-        # game_update.save()
+        game_update = db.games.Game(game)
+        game_update.save()
         db.games.insert(game)
         # game2.save()
 
-        current_user['current_games'].append(game2['_id'])
-        opponent_dummy['current_games'].append(game2['_id'])
+        current_user['current_games'].append(game['_id'])
+        opponent_dummy['current_games'].append(game['_id'])
         opponent_dummy.save()
         current_user_update = db.User(current_user)
         current_user_update.save()
 
-        return redirect(url_for('game', game_id=game2['_id']))
+        return redirect(url_for('game', game_id=game['_id']))
         # -- dummy data
 
     else:
