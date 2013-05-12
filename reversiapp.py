@@ -399,7 +399,7 @@ def quickplay():
     access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']})
+    current_user = session['user']
     # current_user = app.config['user']
 
     if access_token and current_user:
@@ -531,13 +531,11 @@ def login():
         current_user.save()
 
         session['uid'] = current_user['_id']
+        session['user'] = current_user
         app.config['token'] = access_token
         # app.config['user'] = current_user
 
-        if session['uid']:
-            return redirect(url_for('profile'))
-        else:
-            return redirect(url_for('home'))
+        return redirect(url_for('home'))
     else:
         return render_template('login.html', app_id=FB_APP_ID,
          token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
