@@ -221,23 +221,22 @@ def home():
 
         url = request.url
 
-
-        # update online_users collection
-        db.online_users.insert(current_user)
-
         user_friends = []
         for f in app_friends:
             friend = db.users.find_one({'_id': f['uid']})
             if friend:
-                db.online_users.insert(friend)
                 user_friends.append(friend)
+                # db.online_users.insert(friend)
 
-        online_friends = []
-        me_user = db.online_users.find_one({'_id': current_user['_id']})
-        online_friends.append(me_user)
-        for f in user_friends:
-            if db.online_users.find_one({'_id': f['_id']}):
-                online_friends.append(f)
+        # # update online_users collection
+        # db.online_users.insert(current_user)
+
+        # online_friends = []
+        # me_user = db.online_users.find_one({'_id': current_user['_id']})
+        # online_friends.append(me_user)
+        # for f in user_friends:
+        #     if db.online_users.find_one({'_id': f['_id']}):
+        #         online_friends.append(f)
 
         u1 = db.User()
         u1['name'] = "Dummy User"
@@ -257,9 +256,9 @@ def home():
         u6 = db.User()
         u6['name'] = "Sauron"
         u6['_id'] = 12342
-        # online_friends.append(u1)
-        # online_friends.append(u2)
-        # online_friends.append(u3)
+        user_friends.append(u1)
+        user_friends.append(u2)
+        user_friends.append(u3)
 
         recent_games = []
         g1 = db.Game()
@@ -267,13 +266,10 @@ def home():
         g1['black'] = current_user
         g1['winner_id'] = current_user['_id']
         db.games.insert(g1)
-        # g1_update = db.Game(g1)
-        # g1_update.save()
         g2 = db.Game()
         g2['white'] = current_user
         g2['black'] = u2
         g2['winner_id'] = u2['_id']
-        # g2.save()
         g3 = db.Game()
         g3['white'] = current_user
         g3['black'] = u3
@@ -308,7 +304,7 @@ def home():
         return render_template(
             'index.html', app_id=FB_APP_ID, token=access_token,
             app_friends=app_friends, app=fb_app,
-            user_friends=user_friends, online_friends=online_friends,
+            user_friends=user_friends,
             num_online_friends=num_online_friends,
             me=me, current_user=current_user,
             recent_games=recent_games, num_games=num_games,
@@ -357,12 +353,6 @@ def game(game_id):
         url = request.url
 
         game = db.games.find_one({'_id': ObjectId(game_id)}, as_class=Game)
-        # if game:
-        #     a = game['white']['_id']
-        #     b = game['black']['_id']
-        #     if a == b:
-        #         c = True
-
         # if the game is not valid, redirect to home page
         if not game:
             return redirect(url_for('home'))
@@ -415,56 +405,58 @@ def quickplay():
         url = request.url
 
         # # find an opponent requesting a game
-        db.play_requests.remove()
+        # db.play_requests.remove()
         opponent_request = db.play_requests.find_one()
 
-        # if opponent_request:
-        #     # start a game with an opponent
-        #     opponent = opponent_request['user']
-        #     game = db.Game()
-        #     game['white'] = current_user
-        #     game['black'] = opponent
-        #     game.creation_time = datetime.now()
-        #     current_user['current_games'].append(game['_id'])
-        #     opponent['current_games'].append(game['_id'])
-        #     db.games.insert(game)
-        #     return redirect(url_for('game', game_id=game['_id']))
-        # else:
-        #     # request a game with the server
-        #     pr = db.PlayRequest()
-        #     pr['user'] = current_user
-        #     pr.save()
-        #     need to somehow nofity user by pop up that play request has been made
-        #     return redirect(url_for('home'))
-
-        # -- dummy data
-        opponent_dummy = db.User()
-        opponent_dummy['name'] = 'Ed'
-        opponent_dummy['_id'] = 12345
-        opponent_dummy.save()
-
-        db.games.remove()
-        game = db.Game()
-        game['white'] = current_user
-        game['black'] = opponent_dummy
-        # game_update = db.games.Game(game)
-        # game_update.save()
-        db.games.insert(game)
-        # game2.save()
-
-        current_user['current_games'].append(game['_id'])
-        opponent_dummy['current_games'].append(game['_id'])
-        opponent_dummy.save()
-        current_user_update = db.User(current_user)
-        current_user_update.save()
-
-        game_fromdb = db.games.find_one({'_id':game['_id']}, as_class=Game)
-        if game_fromdb:
+        if opponent_request and opponent_request['user']['_id'] != current_user['_id']:
+            # start a game with an opponent
+            opponent = opponent_request['user']
+            game = db.Game()
+            game['white'] = current_user
+            game['black'] = opponent
+            game['creation_time'] = datetime.now()
+            current_user['current_games'].append(game['_id'])
+            opponent['current_games'].append(game['_id'])
+            current_user.save()
+            opponent.save()
+            db.games.insert(game)
             return redirect(url_for('game', game_id=game['_id']))
         else:
-            return redirect(url_for('profile'))
+            # request a game with the server
+            pr = db.PlayRequest()
+            pr['user'] = current_user
+            pr.save()
+            # need to somehow nofity user by pop up that play request has been made
+            return redirect(url_for('home'))
 
-        return redirect(url_for('game', game_id=game['_id']))
+        # -- dummy data
+        # opponent_dummy = db.User()
+        # opponent_dummy['name'] = 'Ed'
+        # opponent_dummy['_id'] = 12345
+        # opponent_dummy.save()
+
+        # db.games.remove()
+        # game = db.Game()
+        # game['white'] = current_user
+        # game['black'] = opponent_dummy
+        # # game_update = db.games.Game(game)
+        # # game_update.save()
+        # db.games.insert(game)
+        # # game2.save()
+
+        # current_user['current_games'].append(game['_id'])
+        # opponent_dummy['current_games'].append(game['_id'])
+        # opponent_dummy.save()
+        # current_user_update = db.User(current_user)
+        # current_user_update.save()
+
+        # game_fromdb = db.games.find_one({'_id':game['_id']}, as_class=Game)
+        # if game_fromdb:
+        #     return redirect(url_for('game', game_id=game['_id']))
+        # else:
+        #     return redirect(url_for('profile'))
+
+        # return redirect(url_for('game', game_id=game['_id']))
         # -- dummy data
 
     else:
@@ -484,14 +476,29 @@ def make_move():
         # parse request form data
         x = request.form['x']
         y = request.form['y']
-        game_id = request.form['game_id']
+        game_id = ObjectId(request.form['game_id'])
 
         game = db.games.find_one({'_id': game_id}, as_class=Game)
 
-        # perform game functions
-        perform_move(game, x, y)
-        update_scores(game)
-        game.save()
+        # if player's turn, perform game functions
+        if game['turn'] and current_user['_id'] == game['black']['_id']:
+            perform_move(game, x, y)
+            update_scores(game)
+            game.save()
+        # else: 
+        #     #notify 
+
+        # check if game is over
+        if game_over(game):
+            game['white']['past_games'].append(game_id)
+            game['black']['past_games'].append(game_id)
+            game['white']['current_games'].remove(game_id)
+            game['black']['current_games'].remove(game_id)
+            (game['white']).save()
+            (game['black']).save()
+            game['completed'] = True
+            game.save()
+            return redirect(url_for('game_stats', game_id=game_id))
 
         return redirect(url_for('game', game_id=game_id))
     else:
