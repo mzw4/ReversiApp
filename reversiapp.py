@@ -275,32 +275,28 @@ def home():
         g1 = db.Game()
         g1['white'] = u1
         g1['black'] = current_user
-        g1['timed'] = False
         g1['winner_id'] = current_user['_id']
+        g1.save()
         g2 = db.Game()
         g2['white'] = current_user
         g2['black'] = u2
-        g2['timed'] = False
         g2['winner_id'] = u2['_id']
+        g2.save()
         g3 = db.Game()
         g3['white'] = current_user
         g3['black'] = u3
-        g3['timed'] = False
         g3['winner_id'] = current_user['_id']
         g4 = db.Game()
         g4['white'] = current_user
         g4['black'] = u4
-        g4['timed'] = False
         g4['winner_id'] = u4['_id']
         g5 = db.Game()
         g5['white'] = current_user
         g5['black'] = u5
-        g5['timed'] = False
         g5['winner_id'] = u5['_id']
         g6 = db.Game()
         g6['white'] = current_user
         g6['black'] = u6
-        g6['timed'] = False
         g6['winner_id'] = u6['_id']
         recent_games.append(g1)
         recent_games.append(g2)
@@ -308,7 +304,6 @@ def home():
         recent_games.append(g4)
         recent_games.append(g5)
         recent_games.append(g6)
-
 
         for gid in current_user['current_games']:
             g = db.games.find_one({'_id':gid})
