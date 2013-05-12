@@ -374,11 +374,13 @@ def game(game_id):
         current_board = game['states_list'][-1]
 
         # determine turn and score
-        if game['turn'] and game['black']['_id'] == current_user['_id']:
-            turn = True
-            player_score = game['black_score']
-            opponent_score = game['white_score']
-            opponent = game['white']
+        if game['turn']:
+            if current_user['_id']:
+                if game['black']['_id'] == current_user['_id']:
+                    turn = True
+                    player_score = game['black_score']
+                    opponent_score = game['white_score']
+                    opponent = game['white']
         else:
             turn = False
             player_score = game['white_score']
