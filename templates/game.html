@@ -2,6 +2,8 @@
 
 {% block additional_styling %}
 <link rel="stylesheet" href="static/game.css" >
+<script src="static/game.js"></script>
+
 {% endblock %}
 
 {% block content %}
@@ -14,88 +16,10 @@
 	<div id="your_score"> Your score: {{ player_score }} </div>
 	<div id="opponent_score"> {{opponent.name}}'s score: {{ opponent_score }}
 	</div>
+	<div id="game_id" style="display: none">{{ game._id }}</div>
 </div>
 <div class="gameboard">
-	<div class="row_wrapper rowA">
-		<div class="boardspot rowA col1 type{{ board[0][0] }}">A1</div>
-		<div class="boardspot rowA col2 type{{ board[0][1] }}">A2</div>
-		<div class="boardspot rowA col3 type{{ board[0][2] }}">A3</div>
-		<div class="boardspot rowA col4 type{{ board[0][3] }}">A4</div>
-		<div class="boardspot rowA col5 type{{ board[0][4] }}">A5</div>
-		<div class="boardspot rowA col6 type{{ board[0][5] }}">A6</div>
-		<div class="boardspot rowA col7 type{{ board[0][6] }}">A7</div>
-		<div class="boardspot rowA col8 type{{ board[0][7] }}">A8</div>
-	</div>
-	<div class="row_wrapper rowB">
-		<div class="boardspot rowB col1 type{{ board[1][0] }}">B1</div>
-		<div class="boardspot rowB col2 type{{ board[1][1] }}">B2</div>
-		<div class="boardspot rowB col3 type{{ board[1][2] }}">B3</div>
-		<div class="boardspot rowB col4 type{{ board[1][3] }}">B4</div>
-		<div class="boardspot rowB col5 type{{ board[1][4] }}">B5</div>
-		<div class="boardspot rowB col6 type{{ board[1][5] }}">B6</div>
-		<div class="boardspot rowB col7 type{{ board[1][6] }}">B7</div>
-		<div class="boardspot rowB col8 type{{ board[1][7] }}">B8</div>
-	</div>
-	<div class="row_wrapper rowC">
-		<div class="boardspot rowC col1 type{{ board[2][0] }}">C1</div>
-		<div class="boardspot rowC col2 type{{ board[2][1] }}">C2</div>
-		<div class="boardspot rowC col3 type{{ board[2][2] }}">C3</div>
-		<div class="boardspot rowC col4 type{{ board[2][3] }}">C4</div>
-		<div class="boardspot rowC col5 type{{ board[2][4] }}">C5</div>
-		<div class="boardspot rowC col6 type{{ board[2][5] }}">C6</div>
-		<div class="boardspot rowC col7 type{{ board[2][6] }}">C7</div>
-		<div class="boardspot rowC col8 type{{ board[2][7] }}">C8</div>
-	</div>
-	<div class="row_wrapper rowD">
-		<div class="boardspot rowD col1 type{{ board[3][0] }}">D1</div>
-		<div class="boardspot rowD col2 type{{ board[3][1] }}">D2</div>
-		<div class="boardspot rowD col3 type{{ board[3][2] }}">D3</div>
-		<div class="boardspot rowD col4 type{{ board[3][3] }}">D4</div>
-		<div class="boardspot rowD col5 type{{ board[3][4] }}">D5</div>
-		<div class="boardspot rowD col6 type{{ board[3][5] }}">D6</div>
-		<div class="boardspot rowD col7 type{{ board[3][6] }}">D7</div>
-		<div class="boardspot rowD col8 type{{ board[3][7] }}">D8</div>
-	</div>
-	<div class="row_wrapper rowE">
-		<div class="boardspot rowE col1 type{{ board[4][0] }}">E1</div>
-		<div class="boardspot rowE col2 type{{ board[4][1] }}">E2</div>
-		<div class="boardspot rowE col3 type{{ board[4][2] }}">E3</div>
-		<div class="boardspot rowE col4 type{{ board[4][3] }}">E4</div>
-		<div class="boardspot rowE col5 type{{ board[4][4] }}">E5</div>
-		<div class="boardspot rowE col6 type{{ board[4][5] }}">E6</div>
-		<div class="boardspot rowE col7 type{{ board[4][6] }}">E7</div>
-		<div class="boardspot rowE col8 type{{ board[4][7] }}">E8</div>
-	</div>
-	<div class="row_wrapper rowF">
-		<div class="boardspot rowF col1 type{{ board[5][0] }}">F1</div>
-		<div class="boardspot rowF col2 type{{ board[5][1] }}">F2</div>
-		<div class="boardspot rowF col3 type{{ board[5][2] }}">F3</div>
-		<div class="boardspot rowF col4 type{{ board[5][3] }}">F4</div>
-		<div class="boardspot rowF col5 type{{ board[5][4] }}">F5</div>
-		<div class="boardspot rowF col6 type{{ board[5][5] }}">F6</div>
-		<div class="boardspot rowF col7 type{{ board[5][6] }}">F7</div>
-		<div class="boardspot rowF col8 type{{ board[5][7] }}">F8</div>
-	</div>
-	<div class="row_wrapper rowG">
-		<div class="boardspot rowG col1 type{{ board[6][0] }}">G1</div>
-		<div class="boardspot rowG col2 type{{ board[6][1] }}">G2</div>
-		<div class="boardspot rowG col3 type{{ board[6][2] }}">G3</div>
-		<div class="boardspot rowG col4 type{{ board[6][3] }}">G4</div>
-		<div class="boardspot rowG col5 type{{ board[6][4] }}">G5</div>
-		<div class="boardspot rowG col6 type{{ board[6][5] }}">G6</div>
-		<div class="boardspot rowG col7 type{{ board[6][6] }}">G7</div>
-		<div class="boardspot rowG col8 type{{ board[6][7] }}">G8</div>
-	</div>
-	<div class="row_wrapper rowH">
-		<div class="boardspot rowH col1 type{{ board[7][0] }}">H1</div>
-		<div class="boardspot rowH col2 type{{ board[7][1] }}">H2</div>
-		<div class="boardspot rowH col3 type{{ board[7][2] }}">H3</div>
-		<div class="boardspot rowH col4 type{{ board[7][3] }}">H4</div>
-		<div class="boardspot rowH col5 type{{ board[7][4] }}">H5</div>
-		<div class="boardspot rowH col6 type{{ board[7][5] }}">H6</div>
-		<div class="boardspot rowH col7 type{{ board[7][6] }}">H7</div>
-		<div class="boardspot rowH col8 type{{ board[7][7] }}">H8</div>
-	</div>
+	
 </div>
 
 {% endblock %}
