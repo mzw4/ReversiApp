@@ -16,7 +16,7 @@ from pymongo.son_manipulator import AutoReference, NamespaceInjector
 # from pymongo import MongoClient
 import requests
 from flask import Flask, session, request, redirect, render_template, url_for, g
-from flask.ext.mongokit import MongoKit, Document
+from mongokit import MongoKit, Document, ObjectId
 # from flask.ext.pymongo import PyMongo
 
 # app imports
@@ -511,7 +511,7 @@ def login():
             current_user['_id'] = me['id']
             current_user['name'] = me['name']
             # -- dummy data
-            current_user['past_games'] = [1,2,3,4,5]
+            current_user['past_games'] = [ObjectId(),ObjectId(),ObjectId(),ObjectId()]
             current_user['wins'] = 40
             current_user['losses'] = 1012
             # -- dummy data
