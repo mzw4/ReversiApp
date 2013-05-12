@@ -71,7 +71,7 @@
           {% for g in recent_games %}
             
             <!-- IF STATEMENT: DID USER WIN? -->
-            {% if g.winner.id == current_user._id %}
+            {% if g.winner_id == current_user._id %}
           <tr class="win">
             {% else %}
           <tr class ="loss">
@@ -82,18 +82,18 @@
             </td>   
             <td class="recent_games_profile">
               <div>
-                {% if g.white == current_user._id %}
+                {% if g.white._id == current_user._id %}
                 <span class="opponent">
-                  Opponent: {{black.name}} <br>
+                  Opponent: {{g.black.name}} <br>
                   ELO: {{g.black.elo_rating}} <br>
                 </span>
                 {% else %}
                 <span class="opponent">
-                  Opponent: {{white.name}} <br>
-                  ELO: {{white.elo_rating}} <br>
+                  Opponent: {{g.white.name}} <br>
+                  ELO: {{g.white.elo_rating}} <br>
                 </span>
                 {% endif %}
-                {% if g.winner.id == current_user._id %}
+                {% if g.winner_id == current_user._id %}
                 <span class="status win">WIN</span>
                 {% else %}
                 <span class="status loss">LOSS</span>
