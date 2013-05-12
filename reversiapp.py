@@ -527,7 +527,7 @@ def login():
         current_user.save()
 
         session['uid'] = current_user['_id']
-        app.config['token'] = acces
+        app.config['token'] = access_token
         # app.config['user'] = current_user
 
         if session['uid']:
