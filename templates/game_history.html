@@ -2,7 +2,7 @@
 	When a game is clicked, the game statistics page is brought up 
 	on load, if just_started = True, raise a pop up alert saying "You just started a game with opponents name!" -->
 
-% extends "base.html" %}
+{% extends "base.html" %}
 
 {% block additional_styling %}
 <link rel="stylesheet" href="static/game_history.css">
@@ -22,7 +22,7 @@
 </div>
 
 <div class="past_games">
-	<<table>
+	<table>
 	    <tbody>
 	      {% for game in past_games %}
 	      <tr>
