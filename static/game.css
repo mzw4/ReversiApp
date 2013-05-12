@@ -134,16 +134,16 @@ Keep in mind that we probably will not be able to do any cool JS gradients.
 
 /* This is placeholder css; they are distinguishable but look bad */
 /* white */
-div.type1 {
+div.type0 {
   background: grey !important;
 }
 
 /* black */
-div.type2 {
+div.type1 {
   background: black !important;
 }
 
 /* empty */
-div.type0 {
+div.type-1 {
 
 }
