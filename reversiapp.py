@@ -430,7 +430,7 @@ def quickplay():
         game2 = db.Game()
         game2['white'] = current_user
         game2['black'] = opponent
-        game2.save()
+        # game2.save()
 
         current_user['current_games'].append(game2['_id'])
         opponent_dummy['current_games'].append(game2['_id'])
@@ -476,12 +476,13 @@ def game_history():
         g = db.Game()
         g['white'] = current_user
         g['black'] = current_user
-        g.save()
+        db.games.insert(g)
+        # g.save()
 
         past_games = []
 
         past_games.append(g)
-        
+
         for gid in current_user['past_games']:
             game = db.games.find_one({'_id': gid})
             if game:
@@ -543,8 +544,8 @@ def login():
             current_user['name'] = me['name']
             # -- dummy data
             current_user['past_games'] = [ObjectId(),ObjectId(),ObjectId(),ObjectId()]
-            current_user['wins'] = 1717171
-            current_user['losses'] = 20934
+            current_user['wins'] = 1
+            current_user['losses'] = 2
             # -- dummy data
             current_user.save()
 
