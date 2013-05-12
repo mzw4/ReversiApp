@@ -370,13 +370,16 @@ def game(game_id):
         if not game:
             return redirect(url_for('home'))
 
+        white = db.users.find_one({'_id': game['white']})
+        black = db.users.find_one({'_id': game['black']})
+
         # determine if the game has just started
         just_started = len(game['states_list']) <= 2
         # current game board is the latest state in states_list
         current_board = game['states_list'][-1]
 
         # determine turn and score
-        if game['turn'] and game['black']['_id'] == current_user['_id']:
+        if game['turn'] and game['black'] == current_user['_id']:
             turn = True
             player_score = game['black_score']
             opponent_score = game['white_score']
@@ -386,6 +389,7 @@ def game(game_id):
             opponent_score = game['black_score']
 
         return render_template('game.html', game=game,
+            white=white, black=black,
             turn=turn, just_started=just_started,
             player_score=player_score, opponent_score=opponent_score,
             me=me, current_user=current_user, opponent=opponent,
@@ -416,8 +420,8 @@ def quickplay():
             opponent = opponent_request['user']
             # game = start_game(current_user, opponent)
             game = db.Game()
-            game['white'] = current_user
-            game['black'] = opponent
+            game['white'] = current_user['_id']
+            game['black'] = opponent['_id']
             game.creation_time = datetime.now()
             current_user['current_games'].append(game['_id'])
             opponent['current_games'].append(game['_id'])
@@ -439,8 +443,8 @@ def quickplay():
 
         db.games.remove()
         game = db.Game()
-        game['white'] = current_user
-        game['black'] = opponent_dummy
+        game['white'] = current_user['_id']
+        game['black'] = opponent_dummy['_id']
         current_user['current_games'].append(game['_id'])
         opponent_dummy['current_games'].append(game['_id'])
         game.save()
@@ -531,7 +535,6 @@ def login():
         current_user.save()
 
         session['uid'] = current_user['_id']
-        session['user'] = current_user
         app.config['token'] = access_token
         # app.config['user'] = current_user
 
