@@ -444,7 +444,7 @@ def quickplay():
     else:
         return redirect(url_for('login'))
 
-@app.route('/history', methods=['GET', 'POST'])
+@app.route('/game_history', methods=['GET', 'POST'])
 def game_history():
     access_token = get_token()
     channel_url = url_for('get_channel', _external=True)
@@ -467,7 +467,7 @@ def game_history():
     else:
         return redirect(url_for('login'))
 
-@app.route('/history', methods=['GET', 'POST'])
+@app.route('/game_stats/<game_id>', methods=['GET', 'POST'])
 def game_stats(game_id):
     access_token = get_token()
     channel_url = url_for('get_channel', _external=True)
@@ -494,9 +494,9 @@ def game_stats(game_id):
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    access_token = get_token()
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    access_token = get_token()
 
     # # --temp
     # db.users.remove()
@@ -526,7 +526,7 @@ def login():
         else:
             return redirect(url_for('home'))
     else:
-        return render_template('login.html', app_id=FB_APP_ID,
+        return render_template('game_history.html', app_id=FB_APP_ID,
          token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
 
 @app.route('/logout')
