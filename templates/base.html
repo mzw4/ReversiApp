@@ -155,7 +155,7 @@
           <a href="{{ url_for('quickplay') }}"> Quick Play </a>
         </li>
         <li id="past_games" style="background: #00a">
-          <a href="#"> Past Games </a>
+          <a href=" {{ url_for('game_history') }} "> Past Games </a>
         </li>
         <li id="profile" style="background: #a0a">
           <a href="http://www.facebook.com/{{current_user.id}}">

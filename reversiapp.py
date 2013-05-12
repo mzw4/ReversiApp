@@ -438,6 +438,7 @@ def quickplay():
         # -- dummy data
         opponent_dummy = db.User()
         opponent_dummy['name'] = 'Ed'
+        opponent_dummy['_id'] = 12345
         opponent_dummy.save()
         opponent = opponent_dummy
 
