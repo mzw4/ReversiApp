@@ -575,8 +575,8 @@ def login():
             current_user['name'] = me['name']
             # -- dummy data
             current_user['past_games'] = [ObjectId(),ObjectId(),ObjectId(),ObjectId()]
-            current_user['wins'] = 1
-            current_user['losses'] = 2
+            current_user['wins'] = 1324
+            current_user['losses'] = 255
             # -- dummy data
             current_user.save()
 
