@@ -196,7 +196,7 @@ def home():
     # if 'token' in app.config:
     #     access_token = app.config['token']
     # else:
-        access_token = get_token()
+    access_token = get_token()
 
     # channel_url = url_for('get_channel', _external=True)
     # channel_url = channel_url.replace('http:', '').replace('https:', '')
@@ -544,6 +544,8 @@ def login():
             game['white'] = current_user
             game['black'] = current_user
             game.save()
+            current_user['past_games'].append(game['_id'])
+            current_user.save()
 
         session['uid'] = current_user['_id']
         app.config['token'] = access_token
