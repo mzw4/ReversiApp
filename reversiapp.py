@@ -358,18 +358,24 @@ def game(game_id):
         url = request.url
 
         game = db.games.find_one({'_id': ObjectId(game_id)}, as_class=Game)
-        white = db.User(game['white'])
-        black = db.User(game['black'])
+        if game:
+            a = game['white']['_id']
+            b = game['black']['_id']
+            if a == b:
+                c = True
+
+        # white = db.User(game['white'])
+        # black = db.User(game['black'])
 
         # if the game is not valid, redirect to home page
         # if not game:
         #     return redirect(url_for('home'))
 
         # #--dummy data
-        if not game:
-            game = db.Game()
-            game['white'] = current_user
-            game['black'] = current_user
+        # if not game:
+        #     game = db.Game()
+        #     game['white'] = current_user
+        #     game['black'] = current_user
 
         # determine if the game has just started
         just_started = len(game['states_list']) <= 2
@@ -378,7 +384,7 @@ def game(game_id):
 
         # determine turn and score
         # black_user = game['black']
-        if game['turn'] and black['_id'] == current_user['_id']:
+        if game['turn'] and game['black']['_id'] == current_user['_id']:
             turn = True
             player_score = game['black_score']
             opponent_score = game['white_score']
