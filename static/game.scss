@@ -79,10 +79,10 @@ $spotWidth: $boardWidth / 8;
 $spotHeight: $boardHeight / 8;
 a.boardspot {
 	position: absolute;
-	width: $spotWidth;
-	height: $spotHeight;
+	width: $spotWidth - 2;
+	height: $spotHeight - 2;
 	color: #fff;
-	background: 
+	border: 1px #aaa solid;
 	line-height: $spotHeight;
 	text-align: center;
 	border: 1px #fff solid;
