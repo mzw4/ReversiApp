@@ -363,9 +363,10 @@ def game(game_id):
         #     return redirect(url_for('home'))
 
         #--dummy data
-        game = db.Game()
-        game['white'] = current_user
-        game['black'] = current_user
+        if not game:
+            game = db.Game()
+            game['white'] = current_user
+            game['black'] = current_user
 
         # determine if the game has just started
         just_started = len(game['states_list']) <= 2
@@ -385,7 +386,7 @@ def game(game_id):
         return render_template('game.html', game=game,
             turn=turn, just_started=just_started,
             player_score=player_score, opponent_score=opponent_score,
-            me=me, current_user=current_user, opponent=opponent,
+            me=me, current_user=current_user,
             app_id=FB_APP_ID, token=access_token, app=fb_app,
             url=url, name=FB_APP_NAME, board=current_board)
     else:
