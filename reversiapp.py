@@ -269,10 +269,10 @@ def home():
         gamewhat = db.games.find_one()
         recent_games = []
         g1 = db.Game()
-        g1.save()
         g1['white'] = u1
         g1['black'] = current_user
         g1['winner_id'] = current_user['_id']
+        g1.save()
         g2 = db.Game()
         g2['white'] = current_user
         g2['black'] = u2
@@ -438,7 +438,7 @@ def quickplay():
         current_user.save()
         opponent_dummy.save()
 
-        return redirect(url_for('game', game_id=game['_id']))
+        return redirect(url_for('game', game_id=game2['_id']))
         # -- dummy data
 
     else:
@@ -522,6 +522,7 @@ def login():
 
     # # --temp
     db.users.remove()
+    db.games.remove()
 
     if access_token:
         me = fb_call('me', args={'access_token': access_token})
@@ -535,10 +536,15 @@ def login():
             current_user['name'] = me['name']
             # -- dummy data
             current_user['past_games'] = [ObjectId(),ObjectId(),ObjectId(),ObjectId()]
-            current_user['wins'] = 12345
-            current_user['losses'] = 12345
+            current_user['wins'] = 151
+            current_user['losses'] = 45783
             # -- dummy data
             current_user.save()
+
+            game = db.Game()
+            game['white'] = current_user
+            game['black'] = current_user
+            game.save()
 
         session['uid'] = current_user['_id']
         app.config['token'] = access_token
