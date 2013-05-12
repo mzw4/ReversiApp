@@ -246,9 +246,11 @@ def home():
 
         u1 = db.User()
         u1['name'] = "Dummy User"
+        u1.save()
         u2 = db.User()
         u2['name'] = "Another Dummy"
         u2['_id'] = 12345
+        u2.save()
         u3 = db.User()
         u3['name'] = "Edward the Dastardly"
         u4 = db.User()
@@ -457,9 +459,6 @@ def make_move(game_id, x, y):
         return redirect(url_for('game', game_id=game_id))
     else:
         return redirect(url_for('home'))
-
-
-
 
 @app.route('/game_history', methods=['GET', 'POST'])
 def game_history():
