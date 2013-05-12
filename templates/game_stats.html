@@ -7,14 +7,16 @@
 <link rel="stylesheet" href="static/game_stats.css">
 {% endblock %}
 
-{% block content %}
 
+
+{% block content %}
 <div class="game_stats">
 	<h2>{{ game.white.name }} vs. {{ game.black.name }}</h2>
 	<p>Winner: {{ game.winner.name }}</p>
 </div>
 
 <div class="board_history">
+	<!-- game.states_list -->
 
 </div>
 {% endblock %}
