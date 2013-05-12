@@ -357,7 +357,7 @@ def game(game_id):
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
 
-        game = db.games.find_one({'_id': game_id}, as_class=Game)
+        game = db.games.find_one({'_id': ObjectId(game_id)}, as_class=Game)
         # if the game is not valid, redirect to home page
         # if not game:
         #     return redirect(url_for('home'))
@@ -385,7 +385,7 @@ def game(game_id):
             opponent_score = game['black_score']
             opponent = game['black']
 
-        return render_template('game.html', game=game,
+        return render_template('game.html', game=game, game_id=game_id,
             turn=turn, just_started=just_started,
             player_score=player_score, opponent_score=opponent_score,
             me=me, current_user=current_user, opponent=opponent,
