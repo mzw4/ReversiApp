@@ -328,10 +328,10 @@ def profile():
     access_token = get_token()
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
+    current_user = db.users.find_one({'_id': session['uid']})
+    # current_user = app.config['user']
 
-    if access_token:
-        current_user = db.users.find_one({'_id': session['uid']})
-        # current_user = app.config['user']
+    if access_token and current_user:
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
@@ -350,10 +350,10 @@ def game(game_id):
     access_token = get_token()
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
+    current_user = db.users.find_one({'_id': session['uid']})
+    # current_user = app.config['user']
 
-    if access_token:
-        current_user = db.users.find_one({'_id': session['uid']})
-        # current_user = app.config['user']
+    if access_token and current_user:
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
@@ -391,10 +391,10 @@ def quickplay():
     access_token = get_token()
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
+    current_user = db.users.find_one({'_id': session['uid']})
+    # current_user = app.config['user']
 
-    if access_token:
-        current_user = db.users.find_one({'_id': session['uid']})
-        # current_user = app.config['user']
+    if access_token and current_user:
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
@@ -449,10 +449,10 @@ def game_history():
     access_token = get_token()
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
+    current_user = db.users.find_one({'_id': session['uid']})
+    # current_user = session['user']
 
     if access_token:
-        current_user = db.users.find_one({'_id': session['uid']})
-        # current_user = session['user']
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
@@ -472,10 +472,10 @@ def game_stats(game_id):
     access_token = get_token()
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
+    current_user = db.users.find_one({'_id': session['uid']})
+    # current_user = session['user']
 
     if access_token:
-        current_user = db.users.find_one({'_id': session['uid']})
-        # current_user = session['user']
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
@@ -494,12 +494,12 @@ def game_stats(game_id):
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    access_token = get_token()
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-        
-    # --temp
-    db.users.remove()
+    access_token = get_token()
+
+    # # --temp
+    # db.users.remove()
 
     if access_token:
         me = fb_call('me', args={'access_token': access_token})
