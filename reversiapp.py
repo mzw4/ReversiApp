@@ -271,7 +271,9 @@ def home():
         g1['white'] = current_user
         g1['black'] = current_user
         g1['winner_id'] = current_user['_id']
-        # g1.save()
+        db.games.insert(g1)
+        # g1_update = db.Game(g1)
+        # g1_update.save()
         g2 = db.Game()
         g2['white'] = current_user
         g2['black'] = u2
@@ -431,9 +433,9 @@ def quickplay():
         game = db.Game()
         game['white'] = current_user
         game['black'] = opponent
-        game_update = db.Game(game)
-        game_update.save()
-        # db.games.insert(game2)
+        # game_update = db.Game(game)
+        # game_update.save()
+        db.games.insert(game)
         # game2.save()
 
         current_user['current_games'].append(game2['_id'])
@@ -481,6 +483,8 @@ def game_history():
         g = db.Game()
         g['white'] = current_user
         g['black'] = current_user
+        # g_update = db.Game(g)
+        # g_update.save()
         db.games.insert(g)
         # g.save()
 
@@ -515,7 +519,7 @@ def game_stats(game_id):
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
 
-        game = db.games.find_one({'_id': game_id})
+        game = db.games.find_one({'_id': game_id}, as_class=Game)
         if not game:
             return redirect(url_for('game_history'))
 
