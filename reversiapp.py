@@ -197,7 +197,8 @@ def home():
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     if access_token:
-        current_user = app.config['user']
+        current_user = db.users.find_one({'_id': session['uid']})
+        # current_user = app.config['user']
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
 
@@ -328,7 +329,8 @@ def profile():
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     if access_token:
-        current_user = app.config['user']
+        current_user = db.users.find_one({'_id': session['uid']})
+        # current_user = app.config['user']
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
@@ -349,7 +351,8 @@ def game(game_id):
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     if access_token:
-        current_user = app.config['user']
+        current_user = db.users.find_one({'_id': session['uid']})
+        # current_user = app.config['user']
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
@@ -389,7 +392,8 @@ def quickplay():
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     if access_token:
-        current_user = app.config['user']
+        current_user = db.users.find_one({'_id': session['uid']})
+        # current_user = app.config['user']
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
@@ -431,7 +435,7 @@ def quickplay():
         current_user['current_games'].append(game['_id'])
         opponent_dummy['current_games'].append(game['_id'])
         game.save()
-        
+
         return redirect(url_for('game', game_id=game['_id']))
         # -- dummy data
 
@@ -446,7 +450,8 @@ def game_history():
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     if access_token:
-        current_user = session['user']
+        current_user = db.users.find_one({'_id': session['uid']})
+        # current_user = session['user']
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
@@ -468,7 +473,8 @@ def game_stats(game_id):
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     if access_token:
-        current_user = session['user']
+        current_user = db.users.find_one({'_id': session['uid']})
+        # current_user = session['user']
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
@@ -490,13 +496,13 @@ def login():
     access_token = get_token()
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
+        
+    # --temp
+    db.users.remove()
 
     if access_token:
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
-
-        # --temp
-        # db.users.remove()
 
         # update current_user
         current_user = db.users.find_one({'_id': me['id']})
@@ -504,18 +510,17 @@ def login():
             current_user = db.User()
             current_user['_id'] = me['id']
             current_user['name'] = me['name']
+            # -- dummy data
+            current_user['past_games'] = [1,2,3,4,5]
+            current_user['wins'] = 40
+            current_user['losses'] = 1012
+            # -- dummy data
             current_user.save()
 
-        # -- dummy data
-        db.users.update({'_id':me['id']}, {'$set': {'past_games': [1,2,3,4,5]}})
-        db.users.update({'_id':me['id']}, {'$set': {'wins': 2}})
-        db.users.update({'_id':me['id']}, {'$set': {'losses': 32234}})
-        # -- dummy data
-
-        app.config['uid'] = current_user['_id']
+        session['uid'] = current_user['_id']
         # app.config['user'] = current_user
 
-        if app.config['user']:
+        if session['uid']:
             return redirect(url_for('profile'))
         else:
             return redirect(url_for('home'))
@@ -525,8 +530,10 @@ def login():
 
 @app.route('/logout')
 def logout():
-    app.config.pop('uid', None)
-    app.config.pop('user', None)
+    session.pop('uid', None)
+    session.pop('user', None)
+    # app.config.pop('uid', None)
+    # app.config.pop('user', None)
     return redirect(url_for('login'))
 
 @app.route('/channel.html', methods=['GET', 'POST'])
