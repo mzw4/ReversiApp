@@ -378,15 +378,17 @@ def game(game_id):
             turn = True
             player_score = game['black_score']
             opponent_score = game['white_score']
+            opponent = game['white']
         else:
             turn = False
             player_score = game['white_score']
             opponent_score = game['black_score']
+            opponent = game['black']
 
         return render_template('game.html', game=game,
             turn=turn, just_started=just_started,
             player_score=player_score, opponent_score=opponent_score,
-            me=me, current_user=current_user,
+            me=me, current_user=current_user, opponent=opponent
             app_id=FB_APP_ID, token=access_token, app=fb_app,
             url=url, name=FB_APP_NAME, board=current_board)
     else:
