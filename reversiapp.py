@@ -193,13 +193,13 @@ def get_token():
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    if 'token' in app.config:
-        access_token = app.config['token']
-    else:
+    # if 'token' in app.config:
+    #     access_token = app.config['token']
+    # else:
         access_token = get_token()
 
-    channel_url = url_for('get_channel', _external=True)
-    channel_url = channel_url.replace('http:', '').replace('https:', '')
+    # channel_url = url_for('get_channel', _external=True)
+    # channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     if access_token:
         current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
@@ -267,16 +267,16 @@ def home():
         # online_friends.append(u3)
 
         recent_games = []
-        g1 = db.games.Game()
+        g1 = db.Game()
         g1['white'] = current_user
         g1['black'] = current_user
-        # g1['winner_id'] = current_user['_id']
-        g1.save()
+        g1['winner_id'] = current_user['_id']
+        # g1.save()
         g2 = db.Game()
         g2['white'] = current_user
         g2['black'] = u2
         g2['winner_id'] = u2['_id']
-        g2.save()
+        # g2.save()
         g3 = db.Game()
         g3['white'] = current_user
         g3['black'] = u3
