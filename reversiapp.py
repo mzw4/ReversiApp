@@ -460,7 +460,7 @@ def quickplay():
         current_user_update = db.User(current_user)
         current_user_update.save()
 
-        game_fromdb = db.Game.find_one({'_id':game['_id']})
+        game_fromdb = db.games.find_one({'_id':game['_id']}, as_class=Game)
         if game_fromdb:
             return redirect(url_for('game'))
         else:
