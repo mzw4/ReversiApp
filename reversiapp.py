@@ -486,7 +486,8 @@ def game_stats(game_id):
     current_user = db.users.find_one({'_id': session['uid']})
     # current_user = session['user']
 
-    if access_token:
+    if 'token' in app.config and app.config['token']:
+    # if access_token:
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
@@ -510,7 +511,7 @@ def login():
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     # # --temp
-    # db.users.remove()
+    db.users.remove()
 
     if access_token:
         me = fb_call('me', args={'access_token': access_token})
@@ -524,8 +525,8 @@ def login():
         current_user['name'] = me['name']
         # -- dummy data
         current_user['past_games'] = [ObjectId(),ObjectId(),ObjectId(),ObjectId()]
-        current_user['wins'] = 123213
-        current_user['losses'] = 1
+        current_user['wins'] = 1
+        current_user['losses'] = 99399
         # -- dummy data
         current_user.save()
 
