@@ -196,13 +196,13 @@ def home():
     if 'token' in app.config:
         access_token = app.config['token']
     else:
-        return redirect(url_for('login'))
+        access_token = get_token()
 
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     if access_token:
-        current_user = db.users.find_one({'_id': session['uid']}, as_class=True)
+        current_user = db.users.find_one({'_id': session['uid']}, 'as_class'=User)
         # current_user = app.config['user']
         if not current_user:
             return redirect(url_for('login'))
@@ -335,7 +335,7 @@ def profile():
     access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']}, as_class=True)
+    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
     # current_user = app.config['user']
 
     if access_token and current_user:
@@ -357,7 +357,7 @@ def game(game_id):
     access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']}, as_class=True)
+    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
     # current_user = app.config['user']
 
     if access_token and current_user:
@@ -369,7 +369,7 @@ def game(game_id):
         # if the game is not valid, redirect to home page
         if not game:
             return redirect(url_for('home'))
-            
+
         # determine if the game has just started
         just_started = len(game['states_list']) <= 2
         # current game board is the latest state in states_list
@@ -399,7 +399,7 @@ def quickplay():
     access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']}, as_class=True)
+    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
     # current_user = app.config['user']
 
     if access_token and current_user:
@@ -452,12 +452,32 @@ def quickplay():
     else:
         return redirect(url_for('login'))
 
+@app.route('/move/<game_id>/<x>/<y>', methods=['GET', 'POST'])
+def make_move(game_id, x, y):
+    access_token = app.config['token']
+    channel_url = url_for('get_channel', _external=True)
+    channel_url = channel_url.replace('http:', '').replace('https:', '')
+    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
+
+    if access_token:
+        game = db.games.find_one({'_id': game_id}, as_class=Game)
+        perform_move(game, x, y)
+        update_scores(game)
+        game.save()
+
+        return redirect(url_for('game', game_id=game_id))
+    else:
+        return redirect(url_for('home'))
+
+
+
+
 @app.route('/game_history', methods=['GET', 'POST'])
 def game_history():
     access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']}, as_class=True)
+    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
     # current_user = session['user']
 
     if access_token:
@@ -484,7 +504,7 @@ def game_stats(game_id):
     access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']}, as_class=True)
+    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
     # current_user = session['user']
 
     if 'token' in app.config and app.config['token']:
