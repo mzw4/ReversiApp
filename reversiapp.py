@@ -403,7 +403,7 @@ def quickplay():
     access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = session['user']
+    current_user = db.users.find_one({'_id': session['uid']})
     # current_user = app.config['user']
 
     if access_token and current_user:
