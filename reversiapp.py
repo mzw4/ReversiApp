@@ -45,6 +45,7 @@ app.secret_key = '\x92\xaa\x81l\x10m\x8c\x97\xc1\xd7\x93\x95\xb9\xfbrC\xf9\xff:~
 db = MongoKit(app)
 db.register([User, Game, PlayRequest, Challenge])
 # db.users.drop()
+db.games.drop()
 
 # try:
 #     connection = pymongo.Connection(MONGODB_URI)
@@ -430,6 +431,7 @@ def quickplay():
         game2 = db.Game()
         game2['white'] = current_user
         game2['black'] = opponent
+        db.games.insert(game2)
         # game2.save()
 
         current_user['current_games'].append(game2['_id'])
