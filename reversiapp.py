@@ -324,8 +324,7 @@ def home():
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
-    access_token = get_token()
-    # access_token = app.config['token']
+    access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
     current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
@@ -347,8 +346,7 @@ def profile():
 
 @app.route('/game/<game_id>', methods=['GET', 'POST'])
 def game(game_id):
-    access_token = get_token()
-    # access_token = app.config['token']
+    access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
     current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
@@ -398,8 +396,7 @@ def game(game_id):
 
 @app.route('/quickplay', methods=['GET', 'POST'])
 def quickplay():
-    access_token = get_token()
-    # access_token = app.config['token']
+    access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
     current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
@@ -467,16 +464,22 @@ def quickplay():
     else:
         return redirect(url_for('login'))
 
-@app.route('/move/<game_id>/<x>/<y>', methods=['GET', 'POST'])
-def make_move(game_id, x, y):
-    access_token = get_token()
-    # access_token = app.config['token']
+@app.route('/move', methods=['GET', 'POST'])
+def make_move():
+    access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
     current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
 
-    if access_token:
+    if access_token and request.method == 'POST':
+        # parse request form data
+        x = request.form['x']
+        y = request.form['y']
+        game_id = request.form['game_id']
+
         game = db.games.find_one({'_id': game_id}, as_class=Game)
+
+        # perform game functions
         perform_move(game, x, y)
         update_scores(game)
         game.save()
@@ -487,8 +490,7 @@ def make_move(game_id, x, y):
 
 @app.route('/game_history', methods=['GET', 'POST'])
 def game_history():
-    access_token = get_token()
-    # access_token = app.config['token']
+    access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
     current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
@@ -526,8 +528,7 @@ def game_history():
 
 @app.route('/game_stats/<game_id>', methods=['GET', 'POST'])
 def game_stats(game_id):
-    access_token = get_token()
-    # access_token = app.config['token']
+    access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
     current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
