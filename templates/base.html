@@ -86,8 +86,8 @@
         });
 
         $('#logout').click(function() {
+          window.location = url_for('logout');
           FB.logout(function(response) {
-            window.location = url_for('logout');
           });
         });
       });

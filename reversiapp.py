@@ -529,8 +529,8 @@ def login():
         current_user['name'] = me['name']
         # -- dummy data
         current_user['past_games'] = [ObjectId(),ObjectId(),ObjectId(),ObjectId()]
-        current_user['wins'] = 1
-        current_user['losses'] = 99399
+        current_user['wins'] = 7777
+        current_user['losses'] = 7777
         # -- dummy data
         current_user.save()
 
@@ -546,9 +546,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('uid', None)
-    session.pop('user', None)
-    # app.config.pop('uid', None)
-    # app.config.pop('user', None)
+    app.config.pop('token', None)
     return redirect(url_for('login'))
 
 @app.route('/channel.html', methods=['GET', 'POST'])
