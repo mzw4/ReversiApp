@@ -86,7 +86,6 @@
         });
 
         $('#logout').click(function() {
-          window.location = url_for('logout');
           FB.logout(function(response) {
           });
         });
@@ -164,7 +163,7 @@
           </a>
           <ul id="profile_menu">
             <li><a href="{{ url_for('profile') }}"> Your Stats </a></li>
-            <li><a href="{{ url_for('logout') }}" id="logout"> Sign out </a></li>
+            <li id="logout"><a href="{{ url_for('logout') }}" > Sign out </a></li>
           </ul>
         </li>
       </ul>
