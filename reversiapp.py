@@ -45,7 +45,6 @@ app.secret_key = '\x92\xaa\x81l\x10m\x8c\x97\xc1\xd7\x93\x95\xb9\xfbrC\xf9\xff:~
 db = MongoKit(app)
 db.register([User, Game, PlayRequest, Challenge])
 # db.users.drop()
-db.games.drop()
 
 # try:
 #     connection = pymongo.Connection(MONGODB_URI)
@@ -239,8 +238,8 @@ def home():
                 user_friends.append(friend)
 
         online_friends = []
-        me = db.online_users.find_one({'_id': current_user['_id']})
-        online_friends.append(me)
+        me_user = db.online_users.find_one({'_id': current_user['_id']})
+        online_friends.append(me_user)
         for f in user_friends:
             if db.online_users.find_one({'_id': f['_id']}):
                 online_friends.append(f)
@@ -272,7 +271,9 @@ def home():
         g1['white'] = current_user
         g1['black'] = current_user
         g1['winner_id'] = current_user['_id']
-        # g1.save()
+        db.games.insert(g1)
+        # g1_update = db.Game(g1)
+        # g1_update.save()
         g2 = db.Game()
         g2['white'] = current_user
         g2['black'] = u2
@@ -360,6 +361,11 @@ def game(game_id):
         # if the game is not valid, redirect to home page
         if not game:
             return redirect(url_for('home'))
+        else:
+            #--dummy data
+            game = db.Game()
+            game['white'] = current_user
+            game['black'] = current_user
 
         # determine if the game has just started
         just_started = len(game['states_list']) <= 2
@@ -428,18 +434,28 @@ def quickplay():
         opponent_dummy.save()
         opponent = opponent_dummy
 
-        game2 = db.Game()
-        game2['white'] = current_user
-        game2['black'] = opponent
-        db.games.insert(game2)
+        current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
+        game = db.Game()
+        game['white'] = current_user
+        game['black'] = opponent
+        # game_update = db.games.Game(game)
+        # game_update.save()
+        db.games.insert(game)
         # game2.save()
 
-        current_user['current_games'].append(game2['_id'])
-        opponent_dummy['current_games'].append(game2['_id'])
-        current_user.save()
+        current_user['current_games'].append(game['_id'])
+        opponent_dummy['current_games'].append(game['_id'])
         opponent_dummy.save()
+        current_user_update = db.User(current_user)
+        current_user_update.save()
 
-        return redirect(url_for('game', game_id=game2['_id']))
+        game_fromdb = db.games.find_one({'_id':game['_id']})
+        if game_fromdb:
+            return redirect(url_for('game_history'))
+        else:
+            return redirect(url_for('profile'))
+
+        return redirect(url_for('game', game_id=game['_id']))
         # -- dummy data
 
     else:
@@ -478,6 +494,8 @@ def game_history():
         g = db.Game()
         g['white'] = current_user
         g['black'] = current_user
+        # g_update = db.Game(g)
+        # g_update.save()
         db.games.insert(g)
         # g.save()
 
@@ -512,7 +530,7 @@ def game_stats(game_id):
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
 
-        game = db.games.find_one({'_id': game_id})
+        game = db.games.find_one({'_id': game_id}, as_class=Game)
         if not game:
             return redirect(url_for('game_history'))
 
@@ -533,6 +551,7 @@ def login():
     # # --temp
     db.users.remove()
     db.games.remove()
+    db.drop_collection('games')
 
     if access_token:
         me = fb_call('me', args={'access_token': access_token})
