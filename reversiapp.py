@@ -410,7 +410,6 @@ def quickplay():
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
     current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
-    # current_user = app.config['user']
 
     if access_token and current_user:
         me = fb_call('me', args={'access_token': access_token})
@@ -446,7 +445,7 @@ def quickplay():
         opponent_dummy['_id'] = 12345
         opponent_dummy.save()
 
-        current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
+        db.games.remove()
         game = db.Game()
         game['white'] = current_user
         game['black'] = opponent_dummy
@@ -461,11 +460,11 @@ def quickplay():
         current_user_update = db.User(current_user)
         current_user_update.save()
 
-        # game_fromdb = db.games.find_one({'_id':game['_id']})
-        # if game_fromdb:
-        #     return redirect(url_for('game_history'))
-        # else:
-        #     return redirect(url_for('profile'))
+        game_fromdb = db.Game.find_one({'_id':game['_id']})
+        if game_fromdb:
+            return redirect(url_for('game'))
+        else:
+            return redirect(url_for('profile'))
 
         return redirect(url_for('game', game_id=game['_id']))
         # -- dummy data
@@ -503,7 +502,6 @@ def game_history():
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
     current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
-    # current_user = session['user']
 
     if access_token:
         me = fb_call('me', args={'access_token': access_token})
@@ -541,7 +539,6 @@ def game_stats(game_id):
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
     current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
-    # current_user = session['user']
 
     if 'token' in app.config and app.config['token']:
     # if access_token:
@@ -570,7 +567,6 @@ def login():
     # # --temp
     db.users.remove()
     db.games.remove()
-    db.drop_collection('games')
 
     if access_token:
         me = fb_call('me', args={'access_token': access_token})

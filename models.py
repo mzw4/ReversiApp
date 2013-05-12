@@ -45,7 +45,7 @@ class User(Document):
 
 # @connection.register
 class Game(Document):
-	__collection__ = 'Game'
+	__collection__ = 'games'
 	__database__ = 'reversi_db'
 	structure = {
 		'_id': ObjectId,
