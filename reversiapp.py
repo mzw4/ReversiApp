@@ -202,7 +202,7 @@ def home():
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     if access_token:
-        current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
+        current_user = db.reversi_db.users.find_one({'_id': session['uid']}, as_class=User)
         # current_user = app.config['user']
         if not current_user:
             return redirect(url_for('login'))
@@ -528,7 +528,7 @@ def login():
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
 
         # update current_user
-        current_user = db.users.find_one({'_id': me['id']})
+        current_user = db.reversi_db.users.find_one({'_id': me['id']})
         if not current_user:
             current_user = db.User()
             current_user['_id'] = me['id']
