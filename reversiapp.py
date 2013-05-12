@@ -271,12 +271,12 @@ def home():
         g1['white'] = current_user
         g1['black'] = current_user
         g1['winner_id'] = current_user['_id']
-        # g1.save()
+        g1.save()
         g2 = db.Game()
         g2['white'] = current_user
         g2['black'] = u2
         g2['winner_id'] = u2['_id']
-        # g2.save()
+        g2.save()
         g3 = db.Game()
         g3['white'] = current_user
         g3['black'] = u3
