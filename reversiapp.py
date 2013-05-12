@@ -238,8 +238,8 @@ def home():
                 user_friends.append(friend)
 
         online_friends = []
-        me = db.online_users.find_one({'_id': current_user['_id']})
-        online_friends.append(me)
+        me_user = db.online_users.find_one({'_id': current_user['_id']})
+        online_friends.append(me_user)
         for f in user_friends:
             if db.online_users.find_one({'_id': f['_id']}):
                 online_friends.append(f)
@@ -361,6 +361,11 @@ def game(game_id):
         # if the game is not valid, redirect to home page
         if not game:
             return redirect(url_for('home'))
+        else:
+            #--dummy data
+            game = db.Game()
+            game['white'] = current_user
+            game['black'] = current_user
 
         # determine if the game has just started
         just_started = len(game['states_list']) <= 2
@@ -443,6 +448,12 @@ def quickplay():
         opponent_dummy.save()
         current_user_update = db.User(current_user)
         current_user_update.save()
+
+        game_fromdb = db.games.find_one({'_id':game['_id']})
+        if game_fromdb:
+            return redirect(url_for('game_history'))
+        else:
+            return redirect(url_for('profile'))
 
         return redirect(url_for('game', game_id=game['_id']))
         # -- dummy data
