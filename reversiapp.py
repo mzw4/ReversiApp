@@ -431,6 +431,7 @@ def quickplay():
         current_user['current_games'].append(game['_id'])
         opponent_dummy['current_games'].append(game['_id'])
         game.save()
+        
         return redirect(url_for('game', game_id=game['_id']))
         # -- dummy data
 
