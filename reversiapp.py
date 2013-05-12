@@ -193,7 +193,11 @@ def get_token():
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    access_token = app.config['token']
+    if 'token' in app.config:
+        access_token = app.config['token']
+    else
+        return redirect(url_for('login'))
+        
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
@@ -444,7 +448,6 @@ def quickplay():
         return redirect(url_for('game', game_id=game['_id']))
         # -- dummy data
 
-        
     else:
         return redirect(url_for('login'))
 

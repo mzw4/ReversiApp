@@ -1,0 +1,912 @@
+[33mcommit bc05ae351473dceb04a857581b6a53f46d5a2ec3[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sun May 12 00:24:53 2013 -0400
+
+    login test
+
+[33mcommit e79a95587df20ed8d19e81e1c249d7f5217ecb73[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sun May 12 00:24:36 2013 -0400
+
+    login test
+
+[33mcommit 85ef041facd984b1a563a4a9cec6799f20beff36[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sun May 12 00:15:14 2013 -0400
+
+    login test
+
+[33mcommit 297148c22521ee24164d48cc8bb748e084d9bfa1[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sun May 12 00:02:59 2013 -0400
+
+    login test
+
+[33mcommit a43533b23802a68972fec1e27fc3f9126adb18bf[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 23:51:49 2013 -0400
+
+    login test
+
+[33mcommit e59e49cd1686938eb9fc9eb3fa55804a182f2aed[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 23:47:39 2013 -0400
+
+    login test
+
+[33mcommit 2310cfcdeb91fb2a5baca39cdac08f7130498f27[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 23:11:34 2013 -0400
+
+    added current_user None check, login test
+
+[33mcommit a6e3c258eb6627f4e3d2d57f03e6f450e2d0aa81[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 23:00:37 2013 -0400
+
+    session test with just uid
+
+[33mcommit f66bf4a66205bbb0447417f291aec790da380165[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 22:56:29 2013 -0400
+
+    session test with just uid
+
+[33mcommit 927454c3699177a16b04c83b9ed89328c71e9fc2[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 22:31:45 2013 -0400
+
+    session test with just uid
+
+[33mcommit 099fe91bb2879839b8a06066f9dc756825877a3e[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 22:20:39 2013 -0400
+
+    merge
+
+[33mcommit 4eba93b34b03dec659372249731213ca3b38310b[m
+Merge: 116b757 9fe4e7a
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 22:18:47 2013 -0400
+
+    Merge branch 'master' of heroku.com:stark-brook-9725
+
+[33mcommit 116b75703e694afc83648823fe39bd4388e38100[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 22:18:26 2013 -0400
+
+    logout
+
+[33mcommit 9fe4e7a49dc94ba05e4e4e962d5e4a618fd535bf[m
+Author: Matt <matt@ubuntu.(none)>
+Date:   Sat May 11 20:39:00 2013 -0400
+
+    build still broken, but less broken now
+
+[33mcommit 81e114548b066d72d5a1252b66b1f0ddc55e0bc1[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 19:21:57 2013 -0400
+
+    login test
+
+[33mcommit dc88fc64d4c7b1b92b1df73d2947452c8d473734[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 19:18:24 2013 -0400
+
+    login test
+
+[33mcommit 7ea803e97d5b2218db5ba0e4db1db636c92935ca[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 18:58:06 2013 -0400
+
+    quickplay test
+
+[33mcommit 807314d8b7e50791a0984d37548e025fc06a4f43[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 18:51:46 2013 -0400
+
+    login test
+
+[33mcommit 811f1c631cd02cbb2cf5ee0fb1df36728d768e65[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 18:37:17 2013 -0400
+
+    quickplay test
+
+[33mcommit 9e1c05bdc2e7995179c8b90ccef36389678fe8b2[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 18:32:01 2013 -0400
+
+    game keyerror fix
+
+[33mcommit 3883bc1e081c34ba59ca040bcbc2520b242f2e88[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 18:24:54 2013 -0400
+
+    quickplay dummy update, login test
+
+[33mcommit 366bff9ce2f9c8bf18107a7b6ed07db6ecceece5[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 18:05:40 2013 -0400
+
+    session data setup test
+
+[33mcommit ea080a2f3b9c0466d32f9834a20173b1b1a1f5e7[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 18:01:12 2013 -0400
+
+    session data setup test
+
+[33mcommit 62f37b4dd1a6166ebcc1bf6b0e712201758d94d8[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 17:43:14 2013 -0400
+
+    added game_stats, game_history templates, added game_states, game_history, and game view functions, updated quickplay
+
+[33mcommit c743cad21134eedbffdfc543e90abfd46d797196[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 17:07:10 2013 -0400
+
+    session test
+
+[33mcommit 9ff4e60dd6ff5f2ab7bcbf64b0d25d9f07c0e6fa[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 16:43:18 2013 -0400
+
+    session test
+
+[33mcommit 9c8cd5252069069f3744d43c07a82aa983ad4936[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 16:39:28 2013 -0400
+
+    session test
+
+[33mcommit 3d1829e73e030278b4df77d46dfb7f075ca0bd48[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 16:15:51 2013 -0400
+
+    changed session to app.config
+
+[33mcommit 64d54f114fb90946e609dd3eab8c6cb6a8aa4125[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 16:11:06 2013 -0400
+
+    session test
+
+[33mcommit 6170ac2110dffdb78c0bedef3cde2e0deb728ec9[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 15:52:19 2013 -0400
+
+    session test
+
+[33mcommit e144d4e621133c3fd56760e73e169cdd957a6c4d[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 15:49:47 2013 -0400
+
+    session test
+
+[33mcommit 5ea348357a71733c087c0e2727c8be733c008a65[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 15:46:57 2013 -0400
+
+    uninstall gunicorn, for sessions
+
+[33mcommit 523dc6be1411752a4bc88ba1270722f4f13ec373[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 15:35:35 2013 -0400
+
+    game model update
+
+[33mcommit ce9426d666c520c09cb33b9eef3efde4f5383a5b[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 15:29:07 2013 -0400
+
+    game model update
+
+[33mcommit da4b92db34b7dc33ec057f393a943d64ca55da76[m
+Merge: 19f4af9 a29609c
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 15:19:10 2013 -0400
+
+    login function test
+
+[33mcommit 19f4af95bbd97a23bde3ae5ebce9b468b44d366e[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Sat May 11 15:01:18 2013 -0400
+
+    login function test
+
+[33mcommit a29609cd4db11acca9af14dd2159ea4e639bde7a[m
+Author: Matt <matt@ubuntu.(none)>
+Date:   Sat May 11 02:01:01 2013 -0400
+
+    Game now displays current board. Uses placeholder CSS.
+
+[33mcommit 27ba7480e0705f8f25c85669b2eef0d595901374[m
+Author: Matt <matt@ubuntu.(none)>
+Date:   Sat May 11 00:40:31 2013 -0400
+
+    Added rudimentary coloring capabilities to board. Need Vu to improve them. Will work on displaying board state
+
+[33mcommit 9c8d673c4f04422e7a7850b17118f5f2b707fd1e[m
+Author: Matt <matt@ubuntu.(none)>
+Date:   Fri May 10 23:48:16 2013 -0400
+
+    updated schema somewhat, will work on putting pieces on game board gui
+
+[33mcommit 267fb036919d5a5952504bd7da76dc142723b0c8[m
+Author: Matt <matt@ubuntu.(none)>
+Date:   Fri May 10 17:05:14 2013 -0400
+
+    fixed backend bug
+
+[33mcommit 853b96cc436d5367bdaf97435dc92375f50085fa[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 10 16:16:59 2013 -0400
+
+    login function test
+
+[33mcommit 14f08c005c9ba36393f36bdff031bd328b7d8fe0[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 10 14:26:52 2013 -0400
+
+    login function test
+
+[33mcommit e60ec7713bf26b544c95d6e5328f6d5302eefcf8[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 10 14:17:22 2013 -0400
+
+    login function test
+
+[33mcommit b2e95d157a642fb116fd85b0a18099a25665710c[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 10 13:16:00 2013 -0400
+
+    import PlayRequest added
+
+[33mcommit 8f34f01c19ce9f640b67544ca029de762d1082ad[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 10 13:12:41 2013 -0400
+
+    added secret key
+
+[33mcommit 5b8360d72380373055ffa2a44162694223e3b5cd[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 10 13:03:35 2013 -0400
+
+    login test
+
+[33mcommit efc38d1a0e78af3b1ad1e2f730a35a0848c69c56[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 10 12:19:35 2013 -0400
+
+    login test
+
+[33mcommit a543d5facd8ddc0e45b7c1a029823b4e2bccadc5[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 10 12:16:01 2013 -0400
+
+    login test
+
+[33mcommit 102fa542300f76fabf2c3c216b2f81a8fc65d9ce[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 10 12:10:08 2013 -0400
+
+    login test
+
+[33mcommit d08dd3a062cc6171c9a198813964d6aeae1404df[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 10 12:05:33 2013 -0400
+
+    login test
+
+[33mcommit 143cdd16098cb0d08928fb34df976cc864b28286[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 10 11:56:51 2013 -0400
+
+    login test
+
+[33mcommit ae545cc564a3e0edf664209d57138ae50c30513a[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 10 11:47:46 2013 -0400
+
+    login test
+
+[33mcommit 74de855e5a7aa79e7e3a1960485dba0de5b03b5e[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 10 00:45:10 2013 -0400
+
+    added session and playrequest models
+
+[33mcommit 0f954098b24211e3e0b85149d7e250809e16258e[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 9 19:19:52 2013 -0400
+
+    like button update
+
+[33mcommit e8b2073eb17f95e694f85df5e29cf14571497d61[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 9 18:47:19 2013 -0400
+
+    base template footer
+
+[33mcommit 84adf469f69aba9e8d506e55d62fe6698686f9e2[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 9 18:39:32 2013 -0400
+
+    like button
+
+[33mcommit 9fbd559000b9557d481fcb636b1270984bfe667f[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 9 18:31:48 2013 -0400
+
+    like button
+
+[33mcommit 320dddbe975d61c7ac249c9129ec7decf27ea037[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 9 18:26:32 2013 -0400
+
+    like button
+
+[33mcommit 8ad070e6cd933fb6bd45e5b57790ba19f9fc2fd2[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 9 18:15:00 2013 -0400
+
+    like button
+
+[33mcommit fbd1786856a91da876f99e095db0ef0380c1feb6[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 9 00:05:55 2013 -0400
+
+    online user test
+
+[33mcommit 6365e58670f1579afbc57d6f18c5b61f543d2141[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 9 00:05:38 2013 -0400
+
+    online user test
+
+[33mcommit 836a11243520784670d3429cc41bdf9d5acf6d62[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Wed May 8 23:57:26 2013 -0400
+
+    app_friends test
+
+[33mcommit 6eb7a43f51533f45c25f00fd15ff92b7a7d72719[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Wed May 8 23:53:09 2013 -0400
+
+    app_friends test
+
+[33mcommit 1ab8c99284f0c9198832abe8641cf3cc19423ff5[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Wed May 8 23:50:23 2013 -0400
+
+    app_friends test
+
+[33mcommit 7a55e63af8f3ea80b20d0e22249ab544de1dba4f[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Wed May 8 23:40:19 2013 -0400
+
+    app_friends test
+
+[33mcommit 605ba5bcc12830463f93e1c4f1470f1762bb4aa1[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Wed May 8 22:39:45 2013 -0400
+
+    app_friends test
+
+[33mcommit ab07d6ee2564923b6b09249224b2c92cdcedbc2d[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Wed May 8 22:37:50 2013 -0400
+
+    app_friends test
+
+[33mcommit c34af1e4d09726e11f7e45d5eb85d5658e0aa4e1[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Wed May 8 22:34:09 2013 -0400
+
+    app_friends test
+
+[33mcommit 7229685b0f146f43a19285aee4ea835514b55388[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Wed May 8 22:23:18 2013 -0400
+
+    app_friends test
+
+[33mcommit 2067e11deb5d876d8f570e24fa0658b3fb473e8a[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 05:28:25 2013 -0400
+
+    player in header link
+
+[33mcommit c32086eb1e85c5f5b5956cdaf404091d4f5120d2[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 05:21:16 2013 -0400
+
+    player in header link
+
+[33mcommit 14835060014a9e73aa29790fc71e19b1af7b5089[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 05:16:37 2013 -0400
+
+    home template
+
+[33mcommit 0c26fd13022c470694334aac79d460939d53172e[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 05:12:57 2013 -0400
+
+    home template
+
+[33mcommit a991ff5b76cbb08449e111623724b5dab047d29d[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 04:48:45 2013 -0400
+
+    home template
+
+[33mcommit ffda88ccdc61d952ca4b01ebe8cf27547af36576[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 04:44:55 2013 -0400
+
+    home template
+
+[33mcommit bbe2d7dff2997827a9def0ac7ba0a5182de54ea0[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 04:41:20 2013 -0400
+
+    home template
+
+[33mcommit d902633242bf4cc32574dc17a5bf33f080a08b07[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 04:22:07 2013 -0400
+
+    home view dummy data
+
+[33mcommit f5fb3a99eb609f64da90f8a366a7acd8f6e9a9e5[m
+Merge: 77f23c9 2255363
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 04:13:58 2013 -0400
+
+    Merge branch 'master' of heroku.com:stark-brook-9725
+
+[33mcommit 77f23c9c107b79bfb0227c157a55d18bedc6874a[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 04:10:42 2013 -0400
+
+    game template context
+
+[33mcommit 22553632ab4915d134ad9262d6243152fe83f582[m
+Merge: 92a34e2 dac99ab
+Author: Matt Miller <mjm527@cornell.edu>
+Date:   Fri May 3 04:07:26 2013 -0400
+
+    Merge branch 'master' of heroku.com:stark-brook-9725
+
+[33mcommit 92a34e2ca61352f48912a59147e71771d01c6a6b[m
+Author: Matt Miller <mjm527@cornell.edu>
+Date:   Fri May 3 04:05:08 2013 -0400
+
+    removed sample template
+
+[33mcommit dac99ab8765801b1517c7573d1f8e58363533de0[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 04:04:07 2013 -0400
+
+    template changes
+
+[33mcommit 914ce97ef218fb92358391c24d28641b22777ada[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 03:00:36 2013 -0400
+
+    default model values
+
+[33mcommit 857845d5ac9b973a0cd213443e169090fa4ecc26[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 02:28:43 2013 -0400
+
+    template url links
+
+[33mcommit 7f94d1d7b4edeefeab059b1ecf4a616c0264e149[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 01:00:18 2013 -0400
+
+    game view test
+
+[33mcommit bb1d49b458757b701d7f8be00b5d3276c7ca00ff[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 00:54:15 2013 -0400
+
+    game view test
+
+[33mcommit 8daaeb5a1909e12856508510d7f04e569b4fb9cf[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 00:50:16 2013 -0400
+
+    game view test
+
+[33mcommit 64000d23c7df2d7e8526e421f4c12d4e44673569[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 00:48:40 2013 -0400
+
+    game view test
+
+[33mcommit b89bac6f7d117cf21798185fb4d91ae10208c819[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 00:45:02 2013 -0400
+
+    game view test
+
+[33mcommit d1c890130fe60ca24d946bb9a1d394d5967cf3f6[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 00:34:13 2013 -0400
+
+    game view test
+
+[33mcommit 666005cc714d63210c046510916b353193f20400[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 00:32:15 2013 -0400
+
+    game view test
+
+[33mcommit 497cc293f5d6221f88b03fad173163c853fe856d[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 00:29:15 2013 -0400
+
+    game view test
+
+[33mcommit 9ccd61c2ede2eb6ed53f3b940996f8fb3a15325c[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 00:23:50 2013 -0400
+
+    game view test
+
+[33mcommit b677641d6b10ebdde34a2dc60e78759a3536908f[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 00:21:53 2013 -0400
+
+    game view test
+
+[33mcommit c3f7e41058b677fae8f7f98bb21be4205efb6f95[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Fri May 3 00:18:41 2013 -0400
+
+    game view test
+
+[33mcommit 260ef39f0e2f3328d68801c5c4cb6b8487a0d157[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 23:33:03 2013 -0400
+
+    game view test
+
+[33mcommit 160c04df05b659bea88c7de5fb74106403b86dde[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 23:27:31 2013 -0400
+
+    game view test
+
+[33mcommit 10ad10c1a230be1465bae94fb017ebee71efeec2[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 23:23:45 2013 -0400
+
+    game view test
+
+[33mcommit 17fe3bf8aa578c81283926ec7c8734f086e7dc21[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 23:20:27 2013 -0400
+
+    game view test
+
+[33mcommit 13b19df888d889efafddc13148f8d8dd24410d11[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 23:00:22 2013 -0400
+
+    controller test
+
+[33mcommit 4dd0a6078a25f4be42bf23afe6df76746920c062[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 22:58:32 2013 -0400
+
+    controller test
+
+[33mcommit 4d183a20d6a0d90d8e6a40a96cdbf5e59ee395e1[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 22:34:39 2013 -0400
+
+    controller test
+
+[33mcommit 39e14948c945481e011c45a805698bdc7e519001[m
+Merge: 47fbc87 829d91f
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 22:26:38 2013 -0400
+
+    Merge branch 'master' of https://github.com/mzw4/ReversiApp
+
+[33mcommit 829d91f76ee1d724a9b8c6a6dc500c12e2634b37[m
+Author: Alex Yu <yay5@cornell.edu>
+Date:   Thu May 2 16:13:54 2013 -0400
+
+    Initialize profile.html with basic stats
+
+[33mcommit 959a62d0e6c2bec9ca11d43d6d6804431c9e5799[m
+Author: Alex Yu <yay5@cornell.edu>
+Date:   Thu May 2 16:13:28 2013 -0400
+
+    adjust layout of content block
+
+[33mcommit 46aa62162eeabc1e1a307a7ef5704e5d373c720d[m
+Author: Alex Yu <yay5@cornell.edu>
+Date:   Thu May 2 16:05:01 2013 -0400
+
+    Adjusted header height
+
+[33mcommit 72c7e99e03a4d6deb25ca6861d48b5ff7dc834df[m
+Author: Alex Yu <yay5@cornell.edu>
+Date:   Thu May 2 16:02:13 2013 -0400
+
+    Included option of disabling/enabling timer
+
+[33mcommit 787fff46a34b423faaae974faef73a19d7208e82[m
+Author: Alex Yu <yay5@cornell.edu>
+Date:   Thu May 2 16:01:41 2013 -0400
+
+    Removed an extra item from the header bar
+
+[33mcommit 25915c4436235817b910e7b6b5d7e9dad146addf[m
+Author: Alex Yu <yay5@cornell.edu>
+Date:   Thu May 2 15:54:16 2013 -0400
+
+    Add game header
+
+[33mcommit f1a25fc8b38a40a8c790f1cc1f9c120f50458145[m
+Author: Alex Yu <yay5@cornell.edu>
+Date:   Thu May 2 15:53:02 2013 -0400
+
+    Added game header
+
+[33mcommit b4630f288e23a46569d6dc1ee464680bdcd077d8[m
+Author: Alex Yu <yay5@cornell.edu>
+Date:   Thu May 2 15:27:03 2013 -0400
+
+    Initialize game.html, included gameboard layout
+
+[33mcommit 55cca2c5c6df0724c4374d6c1acd1a89e1a00b02[m
+Author: Alex Yu <yay5@cornell.edu>
+Date:   Thu May 2 15:26:26 2013 -0400
+
+    Stylesheet for ReversiApp
+
+[33mcommit 083f518e48b81a2aeaaddfde5c0512d9196c9890[m
+Author: Alex Yu <yay5@cornell.edu>
+Date:   Thu May 2 15:25:51 2013 -0400
+
+    Initialize stylesheets for profile.html
+
+[33mcommit 85942542ebf05344237b323d2a7d9657ef9767e9[m
+Author: Alex Yu <yay5@cornell.edu>
+Date:   Thu May 2 15:25:11 2013 -0400
+
+    Add style files for index.html
+
+[33mcommit 03322b6f5ff569ecfce7b695eb6acab740dadf1c[m
+Author: Alex Yu <yay5@cornell.edu>
+Date:   Thu May 2 15:23:07 2013 -0400
+
+    Add skeleton for game styling
+
+[33mcommit 47fbc87d328a8e07e3adb179f72e1c9f9c8b3924[m
+Merge: 7ceacf4 22f8ed2
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 15:20:24 2013 -0400
+
+    Merge branch 'master' of https://github.com/mzw4/ReversiApp
+
+[33mcommit 7ceacf4393942e755446affe9f002654284cb404[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 15:19:50 2013 -0400
+
+    stuff
+
+[33mcommit 22f8ed200371c1dfe42f089de14651eaeecb2e33[m
+Author: Alex Yu <yay5@cornell.edu>
+Date:   Thu May 2 15:09:57 2013 -0400
+
+    Fixed stylesheet href
+
+[33mcommit 1df9e3307b333f1bd3f431655d3fc1bab7110852[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 14:58:19 2013 -0400
+
+    template syntax
+
+[33mcommit ab61317d01e6d95bda2d1e5776844b1324f24890[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 14:56:38 2013 -0400
+
+    template syntax
+
+[33mcommit 056cb9bc96cb326ca25ea23b60b794a094d26710[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 14:54:03 2013 -0400
+
+    template syntax
+
+[33mcommit 727b8c38bd222f79d421113ef085574bb2f58244[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 14:51:07 2013 -0400
+
+    fixed template blocks
+
+[33mcommit 07ecce786858b9b77de219c0e3c496e94decba83[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 14:43:48 2013 -0400
+
+    linked templates and view controller
+
+[33mcommit 11564c927cef69a264c0db5073abd33ad8204ce0[m
+Merge: dfdf259 4d020b4
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 14:16:23 2013 -0400
+
+    merged templates
+
+[33mcommit dfdf259b50da55ee7ed4a4ad77acaf96ecb0fd9b[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 14:12:43 2013 -0400
+
+    syntax
+
+[33mcommit 4d020b49f39d595a7e6362541d9c76b7af5f739b[m
+Author: Alex Yu <yay5@cornell.edu>
+Date:   Thu May 2 14:10:52 2013 -0400
+
+    Added blocks for content and additional styles
+
+[33mcommit 4fbb0e84f23ab66a4f007d6abfeddb9ac8c61a6b[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 14:09:45 2013 -0400
+
+    template
+
+[33mcommit b1dc362a3a6971f17b767dd9a7d1c320526c5d57[m
+Author: Alex Yu <yay5@cornell.edu>
+Date:   Thu May 2 14:09:24 2013 -0400
+
+    Added additional_styling block
+
+[33mcommit 3e55ff5d126cfd2e147b2a99e31ddea8761f0a6b[m
+Author: Alex Yu <yay5@cornell.edu>
+Date:   Thu May 2 14:07:32 2013 -0400
+
+    Added header and other changes to base.html
+
+[33mcommit 8c34a4211ed56f6a7eb4aecfe812c30a7d19ecb1[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 14:03:26 2013 -0400
+
+    template
+
+[33mcommit 8c1572e1f59d86920b83c893be2c970411db1e79[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 13:58:14 2013 -0400
+
+    template
+
+[33mcommit fc414fb77fe32e4245160f820ba7544d1e424a2e[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 13:56:26 2013 -0400
+
+    template
+
+[33mcommit 83725819186cd845275258cccc2f70276b1b8718[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 12:28:41 2013 -0400
+
+    database working
+
+[33mcommit 7f770e75cf4f2a833fe796a8e26fde9d3b4fd3f6[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 12:14:59 2013 -0400
+
+    database stuff
+
+[33mcommit 5e22b9c7f3aabd0c43634a3a7b3e44f9950a5a00[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 12:11:51 2013 -0400
+
+    database stuff
+
+[33mcommit 2cbfa2f8ea4e1397ece16cb4b271c1236b6ed29e[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 12:09:35 2013 -0400
+
+    database stuff
+
+[33mcommit 0eedadfe5369dc8f3de2c2cc0ceae715b29ae8a4[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 12:06:22 2013 -0400
+
+    database stuff
+
+[33mcommit aeb3a69da999b05e6b42f128aaf3718dafbf45bf[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 12:04:43 2013 -0400
+
+    database stuff
+
+[33mcommit 1ed02f8eb5d152ebd2361eb630e029e5011ef1b8[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 12:01:28 2013 -0400
+
+    database stuff
+
+[33mcommit a57dbdf493279e04fa6f9b0bbafd61781ac0114b[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 11:58:32 2013 -0400
+
+    database stuff
+
+[33mcommit 2cf1b0a138a806a9d542d0f7ea8f6c9b2da6430c[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 11:56:05 2013 -0400
+
+    database stuff
+
+[33mcommit 6be4abd1c0553318d5c55ded8193ecdcd796600c[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 11:53:29 2013 -0400
+
+    database stuff
+
+[33mcommit 3e2db62c5367013909b5b7ebde819de592537578[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 11:52:03 2013 -0400
+
+    database stuff
+
+[33mcommit 0ae41039ac2b90a55d3647aac13e7edcfc8dcf13[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 11:50:04 2013 -0400
+
+    database stuff
+
+[33mcommit af42a1acbd4e2e7543b7f2a8df3431eafe006670[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 11:46:48 2013 -0400
+
+    database stuff
+
+[33mcommit 7308e0f02dd5ddbee628f251bdae3c75f2ea0724[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 11:44:43 2013 -0400
+
+    database stuff
+
+[33mcommit 5cc612d98b549508e745e03e8b4a7b3de784ce12[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 11:22:19 2013 -0400
+
+    query stuff
+
+[33mcommit 65bf8c57b4ed6d845b6199b569774295e127f56b[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 11:17:47 2013 -0400
+
+    stuff
+
+[33mcommit 8e16192051ac73add6f8b1cd07b5663760f6c054[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 11:04:08 2013 -0400
+
+    stuff
+
+[33mcommit 9d0811dd90147b75c6071146fdd4bf4989da213b[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 11:01:18 2013 -0400
+
+    stuff
+
+[33mcommit 6ec527eedd26ce74028bc3604f051af89e0ceeef[m
+Author: Michael Wang <mzw4@cornell.edu>
+Date:   Thu May 2 10:46:10 2013 -0400
+
+    stuff
