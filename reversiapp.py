@@ -193,10 +193,10 @@ def get_token():
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    # if 'token' in app.config:
-    #     access_token = app.config['token']
-    # else:
-    access_token = get_token()
+    if 'token' in app.config:
+        access_token = app.config['token']
+    else:
+        access_token = get_token()
 
     # channel_url = url_for('get_channel', _external=True)
     # channel_url = channel_url.replace('http:', '').replace('https:', '')
@@ -473,11 +473,6 @@ def game_history():
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
 
-        g = db.Game()
-        g['white'] = current_user
-        g['black'] = current_user
-        g.save()
-        
         past_games = []
         for gid in current_user['past_games']:
             game = db.games.find_one({'_id': gid})
@@ -540,8 +535,8 @@ def login():
             current_user['name'] = me['name']
             # -- dummy data
             current_user['past_games'] = [ObjectId(),ObjectId(),ObjectId(),ObjectId()]
-            current_user['wins'] = 1
-            current_user['losses'] = 2
+            current_user['wins'] = 1717171
+            current_user['losses'] = 20934
             # -- dummy data
             current_user.save()
 
@@ -549,8 +544,6 @@ def login():
             game['white'] = current_user
             game['black'] = current_user
             game.save()
-            # current_user['past_games'].append(game['_id'])
-            # current_user.save()
 
         session['uid'] = current_user['_id']
         app.config['token'] = access_token
