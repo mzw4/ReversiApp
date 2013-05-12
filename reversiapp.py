@@ -362,11 +362,11 @@ def game(game_id):
         # if not game:
         #     return redirect(url_for('home'))
 
-        #--dummy data
-        if not game:
-            game = db.Game()
-            game['white'] = current_user
-            game['black'] = current_user
+        # #--dummy data
+        # if not game:
+        game = db.Game()
+        game['white'] = current_user
+        game['black'] = current_user
 
         # determine if the game has just started
         just_started = len(game['states_list']) <= 2
