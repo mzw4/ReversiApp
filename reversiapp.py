@@ -427,16 +427,20 @@ def quickplay():
         opponent_dummy.save()
         opponent = opponent_dummy
 
-        game2 = db.Game()
-        game2['white'] = current_user
-        game2['black'] = opponent
-        db.games.insert(game2)
+        current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
+        game = db.Game()
+        game['white'] = current_user
+        game['black'] = opponent
+        game_update = db.Game(game)
+        game_update.save()
+        # db.games.insert(game2)
         # game2.save()
 
         current_user['current_games'].append(game2['_id'])
         opponent_dummy['current_games'].append(game2['_id'])
         opponent_dummy.save()
-        current_user.save()
+        current_user_update = db.User(current_user)
+        current_user_update.save()
 
         return redirect(url_for('game', game_id=game2['_id']))
         # -- dummy data
