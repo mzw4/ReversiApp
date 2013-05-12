@@ -266,6 +266,7 @@ def home():
         # online_friends.append(u2)
         # online_friends.append(u3)
 
+        gamewhat = db.games.find_one()
         recent_games = []
         g1 = db.Game()
         g1['white'] = u1
