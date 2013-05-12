@@ -202,7 +202,7 @@ def home():
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     if access_token:
-        current_user = db.users.find_one({'_id': session['uid']})
+        current_user = db.users.find_one({'_id': session['uid']}, as_class=True)
         # current_user = app.config['user']
         if not current_user:
             return redirect(url_for('login'))
@@ -335,7 +335,7 @@ def profile():
     access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']})
+    current_user = db.users.find_one({'_id': session['uid']}, as_class=True)
     # current_user = app.config['user']
 
     if access_token and current_user:
@@ -357,7 +357,7 @@ def game(game_id):
     access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']})
+    current_user = db.users.find_one({'_id': session['uid']}, as_class=True)
     # current_user = app.config['user']
 
     if access_token and current_user:
@@ -369,17 +369,14 @@ def game(game_id):
         # if the game is not valid, redirect to home page
         if not game:
             return redirect(url_for('home'))
-
-        white = db.users.find_one({'_id': game['white']})
-        black = db.users.find_one({'_id': game['black']})
-
+            
         # determine if the game has just started
         just_started = len(game['states_list']) <= 2
         # current game board is the latest state in states_list
         current_board = game['states_list'][-1]
 
         # determine turn and score
-        if game['turn'] and game['black'] == current_user['_id']:
+        if game['turn'] and game['black']['_id'] == current_user['_id']:
             turn = True
             player_score = game['black_score']
             opponent_score = game['white_score']
@@ -389,7 +386,6 @@ def game(game_id):
             opponent_score = game['black_score']
 
         return render_template('game.html', game=game,
-            white=white, black=black,
             turn=turn, just_started=just_started,
             player_score=player_score, opponent_score=opponent_score,
             me=me, current_user=current_user, opponent=opponent,
@@ -403,7 +399,7 @@ def quickplay():
     access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']})
+    current_user = db.users.find_one({'_id': session['uid']}, as_class=True)
     # current_user = app.config['user']
 
     if access_token and current_user:
@@ -420,8 +416,8 @@ def quickplay():
             opponent = opponent_request['user']
             # game = start_game(current_user, opponent)
             game = db.Game()
-            game['white'] = current_user['_id']
-            game['black'] = opponent['_id']
+            game['white'] = current_user
+            game['black'] = opponent
             game.creation_time = datetime.now()
             current_user['current_games'].append(game['_id'])
             opponent['current_games'].append(game['_id'])
@@ -444,8 +440,8 @@ def quickplay():
 
         db.games.remove()
         game = db.Game()
-        game['white'] = current_user['_id']
-        game['black'] = opponent_dummy['_id']
+        game['white'] = current_user
+        game['black'] = opponent_dummy
         current_user['current_games'].append(game['_id'])
         opponent_dummy['current_games'].append(game['_id'])
         game.save()
@@ -461,7 +457,7 @@ def game_history():
     access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']})
+    current_user = db.users.find_one({'_id': session['uid']}, as_class=True)
     # current_user = session['user']
 
     if access_token:
@@ -488,7 +484,7 @@ def game_stats(game_id):
     access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']})
+    current_user = db.users.find_one({'_id': session['uid']}, as_class=True)
     # current_user = session['user']
 
     if 'token' in app.config and app.config['token']:
@@ -523,21 +519,20 @@ def login():
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
 
         # update current_user
-        # current_user = db.users.find_one({'_id': me['id']})
-        # if not current_user:
-        current_user = db.User()
-        current_user['_id'] = me['id']
-        current_user['name'] = me['name']
-        # -- dummy data
-        current_user['past_games'] = [ObjectId(),ObjectId(),ObjectId(),ObjectId()]
-        current_user['wins'] = 7777
-        current_user['losses'] = 7777
-        # -- dummy data
-        current_user.save()
+        current_user = db.users.find_one({'_id': me['id']})
+        if not current_user:
+            current_user = db.User()
+            current_user['_id'] = me['id']
+            current_user['name'] = me['name']
+            # -- dummy data
+            current_user['past_games'] = [ObjectId(),ObjectId(),ObjectId(),ObjectId()]
+            current_user['wins'] = 12345
+            current_user['losses'] = 12345
+            # -- dummy data
+            current_user.save()
 
         session['uid'] = current_user['_id']
         app.config['token'] = access_token
-        # app.config['user'] = current_user
 
         return redirect(url_for('home'))
     else:
@@ -548,7 +543,8 @@ def login():
 def logout():
     session.pop('uid', None)
     app.config.pop('token', None)
-    return redirect(url_for('login'))
+    return render_template('login.html', app_id=FB_APP_ID,
+     token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
 
 @app.route('/channel.html', methods=['GET', 'POST'])
 def get_channel():

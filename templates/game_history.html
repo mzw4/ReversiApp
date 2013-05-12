@@ -1,13 +1,15 @@
 <!-- Show a list of all past games that a user has played.
-	When a game is clicked, the game statistics page is brought up -->
+	When a game is clicked, the game statistics page is brought up 
+	on load, if just_started = True, raise a pop up alert saying "You just started a game with opponents name!" -->
+
 % extends "base.html" %}
 
 {% block additional_styling %}
 <link rel="stylesheet" href="static/game_history.css">
 {% endblock %}
 
+
 {% block scripts %}
-<!-- 	on load, if just_started = True, raise a pop up alert saying "You just started a game with {{opponent.name}}!" -->
 <script type="text/javascript">
 
 </script>

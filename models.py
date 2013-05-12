@@ -49,8 +49,8 @@ class Game(Document):
 	__database__ = 'reversi_db'
 	structure = {
 		'_id': ObjectId,
-		'white': int,
-		'black': int,
+		'white': User,
+		'black': User,
 		'turn': bool, 	# True = black turn
 		'white_score': int,
 		'black_score': int,
