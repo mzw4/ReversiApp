@@ -357,7 +357,7 @@ def game(game_id):
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
 
-        game = db.games.find_one({'_id': ObjectId(game_id)}, as_class=Game)
+        game = db.Game.find_one({'_id': ObjectId(game_id)}, as_class=Game)
         if game:
             a = game['white']['_id']
             b = game['black']['_id']
