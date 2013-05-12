@@ -267,7 +267,7 @@ def home():
         # online_friends.append(u3)
 
         recent_games = []
-        g1 = db.Game()
+        g1 = db.reversi_db.games.Game()
         g1['white'] = current_user
         g1['black'] = current_user
         # g1['winner_id'] = current_user['_id']
