@@ -202,7 +202,7 @@ def home():
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     if access_token:
-        current_user = db.users.find_one({'_id': session['uid']}, 'as_class'=User)
+        current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
         # current_user = app.config['user']
         if not current_user:
             return redirect(url_for('login'))
