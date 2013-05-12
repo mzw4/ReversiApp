@@ -195,9 +195,9 @@ def get_token():
 def home():
     if 'token' in app.config:
         access_token = app.config['token']
-    else
+    else:
         return redirect(url_for('login'))
-        
+
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
