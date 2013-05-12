@@ -1,464 +1,65 @@
-/*** CONTENT MODULE ***/
-/* line 10, R:/ReversiApp/static/game.scss */
-div.gameboard_header {
-  float: left;
-  position: relative;
-  margin-top: 20px;
-  height: 50px;
-  width: 500px;
-  background: #009e5f;
-  border: 1px rgba(0, 158, 95, 0.5) solid;
-}
-/* line 20, R:/ReversiApp/static/game.scss */
-div.gameboard_header > div {
-  display: inline-block;
-  line-height: 50px;
-}
-/* line 26, R:/ReversiApp/static/game.scss */
-div.gameboard_header div#player_turn {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 120px;
-}
-/* line 35, R:/ReversiApp/static/game.scss */
-div.gameboard_header div#your_score {
-  position: absolute;
-  left: 120px;
-  top: 0;
-  bottom: 0;
-  width: 150px;
-}
-/* line 44, R:/ReversiApp/static/game.scss */
-div.gameboard_header div#opponent_score {
-  position: absolute;
-  left: 270px;
-  top: 0;
-  bottom: 0;
-  width: 150px;
-}
-/* line 52, R:/ReversiApp/static/game.scss */
-div.gameboard_header div#timer {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 80px;
-}
-
-/* line 63, R:/ReversiApp/static/game.scss */
-div.gameboard {
-  float: left;
-  margin-right: 20px;
-  width: 500px;
-  height: 500px;
-}
-
-/* line 72, R:/ReversiApp/static/game.scss */
-div.row_wrapper {
-  position: relative;
-  width: 500px;
-  height: 62.5px;
-}
-
-/* line 80, R:/ReversiApp/static/game.scss */
-div.boardspot {
-  position: absolute;
-  width: 62.5px;
-  height: 62.5px;
-  color: #fff;
-  line-height: 62.5px;
-  text-align: center;
-  border: 1px #fff solid;
-  opacity: 1;
-  cursor: pointer;
-}
-/* line 91, R:/ReversiApp/static/game.scss */
-div.boardspot:hover {
-  opacity: 0.7;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_0.Y_0 {
-  left: 0px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_0.Y_1 {
-  left: 62.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_0.Y_2 {
-  left: 125px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_0.Y_3 {
-  left: 187.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_0.Y_4 {
-  left: 250px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_0.Y_5 {
-  left: 312.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_0.Y_6 {
-  left: 375px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_0.Y_7 {
-  left: 437.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_1.Y_0 {
-  left: 0px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_1.Y_1 {
-  left: 62.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_1.Y_2 {
-  left: 125px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_1.Y_3 {
-  left: 187.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_1.Y_4 {
-  left: 250px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_1.Y_5 {
-  left: 312.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_1.Y_6 {
-  left: 375px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_1.Y_7 {
-  left: 437.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_2.Y_0 {
-  left: 0px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_2.Y_1 {
-  left: 62.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_2.Y_2 {
-  left: 125px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_2.Y_3 {
-  left: 187.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_2.Y_4 {
-  left: 250px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_2.Y_5 {
-  left: 312.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_2.Y_6 {
-  left: 375px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_2.Y_7 {
-  left: 437.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_3.Y_0 {
-  left: 0px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_3.Y_1 {
-  left: 62.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_3.Y_2 {
-  left: 125px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_3.Y_3 {
-  left: 187.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_3.Y_4 {
-  left: 250px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_3.Y_5 {
-  left: 312.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_3.Y_6 {
-  left: 375px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_3.Y_7 {
-  left: 437.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_4.Y_0 {
-  left: 0px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_4.Y_1 {
-  left: 62.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_4.Y_2 {
-  left: 125px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_4.Y_3 {
-  left: 187.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_4.Y_4 {
-  left: 250px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_4.Y_5 {
-  left: 312.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_4.Y_6 {
-  left: 375px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_4.Y_7 {
-  left: 437.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_5.Y_0 {
-  left: 0px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_5.Y_1 {
-  left: 62.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_5.Y_2 {
-  left: 125px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_5.Y_3 {
-  left: 187.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_5.Y_4 {
-  left: 250px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_5.Y_5 {
-  left: 312.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_5.Y_6 {
-  left: 375px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_5.Y_7 {
-  left: 437.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_6.Y_0 {
-  left: 0px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_6.Y_1 {
-  left: 62.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_6.Y_2 {
-  left: 125px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_6.Y_3 {
-  left: 187.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_6.Y_4 {
-  left: 250px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_6.Y_5 {
-  left: 312.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_6.Y_6 {
-  left: 375px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_6.Y_7 {
-  left: 437.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_7.Y_0 {
-  left: 0px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_7.Y_1 {
-  left: 62.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_7.Y_2 {
-  left: 125px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_7.Y_3 {
-  left: 187.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_7.Y_4 {
-  left: 250px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_7.Y_5 {
-  left: 312.5px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_7.Y_6 {
-  left: 375px;
-  background: #aaa;
-}
-
-/* line 99, R:/ReversiApp/static/game.scss */
-div.X_7.Y_7 {
-  left: 437.5px;
-  background: #aaa;
-}
+/*
+Syntax error: Invalid CSS after "	line-height": expected ";", was ": $spotHeight;"
+        on line 86 of R:/ReversiApp/static/game.scss
+
+Backtrace:
+R:/ReversiApp/static/game.scss:86
+C:/Program Files (x86)/Scout/vendor/gems/gems/sass-3.2.1/lib/sass/../sass/scss/parser.rb:1129:in `expected'
+C:/Program Files (x86)/Scout/vendor/gems/gems/sass-3.2.1/lib/sass/../sass/scss/parser.rb:1066:in `expected'
+C:/Program Files (x86)/Scout/vendor/gems/gems/sass-3.2.1/lib/sass/../sass/scss/parser.rb:1061:in `tok!'
+C:/Program Files (x86)/Scout/vendor/gems/gems/sass-3.2.1/lib/sass/../sass/scss/parser.rb:569:in `declaration_or_ruleset'
+org/jruby/RubyProc.java:268:in `call'
+org/jruby/RubyProc.java:228:in `call'
+C:/Program Files (x86)/Scout/vendor/gems/gems/sass-3.2.1/lib/sass/../sass/scss/parser.rb:1104:in `rethrow'
+C:/Program Files (x86)/Scout/vendor/gems/gems/sass-3.2.1/lib/sass/../sass/scss/parser.rb:575:in `declaration_or_ruleset'
+C:/Program Files (x86)/Scout/vendor/gems/gems/sass-3.2.1/lib/sass/../sass/scss/parser.rb:537:in `block_child'
+C:/Program Files (x86)/Scout/vendor/gems/gems/sass-3.2.1/lib/sass/../sass/scss/parser.rb:529:in `block_contents'
+C:/Program Files (x86)/Scout/vendor/gems/gems/sass-3.2.1/lib/sass/../sass/scss/parser.rb:518:in `block'
+C:/Program Files (x86)/Scout/vendor/gems/gems/sass-3.2.1/lib/sass/../sass/scss/parser.rb:512:in `ruleset'
+C:/Program Files (x86)/Scout/vendor/gems/gems/sass-3.2.1/lib/sass/../sass/scss/parser.rb:536:in `block_child'
+C:/Program Files (x86)/Scout/vendor/gems/gems/sass-3.2.1/lib/sass/../sass/scss/parser.rb:529:in `block_contents'
+C:/Program Files (x86)/Scout/vendor/gems/gems/sass-3.2.1/lib/sass/../sass/scss/parser.rb:70:in `stylesheet'
+C:/Program Files (x86)/Scout/vendor/gems/gems/sass-3.2.1/lib/sass/../sass/scss/parser.rb:27:in `parse'
+C:/Program Files (x86)/Scout/vendor/gems/gems/sass-3.2.1/lib/sass/../sass/engine.rb:342:in `_to_tree'
+C:/Program Files (x86)/Scout/vendor/gems/gems/sass-3.2.1/lib/sass/../sass/engine.rb:315:in `_render'
+C:/Program Files (x86)/Scout/vendor/gems/gems/sass-3.2.1/lib/sass/../sass/engine.rb:262:in `render'
+C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:140:in `compile'
+C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:126:in `timed'
+C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:139:in `compile'
+C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/lib/compass/logger.rb:45:in `red'
+C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:138:in `compile'
+C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:118:in `compile_if_required'
+C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:103:in `run'
+org/jruby/RubyArray.java:1603:in `each'
+C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:101:in `run'
+C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:126:in `timed'
+C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:100:in `run'
+C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/lib/compass/commands/watch_project.rb:147:in `recompile'
+org/jruby/RubyMethod.java:133:in `call'
+org/jruby/RubyProc.java:268:in `call'
+org/jruby/RubyProc.java:228:in `call'
+C:/Program Files (x86)/Scout/vendor/gems/gems/fssm-0.2.9/lib/fssm/path.rb:73:in `run_callback'
+C:/Program Files (x86)/Scout/vendor/gems/gems/fssm-0.2.9/lib/fssm/path.rb:55:in `callback_action'
+C:/Program Files (x86)/Scout/vendor/gems/gems/fssm-0.2.9/lib/fssm/path.rb:35:in `update'
+C:/Program Files (x86)/Scout/vendor/gems/gems/fssm-0.2.9/lib/fssm/state/directory.rb:39:in `modified'
+org/jruby/RubyArray.java:1603:in `each'
+C:/Program Files (x86)/Scout/vendor/gems/gems/fssm-0.2.9/lib/fssm/state/directory.rb:37:in `modified'
+C:/Program Files (x86)/Scout/vendor/gems/gems/fssm-0.2.9/lib/fssm/state/directory.rb:18:in `refresh'
+C:/Program Files (x86)/Scout/vendor/gems/gems/fssm-0.2.9/lib/fssm/backends/polling.rb:17:in `run'
+org/jruby/RubyArray.java:1603:in `each'
+C:/Program Files (x86)/Scout/vendor/gems/gems/fssm-0.2.9/lib/fssm/backends/polling.rb:17:in `run'
+org/jruby/RubyKernel.java:1419:in `loop'
+C:/Program Files (x86)/Scout/vendor/gems/gems/fssm-0.2.9/lib/fssm/backends/polling.rb:15:in `run'
+C:/Program Files (x86)/Scout/vendor/gems/gems/fssm-0.2.9/lib/fssm/monitor.rb:26:in `run'
+C:/Program Files (x86)/Scout/vendor/gems/gems/fssm-0.2.9/lib/fssm.rb:70:in `monitor'
+C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/lib/compass/commands/watch_project.rb:87:in `perform'
+C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/lib/compass/commands/base.rb:18:in `execute'
+C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/lib/compass/commands/project_base.rb:19:in `execute'
+C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
+C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/lib/compass/exec/sub_command_ui.rb:15:in `run!'
+C:\Program Files (x86)\Scout\bin\compass:12:in `(root)'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Invalid CSS after \"	line-height\": expected \";\", was \": $spotHeight;\"\A         on line 86 of R:/ReversiApp/static/game.scss"; }
