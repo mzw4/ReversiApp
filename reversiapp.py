@@ -198,8 +198,8 @@ def home():
     else:
         access_token = get_token()
 
-    # channel_url = url_for('get_channel', _external=True)
-    # channel_url = channel_url.replace('http:', '').replace('https:', '')
+    channel_url = url_for('get_channel', _external=True)
+    channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     if access_token:
         current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
@@ -473,7 +473,15 @@ def game_history():
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
 
+        g = db.Game()
+        g['white'] = current_user
+        g['black'] = current_user
+        g.save()
+
         past_games = []
+
+        past_games.append(g)
+        
         for gid in current_user['past_games']:
             game = db.games.find_one({'_id': gid})
             if game:
