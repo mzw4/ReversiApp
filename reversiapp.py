@@ -514,7 +514,7 @@ def login():
         # -- dummy data
 
         app.config['uid'] = current_user['_id']
-        app.config['user'] = current_user
+        # app.config['user'] = current_user
 
         if app.config['user']:
             return redirect(url_for('profile'))
