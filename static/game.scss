@@ -77,11 +77,12 @@ div.row_wrapper {
 
 $spotWidth: $boardWidth / 8;
 $spotHeight: $boardHeight / 8;
-div.boardspot {
+a.boardspot {
 	position: absolute;
 	width: $spotWidth;
 	height: $spotHeight;
 	color: #fff;
+	background: 
 	line-height: $spotHeight;
 	text-align: center;
 	border: 1px #fff solid;
@@ -96,10 +97,10 @@ div.boardspot {
 // Setting up boardpieces
 @for $x from 0 through 7 {
 	@for $y from 0 through 7 {
-		div.X_#{$x}.Y_#{$y} {
+		a.X_#{$x}.Y_#{$y} {
 			left: 0 + ($y) * $spotWidth;
+
 			// optional background color stuff
-			background: #aaa;
 		}
 	}
 }
