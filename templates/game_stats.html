@@ -7,16 +7,36 @@
 <link rel="stylesheet" href="static/game_stats.css">
 {% endblock %}
 
+{% block scripts %}
+<script src="/static/js/game_stats.js"></script>
+{% endblock %}
 
 
 {% block content %}
 <div class="game_stats">
 	<h2>{{ game.white.name }} vs. {{ game.black.name }}</h2>
 	<p>Winner: {{ game.winner.name }}</p>
+	<div id="states_list_array" style="display: none">
+		{{ game.states_list }}
+	</div>
 </div>
-
-<div class="board_history">
-	<!-- game.states_list -->
-
+<div class="history_wrapper">
+	<div class="board_history">
+		<!-- Board appended here -->
+	</div>
+	<div class="state_nav">	
+		<h3>Current Game State</h3>
+		<div class="current_state_wrapper">
+			<a href="javascript:void(0)" class="earlier_state"></a>
+			<span id="current_state">
+				{{ len(game.states_list) }}
+			</span>
+			/
+			<span id="states_list_length">
+				{{ len(game.states_list) }}
+			</span>
+			<a href="javascript:void(0)" class="later_state"></a>
+		</div>
+	</div>
 </div>
 {% endblock %}

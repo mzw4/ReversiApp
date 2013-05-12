@@ -1,0 +1,101 @@
+	div.game_stats {
+		text-align: center;
+	}
+
+	div.history_wrapper {
+		position: relative;
+	}
+
+		div.board_history {
+			display: inline-block;
+			position: absolute;
+			top: 0;
+			left: 100;
+			width: 400px;
+			height: 400px;
+		}
+
+		div.row_wrapper {
+			width: 400px;
+			height: 50px;
+		}
+
+			a.boardspot {
+				display: inline-block;
+				border: 1px #aaa solid;
+				background: #337;
+				height: 48px;
+				width: 48px;
+			}
+			a.empty {
+				background: #337;
+			}
+
+			a.white {
+				background: #fff;
+			}
+			a.black {
+				background: #000;
+			}
+
+	div.state_nav {
+		display: inline-block;
+		position: absolute;
+		top: 0;
+		right: 100;
+		width: 200px;
+		height: 400px;
+	}
+
+	div.state_nav > h3 {
+		text-align: center;
+	}
+
+	div.current_state_wrapper{
+		position: relative;
+		text-align: center;
+		font-size: 30px;
+		height: 40px;
+	}
+
+	div.current_state_wrapper > span {
+		vertical-align: bottom;
+	}
+
+	a.earlier_state {
+		position: absolute;
+		display: block;
+		width: 0;
+		height: 0;
+		bottom: 0;
+		left: 20px;
+
+		border-top: 20px solid transparent;
+		border-bottom: 20px solid transparent;
+
+		border-right: 20px solid #337;
+
+		&:hover {
+			cursor: pointer;
+			border-right: 20px solid #559;
+		}
+	}
+
+	a.later_state {
+		position: absolute;
+		display: block;
+		width: 0;
+		height: 0;
+		bottom: 0;
+		right: 20px;
+
+		border-top: 20px solid transparent;
+		border-bottom: 20px solid transparent;
+
+		border-left: 20px solid #337;
+
+		&:hover {
+			cursor: pointer;
+			border-left: 20px solid #559;
+		}
+	}
