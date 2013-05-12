@@ -266,12 +266,11 @@ def home():
         # online_friends.append(u2)
         # online_friends.append(u3)
 
-        gamewhat = db.games.find_one()
         recent_games = []
         g1 = db.Game()
-        g1['white'] = u1
+        g1['white'] = current_user
         g1['black'] = current_user
-        g1['winner_id'] = current_user['_id']
+        # g1['winner_id'] = current_user['_id']
         g1.save()
         g2 = db.Game()
         g2['white'] = current_user
@@ -536,8 +535,8 @@ def login():
             current_user['name'] = me['name']
             # -- dummy data
             current_user['past_games'] = [ObjectId(),ObjectId(),ObjectId(),ObjectId()]
-            current_user['wins'] = 151
-            current_user['losses'] = 45783
+            current_user['wins'] = 1717171
+            current_user['losses'] = 20934
             # -- dummy data
             current_user.save()
 
