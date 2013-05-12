@@ -388,7 +388,7 @@ def game(game_id):
         return render_template('game.html', game=game,
             turn=turn, just_started=just_started,
             player_score=player_score, opponent_score=opponent_score,
-            me=me, current_user=current_user, opponent=opponent
+            me=me, current_user=current_user, opponent=opponent,
             app_id=FB_APP_ID, token=access_token, app=fb_app,
             url=url, name=FB_APP_NAME, board=current_board)
     else:
