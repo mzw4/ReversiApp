@@ -364,8 +364,9 @@ def game(game_id):
             return redirect(url_for('home'))
 
         # determine if the game has just started
-        just_started = len(game['states_list']) < 3
-        # (^ why not '== 1'? --miller)
+        just_started = len(game['states_list']) <= 2
+        # current game board is the latest state in states_list
+        current_board = game['states_list'][-1]
 
         # determine turn and score
         if game['turn'] and game['black']['_id'] == current_user['_id']:
@@ -377,12 +378,12 @@ def game(game_id):
             player_score = game['white_score']
             opponent_score = game['black_score']
 
-        return render_template('game.html', turn=turn, just_started=just_started,
+        return render_template('game.html', game=game,
+            turn=turn, just_started=just_started,
             player_score=player_score, opponent_score=opponent_score,
             me=me, current_user=current_user, opponent=opponent,
             app_id=FB_APP_ID, token=access_token, app=fb_app,
-            POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO, url=url,
-            channel_url=channel_url, name=FB_APP_NAME, board=current_board)
+            url=url, name=FB_APP_NAME, board=current_board)
     else:
         return redirect(url_for('login'))
 
@@ -457,8 +458,12 @@ def game_history():
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
 
-        past_games = current_user['past_games']
-
+        past_games = []
+        for gid in current_user['past_games']:
+            game = db.games.find_one({'_id': gid})
+            if game:
+                past_games.append(game)
+        
         return render_template(
             'game_history.html', past_games=past_games,
             app_id=FB_APP_ID, token=access_token,
