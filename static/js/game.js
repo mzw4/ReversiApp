@@ -98,6 +98,10 @@ function togglePiece($x, $y, $blackorwhite) {
 		$boardspot.toggleClass("white", false);
 		$boardspot.toggleClass("empty", false);
 		console.log("("+$x+", "+$y+") is now black");
+	} else if ($blackorwhite == "empty") {
+		$boardspot.toggleClass("empty", true);
+		$boardspot.toggleClass("white", false);
+		$boardspot.toggleClass("black", false);
 	}
 }
 

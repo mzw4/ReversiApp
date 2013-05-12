@@ -193,18 +193,13 @@ def get_token():
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    if 'token' in app.config:
-        access_token = app.config['token']
-    else:
-        access_token = get_token()
-
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
-    if access_token:
+    if 'token' in app.config['token'] and 'uid' in session:
+        access_token = app.config['token']
         current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
-        # current_user = app.config['user']
-        if not current_user:
+        if not current_user or not access_token:
             return redirect(url_for('login'))
 
         me = fb_call('me', args={'access_token': access_token})
@@ -324,13 +319,15 @@ def home():
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
-    access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
-    # current_user = app.config['user']
 
-    if access_token and current_user:
+    if 'token' in app.config['token'] and 'uid' in session:
+        access_token = app.config['token']
+        current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
+        if not current_user or not access_token:
+            return redirect(url_for('login'))
+
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
@@ -346,23 +343,25 @@ def profile():
 
 @app.route('/game/<game_id>', methods=['GET', 'POST'])
 def game(game_id):
-    access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
-    # current_user = app.config['user']
 
-    if access_token and current_user:
+    if 'token' in app.config['token'] and 'uid' in session:
+        access_token = app.config['token']
+        current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
+        if not current_user or not access_token:
+            return redirect(url_for('login'))
+
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
 
         game = db.games.find_one({'_id': ObjectId(game_id)}, as_class=Game)
-        if game:
-            a = game['white']['_id']
-            b = game['black']['_id']
-            if a == b:
-                c = True
+        # if game:
+        #     a = game['white']['_id']
+        #     b = game['black']['_id']
+        #     if a == b:
+        #         c = True
 
         # white = db.User(game['white'])
         # black = db.User(game['black'])
@@ -406,12 +405,15 @@ def game(game_id):
 
 @app.route('/quickplay', methods=['GET', 'POST'])
 def quickplay():
-    access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
 
-    if access_token and current_user:
+    if 'token' in app.config and 'uid' in session:
+        access_token = app.config['token']
+        current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
+        if not current_user or not access_token:
+            return redirect(url_for('login'))
+
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
@@ -474,12 +476,15 @@ def quickplay():
 
 @app.route('/move', methods=['GET', 'POST'])
 def make_move():
-    access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
 
-    if access_token and request.method == 'POST':
+    if 'token' in access_token and' uid' in session and request.method == 'POST':
+        access_token = app.config['token']
+        current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
+        if not current_user or not access_token:
+            return redirect(url_for('login'))
+
         # parse request form data
         x = request.form['x']
         y = request.form['y']
@@ -498,12 +503,16 @@ def make_move():
 
 @app.route('/game_history', methods=['GET', 'POST'])
 def game_history():
-    access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
 
-    if access_token:
+    if 'token' in app.config and 'uid' in session and app.config['token']:
+    # if access_token:
+        access_token = app.config['token']
+        current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
+        if not current_user or not access_token:
+            return redirect(url_for('login'))
+
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
@@ -535,13 +544,16 @@ def game_history():
 
 @app.route('/game_stats/<game_id>', methods=['GET', 'POST'])
 def game_stats(game_id):
-    access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
 
-    if 'token' in app.config and app.config['token']:
+    if 'token' in app.config and app.config['token'] and 'uid' in session:
     # if access_token:
+        access_token = app.config['token']
+        current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
+        if not current_user or not access_token:
+            return redirect(url_for('login'))
+            
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
