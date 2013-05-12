@@ -462,7 +462,7 @@ def quickplay():
 
         game_fromdb = db.games.find_one({'_id':game['_id']}, as_class=Game)
         if game_fromdb:
-            return redirect(url_for('game'))
+            return redirect(url_for('game', game_id=game['_id']))
         else:
             return redirect(url_for('profile'))
 
