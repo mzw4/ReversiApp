@@ -407,22 +407,21 @@ def quickplay():
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
 
-        # find an opponent requesting a game
-        db.play_requests.remove()
-        opponent_request = db.play_requests.find_one()
+        # # find an opponent requesting a game
+        # db.play_requests.remove()
+        # opponent_request = db.play_requests.find_one()
 
-        if opponent_request:
-            # start a game with an opponent
-            opponent = opponent_request['user']
-            # game = start_game(current_user, opponent)
-            game = db.Game()
-            game['white'] = current_user
-            game['black'] = opponent
-            game.creation_time = datetime.now()
-            current_user['current_games'].append(game['_id'])
-            opponent['current_games'].append(game['_id'])
-            game.save()
-            return redirect(url_for('game', game_id=game['_id']))
+        # if opponent_request:
+        #     # start a game with an opponent
+        #     opponent = opponent_request['user']
+        #     game = db.Game()
+        #     game['white'] = current_user
+        #     game['black'] = opponent
+        #     game.creation_time = datetime.now()
+        #     current_user['current_games'].append(game['_id'])
+        #     opponent['current_games'].append(game['_id'])
+        #     game.save()
+        #     return redirect(url_for('game', game_id=game['_id']))
         # else:
         #     # request a game with the server
         #     pr = db.PlayRequest()
@@ -438,14 +437,13 @@ def quickplay():
         opponent_dummy.save()
         opponent = opponent_dummy
 
-        db.games.remove()
-        db.games.find()
-        game = db.Game()
-        game['white'] = current_user
-        game['black'] = opponent_dummy
-        game.save()
-        current_user['current_games'].append(game['_id'])
-        opponent_dummy['current_games'].append(game['_id'])
+        game2 = db.Game()
+        game2['white'] = current_user
+        game2['black'] = opponent
+        game2.save()
+
+        current_user['current_games'].append(game2['_id'])
+        opponent_dummy['current_games'].append(game2['_id'])
         current_user.save()
         opponent_dummy.save()
 
