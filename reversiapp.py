@@ -360,10 +360,8 @@ def game(game_id):
             return redirect(url_for('home'))
 
         # determine if the game has just started
-        if len(game['states_list']) < 3:
-            just_started = True
-        else:
-            just_started = False
+        just_started = len(game['states_list']) < 3
+        # (^ why not '== 1'? --miller)
 
         # determine turn and score
         if game['turn'] and game['black']['_id'] == current_user['_id']:

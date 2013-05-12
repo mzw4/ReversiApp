@@ -202,7 +202,7 @@ def perform_move(game, y, x):
 			return False
 
 		valid = False
-		if y > 0 and state[y-1][x] == (piece ^ 1):		        # N
+		if y > 0 and state[y-1][x] == (piece ^ 1): # N
 			for i in range (y-1, -1, -1):
 				if state[i][x] == piece:
 					valid = True
@@ -210,25 +210,25 @@ def perform_move(game, y, x):
 				elif state[i][x] == -1:
 					valid = False
 					break
-		if y < game.size-1 and state[y+1][x] == (piece ^ 1):		# S
+		if y < game.size-1 and state[y+1][x] == (piece ^ 1): # S
 			for i in range (y+1, game.size):
 				if state[i][x] == piece:
 					valid = True
-		if x < game.size-1 and state[y][x+1] == (piece ^ 1):		# E
+		if x < game.size-1 and state[y][x+1] == (piece ^ 1): # E
 			for i in range (x+1, game.size):
 				if state[y][i] == piece:
 					valid = True
-		if x > 0 and state[y][x-1] == (piece ^ 1):				# W
+		if x > 0 and state[y][x-1] == (piece ^ 1): # W
 			for i in range (x-1, -1, -1):
 				if state[y][i] == piece:
 					valid = True
-		if x > 0 and y > 0 and state[y-1][x+1] == (piece ^ 1):	# NE
+		if x > 0 and y > 0 and state[y-1][x+1] == (piece ^ 1): # NE
 			xoffset = 0
 			for i in range (y-1, -1, -1):
 				xoffset += 1
 				if state[i][x+xoffset] == piece:
 					valid = True
-		if x > 0 and y > 0 and state[y-1][x+1] == (piece ^ 1):	# NE
+		if x > 0 and y > 0 and state[y-1][x+1] == (piece ^ 1): # NE
 			xoffset = 0
 			for i in range (y-1, -1, -1):
 				xoffset -= 1
@@ -236,8 +236,7 @@ def perform_move(game, y, x):
 					valid = True
 
 def update_scores(game):
-	if game.states_list: 	# ensure states_list is not empty
-		state = game.states_list[-1]
+	state = game.states_list[-1]
 
 	white_score = 0
 	black_score = 0

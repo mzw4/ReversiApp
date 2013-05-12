@@ -21,8 +21,8 @@ class User(Document):
 		'join_date': datetime,
 		'sent_challenges': [int],
 		'received_challenges': [int],
-		'current_games': [int],
-		'past_games': [int],
+		'current_games': [ObjectId],
+		'past_games': [ObjectId],
 		'achievements': [int],
 	}
 	required_fields = ['name']
@@ -76,8 +76,8 @@ class Game(Document):
 	default_values = {
 		'_id': ObjectId(),
 		'turn': True,
-		'white_score': 0,
-		'black_score': 0,
+		'white_score': 2,
+		'black_score': 2,
 		'size': 8,
 		'move_list': [],
 		'states_list': [[[-1]*8,[-1]*8,[-1]*8,[-1,-1,-1,0,1,-1,-1,-1],[-1,-1,-1,1,0,-1,-1,-1],[-1]*8,[-1]*8,[-1]*8]],
