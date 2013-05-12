@@ -299,13 +299,13 @@ def home():
                 recent_games.append(g)
 
         num_games = len(recent_games)
-        num_online_friends = len(online_friends)
+        num_user_friends = len(user_friends)
 
         return render_template(
             'index.html', app_id=FB_APP_ID, token=access_token,
             app_friends=app_friends, app=fb_app,
             user_friends=user_friends,
-            num_online_friends=num_online_friends,
+            num_user_friends=num_user_friends,
             me=me, current_user=current_user,
             recent_games=recent_games, num_games=num_games,
             POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO,
