@@ -1,5 +1,5 @@
 /*** CONTENT MODULE ***/
-/* line 7, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 7, R:/ReversiApp/static/index.scss */
 div.left_col, div.right_col {
   width: 50%;
   height: 100%;
@@ -7,18 +7,18 @@ div.left_col, div.right_col {
   padding: 0;
 }
 
-/* line 14, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 14, R:/ReversiApp/static/index.scss */
 div.left_col {
   float: left;
 }
 
-/* line 18, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 18, R:/ReversiApp/static/index.scss */
 div.right_col {
   float: right;
 }
 
 /*** GREETING MODULE ***/
-/* line 24, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 24, R:/ReversiApp/static/index.scss */
 div.greeting {
   height: auto;
   width: 100%;
@@ -26,12 +26,12 @@ div.greeting {
 }
 
 /*** RECENT GAMES MODULE ***/
-/* line 31, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 31, R:/ReversiApp/static/index.scss */
 div.recent_games {
   width: 100%;
 }
 
-/* line 39, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 39, R:/ReversiApp/static/index.scss */
 div.recent_games_list {
   width: 367px;
   height: 300px;
@@ -40,24 +40,24 @@ div.recent_games_list {
   background: #ccc;
   position: relative;
 }
-/* line 49, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 49, R:/ReversiApp/static/index.scss */
 div.recent_games_list > table {
   width: 350px;
 }
-/* line 56, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 56, R:/ReversiApp/static/index.scss */
 div.recent_games_list tr {
   height: 80px;
   max-height: 73px;
 }
-/* line 61, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 61, R:/ReversiApp/static/index.scss */
 div.recent_games_list tr.win {
   background: #0b0;
 }
-/* line 65, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 65, R:/ReversiApp/static/index.scss */
 div.recent_games_list tr.loss {
   background: #b00;
 }
-/* line 68, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 68, R:/ReversiApp/static/index.scss */
 div.recent_games_list td {
   height: 80px;
   border: 0;
@@ -65,36 +65,36 @@ div.recent_games_list td {
   margin: 0;
   padding: 0;
 }
-/* line 76, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 76, R:/ReversiApp/static/index.scss */
 div.recent_games_list td.recent_games_pic {
   width: 80px;
 }
-/* line 79, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 79, R:/ReversiApp/static/index.scss */
 div.recent_games_list td.recent_games_pic img {
   height: 100%;
   width: 100%;
 }
-/* line 85, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 85, R:/ReversiApp/static/index.scss */
 div.recent_games_list td.recent_games_profile {
   width: 269px;
 }
-/* line 89, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 89, R:/ReversiApp/static/index.scss */
 div.recent_games_list td.recent_games_profile > table {
   width: 270px;
 }
-/* line 93, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 93, R:/ReversiApp/static/index.scss */
 div.recent_games_list td.recent_games_profile td {
   width: 67.5px;
 }
 
 /*** FRIENDS RANK MODULE ***/
-/* line 101, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 101, R:/ReversiApp/static/index.scss */
 div.friends_rank {
   height: 100%;
   width: 100%;
 }
 
-/* line 111, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 111, R:/ReversiApp/static/index.scss */
 div.friends_rank_list {
   width: 400px;
   height: 430px;
@@ -103,26 +103,26 @@ div.friends_rank_list {
   background: #ccc;
   position: relative;
 }
-/* line 121, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 121, R:/ReversiApp/static/index.scss */
 div.friends_rank_list table {
   width: 383px;
 }
-/* line 128, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 128, R:/ReversiApp/static/index.scss */
 div.friends_rank_list tr {
   height: 70px;
 }
-/* line 132, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 132, R:/ReversiApp/static/index.scss */
 div.friends_rank_list td {
   height: 70px;
   border: 0;
   border-spacing: 0;
 }
-/* line 138, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 138, R:/ReversiApp/static/index.scss */
 div.friends_rank_list td.friends_rank_pic {
   width: 100px;
   background: #0bb;
 }
-/* line 144, C:/Users/Alex Yu/Dropbox/Cornell/Classes/2012-2013/Spring/Cs 3300/FP/static/index.scss */
+/* line 144, R:/ReversiApp/static/index.scss */
 div.friends_rank_list td.friends_rank_profile {
   width: 300px;
   background: #b0b;

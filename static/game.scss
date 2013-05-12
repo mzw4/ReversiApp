@@ -94,10 +94,12 @@ div.boardspot {
 }
 
 // Setting up boardpieces
-@for $i from 1 through 8 {
-	div.col#{$i} {
-		left: 0 + ($i - 1) * $spotWidth;
-		// optional background color stuff
-		background: rgba(20+$i*20, 50+$i*10, 80+$i*8, 1);
+@for $x from 0 through 7 {
+	@for $y from 0 through 7 {
+		div.X_#{$x}.Y_#{$y} {
+			left: 0 + ($y) * $spotWidth;
+			// optional background color stuff
+			background: #aaa;
+		}
 	}
 }
