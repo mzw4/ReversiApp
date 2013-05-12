@@ -196,10 +196,10 @@ def home():
     access_token = get_token()
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
+    current_user = db.users.find_one({'_id': session['uid']})
+    # current_user = app.config['user']
 
-    if access_token:
-        current_user = db.users.find_one({'_id': session['uid']})
-        # current_user = app.config['user']
+    if access_token and current_user:
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
 
@@ -506,17 +506,17 @@ def login():
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
 
         # update current_user
-        current_user = db.users.find_one({'_id': me['id']})
-        if not current_user:
-            current_user = db.User()
-            current_user['_id'] = me['id']
-            current_user['name'] = me['name']
-            # -- dummy data
-            current_user['past_games'] = [ObjectId(),ObjectId(),ObjectId(),ObjectId()]
-            current_user['wins'] = 40
-            current_user['losses'] = 1012
-            # -- dummy data
-            current_user.save()
+        # current_user = db.users.find_one({'_id': me['id']})
+        # if not current_user:
+        current_user = db.User()
+        current_user['_id'] = me['id']
+        current_user['name'] = me['name']
+        # -- dummy data
+        current_user['past_games'] = [ObjectId(),ObjectId(),ObjectId(),ObjectId()]
+        current_user['wins'] = 123213
+        current_user['losses'] = 1
+        # -- dummy data
+        current_user.save()
 
         session['uid'] = current_user['_id']
         # app.config['user'] = current_user
