@@ -363,12 +363,9 @@ def game(game_id):
         #     if a == b:
         #         c = True
 
-        # white = db.User(game['white'])
-        # black = db.User(game['black'])
-
         # if the game is not valid, redirect to home page
-        # if not game:
-        #     return redirect(url_for('home'))
+        if not game:
+            return redirect(url_for('home'))
 
         # #--dummy data
         # if not game:
@@ -382,7 +379,6 @@ def game(game_id):
         current_board = game['states_list'][-1]
 
         # determine turn and score
-        # black_user = game['black']
         if game['turn'] and game['black']['_id'] == current_user['_id']:
             turn = True
             player_score = game['black_score']
@@ -419,8 +415,8 @@ def quickplay():
         url = request.url
 
         # # find an opponent requesting a game
-        # db.play_requests.remove()
-        # opponent_request = db.play_requests.find_one()
+        db.play_requests.remove()
+        opponent_request = db.play_requests.find_one()
 
         # if opponent_request:
         #     # start a game with an opponent
