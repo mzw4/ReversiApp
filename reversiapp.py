@@ -45,8 +45,6 @@ app.secret_key = '\x92\xaa\x81l\x10m\x8c\x97\xc1\xd7\x93\x95\xb9\xfbrC\xf9\xff:~
 db = MongoKit(app)
 db.register([User, Game, PlayRequest, Challenge])
 # db.users.drop()
-db.games.remove()
-db.drop_collection('games')
 
 # try:
 #     connection = pymongo.Connection(MONGODB_URI)
@@ -534,6 +532,7 @@ def login():
     # # --temp
     db.users.remove()
     db.games.remove()
+    db.drop_collection('games')
 
     if access_token:
         me = fb_call('me', args={'access_token': access_token})
