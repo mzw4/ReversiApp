@@ -196,10 +196,13 @@ def home():
     access_token = get_token()
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']})
-    # current_user = app.config['user']
 
-    if access_token and current_user:
+    if access_token:
+        current_user = db.users.find_one({'_id': session['uid']})
+        # current_user = app.config['user']
+        if not current_user:
+            return redirect(url_for('login'))
+
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
 
@@ -531,7 +534,7 @@ def login():
         else:
             return redirect(url_for('home'))
     else:
-        return render_template('game_history.html', app_id=FB_APP_ID,
+        return render_template('login.html', app_id=FB_APP_ID,
          token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
 
 @app.route('/logout')
