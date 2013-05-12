@@ -269,10 +269,10 @@ def home():
         gamewhat = db.games.find_one()
         recent_games = []
         g1 = db.Game()
+        g1.save()
         g1['white'] = u1
         g1['black'] = current_user
         g1['winner_id'] = current_user['_id']
-        g1.save()
         g2 = db.Game()
         g2['white'] = current_user
         g2['black'] = u2
