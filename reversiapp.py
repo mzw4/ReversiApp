@@ -433,8 +433,8 @@ def quickplay():
         game = db.Game()
         game['white'] = current_user
         game['black'] = opponent
-        game_update = db.games.Game(game)
-        game_update.save()
+        # game_update = db.games.Game(game)
+        # game_update.save()
         db.games.insert(game)
         # game2.save()
 
