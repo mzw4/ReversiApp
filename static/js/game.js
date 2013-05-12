@@ -87,10 +87,12 @@ function togglePiece($x, $y, $blackorwhite) {
 	if ($blackorwhite == "white") {
 		$boardspot.toggleClass("white", true);
 		$boardspot.toggleClass("black", false); 
+		$boardspot.toggleClass("empty", false);
 		console.log("("+$x+", "+$y+") is now white");
 	} else if ($blackorwhite == "black") {
 		$boardspot.toggleClass("black", true);
 		$boardspot.toggleClass("white", false);
+		$boardspot.toggleClass("empty", false);
 		console.log("("+$x+", "+$y+") is now black");
 	}
 }
