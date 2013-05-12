@@ -614,8 +614,9 @@ def login():
 def logout():
     session.pop('uid', None)
     app.config.pop('token', None)
+    url = request.url
     return render_template('login.html', app_id=FB_APP_ID,
-     token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
+        url=request.url, name=FB_APP_NAME)
 
 @app.route('/channel.html', methods=['GET', 'POST'])
 def get_channel():
