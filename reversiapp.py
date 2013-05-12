@@ -361,7 +361,7 @@ def game(game_id):
         # if the game is not valid, redirect to home page
         # if not game:
         #     return redirect(url_for('home'))
-            
+
         #--dummy data
         game = db.Game()
         game['white'] = current_user
@@ -417,7 +417,7 @@ def quickplay():
         #     game.creation_time = datetime.now()
         #     current_user['current_games'].append(game['_id'])
         #     opponent['current_games'].append(game['_id'])
-        #     game.save()
+        #     db.games.insert(game)
         #     return redirect(url_for('game', game_id=game['_id']))
         # else:
         #     # request a game with the server
