@@ -27,10 +27,13 @@
 	      {% for game in past_games %}
 	      <tr>
 	        <td class="game_item">
-	          <span class="players">
-	          	{{ game.white.name }} vs {{ game.black.name }}
-	          </span> <br>
-	          <span class="winner">Winner: {{ game.winner.name }}</span> <br>
+	        	<a href="{{ url_for('game_stats', game_id=game._id) }}">
+	          		<span class="players">
+	          			{{ game.white.name }} vs {{ game.black.name }}
+	          		</span><br>
+	          		<span class="winner">Winner: {{ game.winner.name }}
+	          		</span><br>
+	        	</a>
 	        </td>
 	      </tr>
 	      {% endfor %}
