@@ -202,7 +202,7 @@ def home():
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
     if access_token:
-        current_user = db.reversi_db.users.find_one({'_id': session['uid']}, as_class=User)
+        current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
         # current_user = app.config['user']
         if not current_user:
             return redirect(url_for('login'))
@@ -228,20 +228,20 @@ def home():
 
 
         # update online_users collection
-        db.reversi_db.online_users.insert(current_user)
+        db.online_users.insert(current_user)
 
         user_friends = []
         for f in app_friends:
-            friend = db.reversi_db.users.find_one({'_id': f['uid']})
+            friend = db.users.find_one({'_id': f['uid']})
             if friend:
-                db.reversi_db.online_users.insert(friend)
+                db.online_users.insert(friend)
                 user_friends.append(friend)
 
         online_friends = []
-        me = db.reversi_db.online_users.find_one({'_id': current_user['_id']})
+        me = db.online_users.find_one({'_id': current_user['_id']})
         online_friends.append(me)
         for f in user_friends:
-            if db.reversi_db.online_users.find_one({'_id': f['_id']}):
+            if db.online_users.find_one({'_id': f['_id']}):
                 online_friends.append(f)
 
         u1 = db.User()
@@ -266,7 +266,7 @@ def home():
         # online_friends.append(u2)
         # online_friends.append(u3)
 
-        gamewhat = db.reversi_db.games.find_one()
+        gamewhat = db.games.find_one()
         recent_games = []
         g1 = db.Game()
         g1.save()
@@ -302,7 +302,7 @@ def home():
         recent_games.append(g6)
 
         for gid in current_user['current_games']:
-            g = db.reversi_db.games.find_one({'_id':gid})
+            g = db.games.find_one({'_id':gid})
             if g:
                 recent_games.append(g)
 
@@ -326,7 +326,7 @@ def profile():
     access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.reversi_db.users.find_one({'_id': session['uid']}, as_class=User)
+    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
     # current_user = app.config['user']
 
     if access_token and current_user:
@@ -348,7 +348,7 @@ def game(game_id):
     access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.reversi_db.users.find_one({'_id': session['uid']}, as_class=User)
+    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
     # current_user = app.config['user']
 
     if access_token and current_user:
@@ -356,7 +356,7 @@ def game(game_id):
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
 
-        game = db.reversi_db.games.find_one({'_id': game_id})
+        game = db.games.find_one({'_id': game_id})
         # if the game is not valid, redirect to home page
         if not game:
             return redirect(url_for('home'))
@@ -390,7 +390,7 @@ def quickplay():
     access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.reversi_db.users.find_one({'_id': session['uid']}, as_class=User)
+    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
     # current_user = app.config['user']
 
     if access_token and current_user:
@@ -449,10 +449,10 @@ def make_move(game_id, x, y):
     access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.reversi_db.users.find_one({'_id': session['uid']}, as_class=User)
+    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
 
     if access_token:
-        game = db.reversi_db.games.find_one({'_id': game_id}, as_class=Game)
+        game = db.games.find_one({'_id': game_id}, as_class=Game)
         perform_move(game, x, y)
         update_scores(game)
         game.save()
@@ -466,7 +466,7 @@ def game_history():
     access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.reversi_db.users.find_one({'_id': session['uid']}, as_class=User)
+    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
     # current_user = session['user']
 
     if access_token:
@@ -476,7 +476,7 @@ def game_history():
 
         past_games = []
         for gid in current_user['past_games']:
-            game = db.reversi_db.games.find_one({'_id': gid})
+            game = db.games.find_one({'_id': gid})
             if game:
                 past_games.append(game)
         
@@ -493,7 +493,7 @@ def game_stats(game_id):
     access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.reversi_db.users.find_one({'_id': session['uid']}, as_class=User)
+    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
     # current_user = session['user']
 
     if 'token' in app.config and app.config['token']:
@@ -502,7 +502,7 @@ def game_stats(game_id):
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
 
-        game = db.reversi_db.games.find_one({'_id': game_id})
+        game = db.games.find_one({'_id': game_id})
         if not game:
             return redirect(url_for('game_history'))
 
@@ -520,22 +520,22 @@ def login():
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
-    # --temp
-    # db.reversi_db.users.remove()
+    # # --temp
+    db.users.remove()
 
     if access_token:
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
 
         # update current_user
-        current_user = db.reversi_db.users.find_one({'_id': me['id']})
+        current_user = db.users.find_one({'_id': me['id']})
         if not current_user:
             current_user = db.User()
             current_user['_id'] = me['id']
             current_user['name'] = me['name']
             # -- dummy data
             current_user['past_games'] = [ObjectId(),ObjectId(),ObjectId(),ObjectId()]
-            current_user['wins'] = 111111
+            current_user['wins'] = 12345
             current_user['losses'] = 12345
             # -- dummy data
             current_user.save()
