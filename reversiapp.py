@@ -196,7 +196,7 @@ def home():
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
-    if 'token' in app.config['token'] and 'uid' in session:
+    if 'token' in app.config and 'uid' in session:
         access_token = app.config['token']
         current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
         if not current_user or not access_token:
@@ -322,7 +322,7 @@ def profile():
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
-    if 'token' in app.config['token'] and 'uid' in session:
+    if 'token' in app.config and 'uid' in session:
         access_token = app.config['token']
         current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
         if not current_user or not access_token:
@@ -346,7 +346,7 @@ def game(game_id):
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
-    if 'token' in app.config['token'] and 'uid' in session:
+    if 'token' in app.config and 'uid' in session:
         access_token = app.config['token']
         current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
         if not current_user or not access_token:
@@ -547,13 +547,13 @@ def game_stats(game_id):
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
-    if 'token' in app.config and app.config['token'] and 'uid' in session:
+    if 'token' in app.config and 'uid' in session:
     # if access_token:
         access_token = app.config['token']
         current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
         if not current_user or not access_token:
             return redirect(url_for('login'))
-            
+
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
