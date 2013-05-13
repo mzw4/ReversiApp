@@ -69,6 +69,7 @@ function ajax_spotClicked() {
 		ajax_spotClicked_cb(data);
 	});
 
+
 	console.log("Reached the end of ajax_spotClicked()");
 }
 
