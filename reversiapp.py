@@ -529,7 +529,7 @@ def game_history():
         g = db.Game()
         g['white'] = current_user
         g['black'] = current_user
-        g['winner'] = {'id' = current_user['_id'], 'name': current_user['name']}
+        g['winner'] = {'id': current_user['_id'], 'name': current_user['name']}
         # g_update = db.Game(g)
         # g_update.save()
         db.games.insert(g)
