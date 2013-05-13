@@ -488,7 +488,7 @@ def make_move():
                     == game['white']['_id']):
             move = None
             while move == None:
-                move = perform_move(game, x, y)
+                move = perform_move(game, y, x)
             #update_scores(game)
             game.save()
         # else: 
@@ -506,7 +506,7 @@ def make_move():
             #black['current_games'].remove(game_id)
             if winner['id'] == white['_id']:
                 white['wins'] += 1
-                black['losses'] +=1
+                black['losses'] += 1
             elif winner['id'] == black['_id']:
                 black['wins'] += 1
                 white['losses'] += 1
