@@ -15,7 +15,7 @@ import pymongo
 from pymongo.son_manipulator import AutoReference, NamespaceInjector
 # from pymongo import MongoClient
 import requests
-from flask import Flask, session, request, redirect, render_template, url_for, g
+from flask import Flask, session, request, redirect, render_template, url_for, jsonify
 from flask.ext.mongokit import MongoKit, Document
 from mongokit import ObjectId
 # from flask.ext.pymongo import PyMongo
@@ -475,7 +475,8 @@ def make_move():
         # parse request form data
         x = request.form['x']
         y = request.form['y']
-        game_id = ObjectId(request.form['game_id'])
+        gid = request.form['game_id']
+        game_id = ObjectId(gid)
 
         game = db.games.find_one({'_id': game_id}, as_class=Game)
 
@@ -500,12 +501,12 @@ def make_move():
             game['completed'] = True
             game.save()
 
-        return {'game': game, 'game_over': game_over}
+        return jsonify(game=game, game_over=game_over)
             # return redirect(url_for('game_stats', game_id=game_id))
 
         # return redirect(url_for('game', game_id=game_id))
     else:
-        return {}
+        return jsonify(game=None, game_over=None)
     # else:
     #     return redirect(url_for('home'))
 
