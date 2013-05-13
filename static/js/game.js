@@ -65,13 +65,9 @@ function ajax_spotClicked() {
 	var xy_coords = getXY($(this));
 
 	var mydata = { game_id: $game_id, x: xy_coords.x, y: xy_coords.y };
-<<<<<<< HEAD
-	var request = $.post(url_for('make_move'), mydata)
-=======
-	var request = $.post('reversiapp.py/_make_move', mydata)
->>>>>>> 82e952d865fb617fe25aa23575aea620f8cfd8f2
-	.done(ajax_spotClicked_cb(data))
-	.fail(function() { alert("Error"); });
+	var request = $.post('reversiapp.py/move', mydata, function(data) {
+		ajax_spotClicked_cb(data);
+	});
 
 	console.log("Reached the end of ajax_spotClicked()");
 }

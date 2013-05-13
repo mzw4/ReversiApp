@@ -20,6 +20,7 @@ div.gameboard_header {
 	& > div {
 		display: inline-block;
 		line-height: $gameHeaderHeight;
+		color: #fff;
 	}
 	
 	$playerTurnWidth: 120px;
@@ -83,7 +84,6 @@ a.boardspot {
 	height: $spotHeight - 2;
 	color: #fff;
 	border: 1px #aaa solid;
-	background: #337;
 	line-height: $spotHeight;
 	text-align: center;
 	border: 1px #fff solid;
@@ -93,6 +93,19 @@ a.boardspot {
 	&:hover {
 		opacity: 0.7;
 	}
+}
+
+a.white.boardspot {
+	background: #fff;
+}
+
+a.black.boardspot {
+	background: #000;
+}
+
+
+a.empty.boardspot {
+	background: #337;
 }
 
 // Setting up boardpieces

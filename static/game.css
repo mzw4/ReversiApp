@@ -13,8 +13,9 @@ div.gameboard_header {
 div.gameboard_header > div {
   display: inline-block;
   line-height: 50px;
+  color: #fff;
 }
-/* line 26, R:/ReversiApp/static/game.scss */
+/* line 27, R:/ReversiApp/static/game.scss */
 div.gameboard_header div#player_turn {
   position: absolute;
   left: 0;
@@ -22,7 +23,7 @@ div.gameboard_header div#player_turn {
   bottom: 0;
   width: 120px;
 }
-/* line 35, R:/ReversiApp/static/game.scss */
+/* line 36, R:/ReversiApp/static/game.scss */
 div.gameboard_header div#your_score {
   position: absolute;
   left: 120px;
@@ -30,7 +31,7 @@ div.gameboard_header div#your_score {
   bottom: 0;
   width: 150px;
 }
-/* line 44, R:/ReversiApp/static/game.scss */
+/* line 45, R:/ReversiApp/static/game.scss */
 div.gameboard_header div#opponent_score {
   position: absolute;
   left: 270px;
@@ -38,7 +39,7 @@ div.gameboard_header div#opponent_score {
   bottom: 0;
   width: 150px;
 }
-/* line 52, R:/ReversiApp/static/game.scss */
+/* line 53, R:/ReversiApp/static/game.scss */
 div.gameboard_header div#timer {
   position: absolute;
   right: 0;
@@ -47,7 +48,7 @@ div.gameboard_header div#timer {
   width: 80px;
 }
 
-/* line 63, R:/ReversiApp/static/game.scss */
+/* line 64, R:/ReversiApp/static/game.scss */
 div.gameboard {
   float: left;
   margin-right: 20px;
@@ -55,21 +56,20 @@ div.gameboard {
   height: 500px;
 }
 
-/* line 72, R:/ReversiApp/static/game.scss */
+/* line 73, R:/ReversiApp/static/game.scss */
 div.row_wrapper {
   position: relative;
   width: 500px;
   height: 62.5px;
 }
 
-/* line 80, R:/ReversiApp/static/game.scss */
+/* line 81, R:/ReversiApp/static/game.scss */
 a.boardspot {
   position: absolute;
   width: 60.5px;
   height: 60.5px;
   color: #fff;
   border: 1px #aaa solid;
-  background: #337;
   line-height: 62.5px;
   text-align: center;
   border: 1px #fff solid;
@@ -81,322 +81,337 @@ a.boardspot:hover {
   opacity: 0.7;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 98, R:/ReversiApp/static/game.scss */
+a.white.boardspot {
+  background: #fff;
+}
+
+/* line 102, R:/ReversiApp/static/game.scss */
+a.black.boardspot {
+  background: #000;
+}
+
+/* line 107, R:/ReversiApp/static/game.scss */
+a.empty.boardspot {
+  background: #337;
+}
+
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_0.Y_0 {
   left: 0px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_0.Y_1 {
   left: 62.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_0.Y_2 {
   left: 125px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_0.Y_3 {
   left: 187.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_0.Y_4 {
   left: 250px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_0.Y_5 {
   left: 312.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_0.Y_6 {
   left: 375px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_0.Y_7 {
   left: 437.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_1.Y_0 {
   left: 0px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_1.Y_1 {
   left: 62.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_1.Y_2 {
   left: 125px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_1.Y_3 {
   left: 187.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_1.Y_4 {
   left: 250px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_1.Y_5 {
   left: 312.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_1.Y_6 {
   left: 375px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_1.Y_7 {
   left: 437.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_2.Y_0 {
   left: 0px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_2.Y_1 {
   left: 62.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_2.Y_2 {
   left: 125px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_2.Y_3 {
   left: 187.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_2.Y_4 {
   left: 250px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_2.Y_5 {
   left: 312.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_2.Y_6 {
   left: 375px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_2.Y_7 {
   left: 437.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_3.Y_0 {
   left: 0px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_3.Y_1 {
   left: 62.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_3.Y_2 {
   left: 125px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_3.Y_3 {
   left: 187.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_3.Y_4 {
   left: 250px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_3.Y_5 {
   left: 312.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_3.Y_6 {
   left: 375px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_3.Y_7 {
   left: 437.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_4.Y_0 {
   left: 0px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_4.Y_1 {
   left: 62.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_4.Y_2 {
   left: 125px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_4.Y_3 {
   left: 187.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_4.Y_4 {
   left: 250px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_4.Y_5 {
   left: 312.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_4.Y_6 {
   left: 375px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_4.Y_7 {
   left: 437.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_5.Y_0 {
   left: 0px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_5.Y_1 {
   left: 62.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_5.Y_2 {
   left: 125px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_5.Y_3 {
   left: 187.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_5.Y_4 {
   left: 250px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_5.Y_5 {
   left: 312.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_5.Y_6 {
   left: 375px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_5.Y_7 {
   left: 437.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_6.Y_0 {
   left: 0px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_6.Y_1 {
   left: 62.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_6.Y_2 {
   left: 125px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_6.Y_3 {
   left: 187.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_6.Y_4 {
   left: 250px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_6.Y_5 {
   left: 312.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_6.Y_6 {
   left: 375px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_6.Y_7 {
   left: 437.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_7.Y_0 {
   left: 0px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_7.Y_1 {
   left: 62.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_7.Y_2 {
   left: 125px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_7.Y_3 {
   left: 187.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_7.Y_4 {
   left: 250px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_7.Y_5 {
   left: 312.5px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_7.Y_6 {
   left: 375px;
 }
 
-/* line 101, R:/ReversiApp/static/game.scss */
+/* line 114, R:/ReversiApp/static/game.scss */
 a.X_7.Y_7 {
   left: 437.5px;
 }
