@@ -449,11 +449,11 @@ def quickplay():
         current_user_update = db.User(current_user)
         current_user_update.save()
 
-        game_fromdb = db.games.find_one({'_id':game['_id']}, as_class=Game)
-        if game_fromdb:
-            return redirect(url_for('game', game_id=game['_id']))
-        else:
-            return redirect(url_for('profile'))
+        # game_fromdb = db.games.find_one({'_id':game['_id']}, as_class=Game)
+        # if game_fromdb:
+        #     return redirect(url_for('game', game_id=game['_id']))
+        # else:
+        #     return redirect(url_for('profile'))
 
         return redirect(url_for('game', game_id=game['_id']))
         # -- dummy data
@@ -560,12 +560,13 @@ def game_stats(game_id):
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
 
-        game = db.games.find_one({'_id': game_id}, as_class=Game)
+        game = db.games.find_one({'_id': ObjectId(game_id)}, as_class=Game)
+        game_id = game['_id']
         if not game:
             return redirect(url_for('game_history'))
 
         return render_template(
-            'game_stats.html', game=game,
+            'game_stats.html', game=game, game_id=game_id,
             app_id=FB_APP_ID, token=access_token,
             app=fb_app, me=me, current_user=current_user,
             url=url, name=FB_APP_NAME)
