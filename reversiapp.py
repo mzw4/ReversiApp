@@ -425,7 +425,7 @@ def quickplay():
             # request a game with the server
             pr = db.PlayRequest()
             pr['user'] = current_user
-            pr.save()
+            db.player_requests.insert(pr)
             # need to somehow nofity user by pop up that play request has been made
             return redirect(url_for('home'))
 
