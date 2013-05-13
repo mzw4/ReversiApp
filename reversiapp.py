@@ -408,55 +408,55 @@ def quickplay():
         # db.play_requests.remove()
         opponent_request = db.play_requests.find_one()
 
-        if opponent_request and opponent_request['user']['_id'] != current_user['_id']:
-            # start a game with an opponent
-            opponent = opponent_request['user']
-            game = db.Game()
-            game['white'] = current_user
-            game['black'] = opponent
-            game['creation_time'] = datetime.now()
-            current_user['current_games'].append(game['_id'])
-            opponent['current_games'].append(game['_id'])
-            current_user.save()
-            opponent.save()
-            db.games.insert(game)
-            return redirect(url_for('game', game_id=game['_id']))
-        else:
-            # request a game with the server
-            pr = db.PlayRequest()
-            pr['user'] = current_user
-            db.player_requests.insert(pr)
-            # need to somehow nofity user by pop up that play request has been made
-            return redirect(url_for('home'))
-
-        # -- dummy data
-        # opponent_dummy = db.User()
-        # opponent_dummy['name'] = 'Ed'
-        # opponent_dummy['_id'] = 12345
-        # opponent_dummy.save()
-
-        # db.games.remove()
-        # game = db.Game()
-        # game['white'] = current_user
-        # game['black'] = opponent_dummy
-        # # game_update = db.games.Game(game)
-        # # game_update.save()
-        # db.games.insert(game)
-        # # game2.save()
-
-        # current_user['current_games'].append(game['_id'])
-        # opponent_dummy['current_games'].append(game['_id'])
-        # opponent_dummy.save()
-        # current_user_update = db.User(current_user)
-        # current_user_update.save()
-
-        # game_fromdb = db.games.find_one({'_id':game['_id']}, as_class=Game)
-        # if game_fromdb:
+        # if opponent_request and opponent_request['user']['_id'] != current_user['_id']:
+        #     # start a game with an opponent
+        #     opponent = opponent_request['user']
+        #     game = db.Game()
+        #     game['white'] = current_user
+        #     game['black'] = opponent
+        #     game['creation_time'] = datetime.now()
+        #     current_user['current_games'].append(game['_id'])
+        #     opponent['current_games'].append(game['_id'])
+        #     current_user.save()
+        #     opponent.save()
+        #     db.games.insert(game)
         #     return redirect(url_for('game', game_id=game['_id']))
         # else:
-        #     return redirect(url_for('profile'))
+        #     # request a game with the server
+        #     pr = db.PlayRequest()
+        #     pr['user'] = current_user
+        #     db.player_requests.insert(pr)
+        #     # need to somehow nofity user by pop up that play request has been made
+        #     return redirect(url_for('home'))
 
-        # return redirect(url_for('game', game_id=game['_id']))
+        # -- dummy data
+        opponent_dummy = db.User()
+        opponent_dummy['name'] = 'Ed'
+        opponent_dummy['_id'] = 12345
+        opponent_dummy.save()
+
+        db.games.remove()
+        game = db.Game()
+        game['white'] = current_user
+        game['black'] = opponent_dummy
+        # game_update = db.games.Game(game)
+        # game_update.save()
+        db.games.insert(game)
+        # game2.save()
+
+        current_user['current_games'].append(game['_id'])
+        opponent_dummy['current_games'].append(game['_id'])
+        opponent_dummy.save()
+        current_user_update = db.User(current_user)
+        current_user_update.save()
+
+        game_fromdb = db.games.find_one({'_id':game['_id']}, as_class=Game)
+        if game_fromdb:
+            return redirect(url_for('game', game_id=game['_id']))
+        else:
+            return redirect(url_for('profile'))
+
+        return redirect(url_for('game', game_id=game['_id']))
         # -- dummy data
 
     else:
