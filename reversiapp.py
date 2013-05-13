@@ -475,8 +475,6 @@ def quickplay():
 @app.route('/move', methods=['GET', 'POST'])
 def make_move():
 
-    return jsonify(test="test_output")
-
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
@@ -531,7 +529,7 @@ def make_move():
             #game.save()
 
          
-        #return jsonify(game=game, game_over=game_over)
+        return jsonify(game=game, game_over=game_over)
             # return redirect(url_for('game_stats', game_id=game_id))
 
         #return redirect(url_for('game', game_id=game_id))

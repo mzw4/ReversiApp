@@ -74,7 +74,10 @@ function ajax_spotClicked() {
 
 function ajax_spotClicked_cb(data) {
 	console.log("Reached the start of ajax_spotClicked_cb()");
-	alert(data);
+	//alert(data);
+        var states = data.states_list;
+        var board = states[states.length-1];
+        renderBoard(board);
 	console.log("Reached the end of ajax_spotClicked_cb()");
 }
 
