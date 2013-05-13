@@ -438,8 +438,8 @@ def quickplay():
 
         db.games.remove()
         game = db.Game()
-        game['white'] = current_user
-        game['black'] = opponent_dummy
+        game['black'] = current_user
+        game['white'] = opponent_dummy
         # game_update = db.games.Game(game)
         # game_update.save()
         db.games.insert(game)

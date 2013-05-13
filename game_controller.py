@@ -4,46 +4,46 @@ from datetime import datetime
 # returns the game
 def start_game(p1, p2):
 	game = db.Game()
-	game.white = p1
-	game.black = p2
-	game.creation_time = datetime.now()
-	p1.current_games.append(game.id)
-	p2.current_games.append(game.id)
+	game['white'] = p1
+	game['black'] = p2
+	game['creation_time'] = datetime.now()
+	p1['current_games'].append(game.id)
+	p2['current_games'].append(game.id)
 	return game
 
 # ends a game instance and returns the winner
 # in the case of a tie, returns None
 def end_game(game):
-	white = game.white
-	black = game.black
+	white = game['white']
+	black = game['black']
 
-	white.current_games.remove(game.id)
-	black.current_games.remove(game.id)
-	white.past_games.append(game.id)
-	black.past_games.append(game.id)
+	white['current_games'].remove(game.id)
+	black['current_games'].remove(game.id)
+	white['past_games'].append(game.id)
+	black['past_games'].append(game.id)
 
-	game.completed = True
+	game['completed'] = True
 
-	if game.white_score > game.black_score:
+	if game['white_score'] > game['black_score']:
 		return white['id']
-	elif game.black_score > game.white_score:
+	elif game['black_score'] > game['white_score']:
 		return black['id']
 	else:
 		return None
 
 # ends a game instance
 def forfeit(game, player):
-	white = game.white
-	black = game.black
+	white = game['white']
+	black = game['black']
 
-	white.current_games.remove(game.id)
-	black.current_games.remove(game.id)
-	white.past_games.append(game.id)
-	black.past_games.append(game.id)
+	white['current_games'].remove(game.id)
+	black['current_games'].remove(game.id)
+	white['past_games'].append(game.id)
+	black['past_games'].append(game.id)
 
-	game.completed = True
+	game['completed'] = True
 
-	if white.id == player.id:
+	if white['id'] == player['id']:
 		return black['id']
 	else:
 		return white['id']
@@ -51,15 +51,15 @@ def forfeit(game, player):
 
 # note: function only called if it is user's turn
 def perform_move(game, y, x):
-	piece = int(game.turn)
+	piece = int(game['turn'])
 
-	state = game.states_list[-1] # current board state
+	state = game['states_list'][-1] # current board state
 
 	# validate move
 	if not validate_move(state, y, x, piece):
 		return None
 	# update moves list
-	game.moves_list.append({'team': game.turn, 'x': x, 'y': y})
+	game['moves_list'].append({'team': game.turn, 'x': x, 'y': y})
 	# place piece
 	state[y][x] = piece
 
@@ -129,7 +129,7 @@ def perform_move(game, y, x):
 			toggle(y, i, "SW")
 			break
 
-	game.states_list.append(state)
+	game['states_list'].append(state)
 	update_scores(game)
 
 	white_moves = possible_moves(state, 0)
@@ -138,11 +138,11 @@ def perform_move(game, y, x):
 	if not white_moves and not black_moves:
 		end_game(game)
 	elif not white_moves:
-		game.turn = True
+		game['turn'] = True
 	elif not black_moves:
-		game.turn = False
+		game['turn'] = False
 	else:
-		game.turn = not game.turn
+		game['turn'] = not game['turn']
 
 	return game
 
@@ -292,7 +292,7 @@ def possible_moves(state, piece):
 
 
 def update_scores(game):
-	state = game.states_list[-1]
+	state = game['states_list'][-1]
 
 	white_score = 0
 	black_score = 0
@@ -304,8 +304,8 @@ def update_scores(game):
 			elif state[i][j] == 1:
 				black_score += 1
 
-	game.white_score = white_score
-	game.black_score = black_score
+	game['white_score'] = white_score
+	game['black_score'] = black_score
 
 
 # for development only:
