@@ -466,7 +466,7 @@ def make_move():
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
-    if 'token' in access_token and' uid' in session and request.method == 'POST':
+    if 'token' in app.config and' uid' in session and request.method == 'POST':
         access_token = app.config['token']
         current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
         if not current_user or not access_token:
@@ -481,14 +481,16 @@ def make_move():
 
         # if player's turn, perform game functions
         if game['turn'] and current_user['_id'] == game['black']['_id']:
-            perform_move(game, x, y)
-            update_scores(game)
+            # perform_move(game, x, y)
+            # update_scores(game)
             game.save()
         # else: 
         #     #notify 
 
+        game_over = False
         # check if game is over
         if game_over(game):
+            game_over = True
             game['white']['past_games'].append(game_id)
             game['black']['past_games'].append(game_id)
             game['white']['current_games'].remove(game_id)
@@ -497,11 +499,15 @@ def make_move():
             (game['black']).save()
             game['completed'] = True
             game.save()
-            return redirect(url_for('game_stats', game_id=game_id))
 
-        return redirect(url_for('game', game_id=game_id))
+        return {'game': game, 'game_over': game_over}
+            # return redirect(url_for('game_stats', game_id=game_id))
+
+        # return redirect(url_for('game', game_id=game_id))
     else:
-        return redirect(url_for('home'))
+        return {}
+    # else:
+    #     return redirect(url_for('home'))
 
 @app.route('/game_history', methods=['GET', 'POST'])
 def game_history():
@@ -566,7 +572,7 @@ def game_stats(game_id):
             return redirect(url_for('game_history'))
 
         num_states = len(game['states_list'])
-        
+
         return render_template(
             'game_stats.html', game=game, game_id=game_id,
             app_id=FB_APP_ID, token=access_token, num_states=num_states,

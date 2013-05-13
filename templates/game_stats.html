@@ -4,7 +4,7 @@
 {% extends "base.html" %}
 
 {% block additional_styling %}
-<link rel="stylesheet" href="static/game_stats.css">
+<link rel="stylesheet" href="/static/game_stats.css">
 {% endblock %}
 
 {% block scripts %}
@@ -40,5 +40,8 @@
 	</div>
 </div>
 
+{% endblock %}
+
+{% block footer %}
 <div class="fb-comments" data-href="http://stark-brook-9725.herokuapp.com/game_stats/<game_id>" data-width="470" data-num-posts="10"></div>
 {% endblock %}
