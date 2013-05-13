@@ -474,6 +474,9 @@ def quickplay():
 
 @app.route('/move', methods=['GET', 'POST'])
 def make_move():
+
+    return jsonify(test="test_output")
+
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
@@ -496,8 +499,6 @@ def make_move():
                 or (not game['turn'] and current_user['_id'] 
                     == game['white']['_id']):
             move = perform_move(game, y, x)
-            if move == None:
-                return 'invalid move'
             #if move == None:
             #    make_move()
             #update_scores(game)
