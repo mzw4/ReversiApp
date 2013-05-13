@@ -474,6 +474,9 @@ def quickplay():
 
 @app.route('/move', methods=['GET', 'POST'])
 def make_move():
+
+    redirect(url_for('login'))
+
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
@@ -496,8 +499,8 @@ def make_move():
                 or (not game['turn'] and current_user['_id'] 
                     == game['white']['_id']):
             move = perform_move(game, y, x)
-            if move == None:
-                make_move()
+            #if move == None:
+            #    make_move()
             #update_scores(game)
             game.save()
         # else: 
@@ -527,10 +530,10 @@ def make_move():
             #game['completed'] = True
             #game.save()
 
-        #return jsonify(game=game, game_over=game_over)
+        return jsonify(game=game, game_over=game_over)
             # return redirect(url_for('game_stats', game_id=game_id))
 
-        return redirect(url_for('game', game_id=gid))
+        #return redirect(url_for('game', game_id=game_id))
     else:
         return jsonify(game=None, game_over=None)
     # else:
