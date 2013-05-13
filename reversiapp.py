@@ -481,23 +481,27 @@ def make_move():
         game = db.games.find_one({'_id': game_id}, as_class=Game)
 
         # if player's turn, perform game functions
-        if game['turn'] and current_user['_id'] == game['black']['_id']:
-            # perform_move(game, x, y)
-            # update_scores(game)
+        if (game['turn'] and current_user['_id'] == game['black']['_id']) \
+                or (not game['turn'] and current_user['_id'] 
+                    == game['white']['_id']):
+            move = None
+            while move == None:
+                move = perform_move(game, x, y)
+            #update_scores(game)
             game.save()
         # else: 
         #     #notify 
 
         game_over = False
         # check if game is over
-        if game_over(game):
+        if game.finished:
+            game_over = True
             white = game['white']
             black = game['black']
-            game_over = True
-            white['past_games'].append(game_id)
-            black['past_games'].append(game_id)
-            white['current_games'].remove(game_id)
-            black['current_games'].remove(game_id)
+            #white['past_games'].append(game_id)
+            #black['past_games'].append(game_id)
+            #white['current_games'].remove(game_id)
+            #black['current_games'].remove(game_id)
             if winner['id'] == white['_id']:
                 white['wins'] += 1
                 black['losses'] +=1
@@ -509,8 +513,8 @@ def make_move():
                 white['draws'] += 1
             white.save()
             black.save()
-            game['completed'] = True
-            game.save()
+            #game['completed'] = True
+            #game.save()
 
         return jsonify(game=game, game_over=game_over)
             # return redirect(url_for('game_stats', game_id=game_id))

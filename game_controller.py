@@ -49,9 +49,9 @@ def forfeit(game, player):
 		return white['id']
 
 
-def perform_move(game, y, x, piece):
-	if game.turn is not player:
-		return None
+# note: function only called if it is user's turn
+def perform_move(game, y, x):
+	piece = int(game.turn)
 
 	state = game.states_list[-1] # current board state
 
