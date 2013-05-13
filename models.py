@@ -75,7 +75,7 @@ class Game(Document):
 	required_fields = ['white', 'black']
 	default_values = {
 		'_id': ObjectId(),
-		'turn': True,
+		'turn': False,
 		'white_score': 2,
 		'black_score': 2,
 		'size': 8,
