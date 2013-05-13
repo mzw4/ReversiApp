@@ -565,9 +565,11 @@ def game_stats(game_id):
         if not game:
             return redirect(url_for('game_history'))
 
+        num_states = len(game['states_list'])
+        
         return render_template(
             'game_stats.html', game=game, game_id=game_id,
-            app_id=FB_APP_ID, token=access_token,
+            app_id=FB_APP_ID, token=access_token, num_states=num_states,
             app=fb_app, me=me, current_user=current_user,
             url=url, name=FB_APP_NAME)
     else:
