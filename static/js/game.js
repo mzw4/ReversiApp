@@ -74,8 +74,7 @@ function ajax_spotClicked() {
 
 function ajax_spotClicked_cb(data) {
 	console.log("Reached the start of ajax_spotClicked_cb()");
-	//alert(data);
-        $(location).attr('href', $SCRIPT_ROOT + '/move');
+	alert(data);
 	console.log("Reached the end of ajax_spotClicked_cb()");
 }
 
