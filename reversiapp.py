@@ -475,7 +475,7 @@ def quickplay():
 @app.route('/move', methods=['GET', 'POST'])
 def make_move():
     # testing:
-    redirect(url_for('home'))
+    return redirect(url_for('home'))
 
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
