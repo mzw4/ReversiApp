@@ -490,9 +490,8 @@ def make_move():
         if (game['turn'] and current_user['_id'] == game['black']['_id']) \
                 or (not game['turn'] and current_user['_id'] 
                     == game['white']['_id']):
-            move = None
-            while move == None:
-                move = perform_move(game, y, x)
+            if perform_move(game, y, x) == None:
+                make_move()
             #update_scores(game)
             game.save()
         # else: 
