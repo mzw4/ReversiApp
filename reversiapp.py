@@ -267,7 +267,8 @@ def home():
         g1['winner_id'] = current_user['_id']
         db.games.insert(g1)
         current_user['current_games'].append(g1['_id'])
-        current_user.save()
+        current_user_update = db.User(current_user)
+        current_user_update.save()
         g2 = db.Game()
         g2['white'] = current_user
         g2['black'] = u2
