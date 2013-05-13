@@ -466,7 +466,7 @@ def make_move():
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
-    if 'token' in access_token and' uid' in session and request.method == 'POST':
+    if 'token' in app.config and' uid' in session and request.method == 'POST':
         access_token = app.config['token']
         current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
         if not current_user or not access_token:
@@ -481,9 +481,9 @@ def make_move():
 
         # if player's turn, perform game functions
         if game['turn'] and current_user['_id'] == game['black']['_id']:
-            perform_move(game, x, y)
-            update_scores(game)
-            game.save()
+            # perform_move(game, x, y)
+            # update_scores(game)
+            # game.save()
         # else: 
         #     #notify 
 
