@@ -483,7 +483,7 @@ def make_move():
         if game['turn'] and current_user['_id'] == game['black']['_id']:
             # perform_move(game, x, y)
             # update_scores(game)
-            # game.save()
+            game.save()
         # else: 
         #     #notify 
 
