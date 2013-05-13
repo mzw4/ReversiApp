@@ -384,7 +384,7 @@ def game(game_id):
             opponent = game['black']
         else:
             # need to handle case of 3rd party observer
-
+            error = True
         turn = game['turn']
         return render_template('game.html', game=game, game_id=game_id,
             turn=turn, just_started=just_started,
@@ -448,6 +448,7 @@ def quickplay():
         # game_update.save()
         db.games.insert(game)
         # game2.save()
+        game.save()
 
         current_user['current_games'].append(game['_id'])
         opponent_dummy['current_games'].append(game['_id'])
