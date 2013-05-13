@@ -375,13 +375,17 @@ def game(game_id):
         if game['black']['_id'] == current_user['_id']:
             #turn = True
             player_score = game['black_score']
+            player_color = 'black'
             opponent_score = game['white_score']
             opponent = game['white']
+            opponent_color = 'white'
         elif game['white']['_id'] == current_user['_id']:
             #turn = False
             player_score = game['white_score']
+            player_color = 'white'
             opponent_score = game['black_score']
             opponent = game['black']
+            opponent_color = 'black'
         else:
             # need to handle case of 3rd party observer
             error = True
@@ -391,7 +395,8 @@ def game(game_id):
             player_score=player_score, opponent_score=opponent_score,
             me=me, current_user=current_user, opponent=opponent,
             app_id=FB_APP_ID, token=access_token, app=fb_app,
-            url=url, name=FB_APP_NAME, board=current_board)
+            url=url, name=FB_APP_NAME, board=current_board, 
+            player_color=player_color, opponent_color=opponent_color)
     else:
         return redirect(url_for('login'))
 

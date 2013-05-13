@@ -19,8 +19,8 @@
 {% block content %}
 <div class="gameboard_header">
 	<div id="player_turn">
-		{% if turn %} <p> Your turn! </p>
-		{% else %} <p> Opponent's turn! </p>
+		{% if turn %} <p> Your turn! ({{ player_color }})</p>
+		{% else %} <p> Opponent's turn! ({{ opponent_color }})</p>
 		{% endif %}
 	</div>
 	<div id="your_score"> Your score: {{ player_score }} </div>
