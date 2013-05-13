@@ -65,9 +65,9 @@ function ajax_spotClicked() {
 	var xy_coords = getXY($(this));
 
 	var mydata = { game_id: $game_id, x: xy_coords.x, y: xy_coords.y };
-	var request = $.post($SCRIPT_ROOT + '/move', mydata)
-	.done(ajax_spotClicked_cb(data))
-	.fail(function() { alert("Error"); });
+	var request = $.post($SCRIPT_ROOT + '/move', mydata, function(data) {
+		ajax_spotClicked_cb(data);
+	});
 
 	console.log("Reached the end of ajax_spotClicked()");
 }
