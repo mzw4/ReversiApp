@@ -472,10 +472,10 @@ def quickplay():
     else:
         return redirect(url_for('login'))
 
-@app.route('/game/<game_id>/move', methods=['GET', 'POST'])
-def make_move(game_id):
-
-    redirect(url_for('login'))
+@app.route('/move', methods=['GET', 'POST'])
+def make_move():
+    # testing:
+    redirect(url_for('home'))
 
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
