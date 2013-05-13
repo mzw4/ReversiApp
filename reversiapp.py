@@ -405,7 +405,6 @@ def quickplay():
         url = request.url
 
         # # find an opponent requesting a game
-        # db.play_requests.remove()
         opponent_request = db.play_requests.find_one()
 
         # if opponent_request and opponent_request['user']['_id'] != current_user['_id']:
@@ -582,6 +581,7 @@ def login():
     # # --temp
     db.users.remove()
     db.games.remove()
+    db.play_requests.remove()
 
     if access_token:
         me = fb_call('me', args={'access_token': access_token})
