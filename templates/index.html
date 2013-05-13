@@ -81,7 +81,7 @@
               <!-- Insert image as background -->
             </td>   
             <td class="recent_games_profile">
-              <div>
+              <a href="{{ url_for('game', game_id=g._id) }}">
                 {% if g.white._id == current_user._id %}
                 <span class="opponent">
                   Opponent: {{g.black.name}} <br>
@@ -98,7 +98,7 @@
                 {% else %}
                 <span class="status loss">LOSS</span>
                 {% endif %}
-              </div>
+              </a>
             </td>
           </tr>
 
