@@ -115,13 +115,13 @@
   <div class="friends_rank">
     <h2 class="block_header">Play With a Friend!</h2>
     <div class="friends_rank_list">
-      {% if num_online_friends == 0 %}
+      {% if num_user_friends == 0 %}
       <h3> None of your friends are on Reversi with Friends. <a href="#">Invite them!</a></h3>
 
       {% else %}
       <table>
         <tbody>
-          {% for friend in online_friends %}
+          {% for friend in user_friends %}
           <tr>
             <td class="friends_rank_pic" style="background-image: url('')">
               <!-- Insert image as background -->

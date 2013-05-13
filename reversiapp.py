@@ -193,18 +193,13 @@ def get_token():
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    if 'token' in app.config:
-        access_token = app.config['token']
-    else:
-        access_token = get_token()
-
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
 
-    if access_token:
+    if 'token' in app.config and 'uid' in session:
+        access_token = app.config['token']
         current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
-        # current_user = app.config['user']
-        if not current_user:
+        if not current_user or not access_token:
             return redirect(url_for('login'))
 
         me = fb_call('me', args={'access_token': access_token})
@@ -226,23 +221,22 @@ def home():
 
         url = request.url
 
-
-        # update online_users collection
-        db.online_users.insert(current_user)
-
         user_friends = []
         for f in app_friends:
             friend = db.users.find_one({'_id': f['uid']})
             if friend:
-                db.online_users.insert(friend)
                 user_friends.append(friend)
+                # db.online_users.insert(friend)
 
-        online_friends = []
-        me_user = db.online_users.find_one({'_id': current_user['_id']})
-        online_friends.append(me_user)
-        for f in user_friends:
-            if db.online_users.find_one({'_id': f['_id']}):
-                online_friends.append(f)
+        # # update online_users collection
+        # db.online_users.insert(current_user)
+
+        # online_friends = []
+        # me_user = db.online_users.find_one({'_id': current_user['_id']})
+        # online_friends.append(me_user)
+        # for f in user_friends:
+        #     if db.online_users.find_one({'_id': f['_id']}):
+        #         online_friends.append(f)
 
         u1 = db.User()
         u1['name'] = "Dummy User"
@@ -262,9 +256,9 @@ def home():
         u6 = db.User()
         u6['name'] = "Sauron"
         u6['_id'] = 12342
-        # online_friends.append(u1)
-        # online_friends.append(u2)
-        # online_friends.append(u3)
+        user_friends.append(u1)
+        user_friends.append(u2)
+        user_friends.append(u3)
 
         recent_games = []
         g1 = db.Game()
@@ -272,13 +266,10 @@ def home():
         g1['black'] = current_user
         g1['winner_id'] = current_user['_id']
         db.games.insert(g1)
-        # g1_update = db.Game(g1)
-        # g1_update.save()
         g2 = db.Game()
         g2['white'] = current_user
         g2['black'] = u2
         g2['winner_id'] = u2['_id']
-        # g2.save()
         g3 = db.Game()
         g3['white'] = current_user
         g3['black'] = u3
@@ -308,13 +299,13 @@ def home():
                 recent_games.append(g)
 
         num_games = len(recent_games)
-        num_online_friends = len(online_friends)
+        num_user_friends = len(user_friends)
 
         return render_template(
             'index.html', app_id=FB_APP_ID, token=access_token,
             app_friends=app_friends, app=fb_app,
-            user_friends=user_friends, online_friends=online_friends,
-            num_online_friends=num_online_friends,
+            user_friends=user_friends,
+            num_user_friends=num_user_friends,
             me=me, current_user=current_user,
             recent_games=recent_games, num_games=num_games,
             POST_TO_WALL=POST_TO_WALL, SEND_TO=SEND_TO,
@@ -324,13 +315,15 @@ def home():
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
-    access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
-    # current_user = app.config['user']
 
-    if access_token and current_user:
+    if 'token' in app.config and 'uid' in session:
+        access_token = app.config['token']
+        current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
+        if not current_user or not access_token:
+            return redirect(url_for('login'))
+
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
@@ -346,30 +339,23 @@ def profile():
 
 @app.route('/game/<game_id>', methods=['GET', 'POST'])
 def game(game_id):
-    access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
-    # current_user = app.config['user']
 
-    if access_token and current_user:
+    if 'token' in app.config and 'uid' in session:
+        access_token = app.config['token']
+        current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
+        if not current_user or not access_token:
+            return redirect(url_for('login'))
+
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
 
         game = db.games.find_one({'_id': ObjectId(game_id)}, as_class=Game)
-        if game:
-            a = game['white']['_id']
-            b = game['black']['_id']
-            if a == b:
-                c = True
-
-        # white = db.User(game['white'])
-        # black = db.User(game['black'])
-
         # if the game is not valid, redirect to home page
-        # if not game:
-        #     return redirect(url_for('home'))
+        if not game:
+            return redirect(url_for('home'))
 
         # #--dummy data
         # if not game:
@@ -383,7 +369,6 @@ def game(game_id):
         current_board = game['states_list'][-1]
 
         # determine turn and score
-        # black_user = game['black']
         if game['turn'] and game['black']['_id'] == current_user['_id']:
             turn = True
             player_score = game['black_score']
@@ -406,37 +391,41 @@ def game(game_id):
 
 @app.route('/quickplay', methods=['GET', 'POST'])
 def quickplay():
-    access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
 
-    if access_token and current_user:
+    if 'token' in app.config and 'uid' in session:
+        access_token = app.config['token']
+        current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
+        if not current_user or not access_token:
+            return redirect(url_for('login'))
+
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
 
         # # find an opponent requesting a game
-        # db.play_requests.remove()
-        # opponent_request = db.play_requests.find_one()
+        opponent_request = db.play_requests.find_one()
 
-        # if opponent_request:
+        # if opponent_request and opponent_request['user']['_id'] != current_user['_id']:
         #     # start a game with an opponent
         #     opponent = opponent_request['user']
         #     game = db.Game()
         #     game['white'] = current_user
         #     game['black'] = opponent
-        #     game.creation_time = datetime.now()
+        #     game['creation_time'] = datetime.now()
         #     current_user['current_games'].append(game['_id'])
         #     opponent['current_games'].append(game['_id'])
+        #     current_user.save()
+        #     opponent.save()
         #     db.games.insert(game)
         #     return redirect(url_for('game', game_id=game['_id']))
         # else:
         #     # request a game with the server
         #     pr = db.PlayRequest()
         #     pr['user'] = current_user
-        #     pr.save()
-        #     need to somehow nofity user by pop up that play request has been made
+        #     db.player_requests.insert(pr)
+        #     # need to somehow nofity user by pop up that play request has been made
         #     return redirect(url_for('home'))
 
         # -- dummy data
@@ -460,11 +449,11 @@ def quickplay():
         current_user_update = db.User(current_user)
         current_user_update.save()
 
-        game_fromdb = db.games.find_one({'_id':game['_id']}, as_class=Game)
-        if game_fromdb:
-            return redirect(url_for('game', game_id=game['_id']))
-        else:
-            return redirect(url_for('profile'))
+        # game_fromdb = db.games.find_one({'_id':game['_id']}, as_class=Game)
+        # if game_fromdb:
+        #     return redirect(url_for('game', game_id=game['_id']))
+        # else:
+        #     return redirect(url_for('profile'))
 
         return redirect(url_for('game', game_id=game['_id']))
         # -- dummy data
@@ -474,23 +463,41 @@ def quickplay():
 
 @app.route('/move', methods=['GET', 'POST'])
 def make_move():
-    access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
 
-    if access_token and request.method == 'POST':
+    if 'token' in access_token and' uid' in session and request.method == 'POST':
+        access_token = app.config['token']
+        current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
+        if not current_user or not access_token:
+            return redirect(url_for('login'))
+
         # parse request form data
         x = request.form['x']
         y = request.form['y']
-        game_id = request.form['game_id']
+        game_id = ObjectId(request.form['game_id'])
 
         game = db.games.find_one({'_id': game_id}, as_class=Game)
 
-        # perform game functions
-        perform_move(game, x, y)
-        update_scores(game)
-        game.save()
+        # if player's turn, perform game functions
+        if game['turn'] and current_user['_id'] == game['black']['_id']:
+            perform_move(game, x, y)
+            update_scores(game)
+            game.save()
+        # else: 
+        #     #notify 
+
+        # check if game is over
+        if game_over(game):
+            game['white']['past_games'].append(game_id)
+            game['black']['past_games'].append(game_id)
+            game['white']['current_games'].remove(game_id)
+            game['black']['current_games'].remove(game_id)
+            (game['white']).save()
+            (game['black']).save()
+            game['completed'] = True
+            game.save()
+            return redirect(url_for('game_stats', game_id=game_id))
 
         return redirect(url_for('game', game_id=game_id))
     else:
@@ -498,12 +505,16 @@ def make_move():
 
 @app.route('/game_history', methods=['GET', 'POST'])
 def game_history():
-    access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
 
-    if access_token:
+    if 'token' in app.config and 'uid' in session and app.config['token']:
+    # if access_token:
+        access_token = app.config['token']
+        current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
+        if not current_user or not access_token:
+            return redirect(url_for('login'))
+
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
@@ -535,24 +546,30 @@ def game_history():
 
 @app.route('/game_stats/<game_id>', methods=['GET', 'POST'])
 def game_stats(game_id):
-    access_token = app.config['token']
     channel_url = url_for('get_channel', _external=True)
     channel_url = channel_url.replace('http:', '').replace('https:', '')
-    current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
 
-    if 'token' in app.config and app.config['token']:
+    if 'token' in app.config and 'uid' in session:
     # if access_token:
+        access_token = app.config['token']
+        current_user = db.users.find_one({'_id': session['uid']}, as_class=User)
+        if not current_user or not access_token:
+            return redirect(url_for('login'))
+
         me = fb_call('me', args={'access_token': access_token})
         fb_app = fb_call(FB_APP_ID, args={'access_token': access_token})
         url = request.url
 
-        game = db.games.find_one({'_id': game_id}, as_class=Game)
+        game = db.games.find_one({'_id': ObjectId(game_id)}, as_class=Game)
+        game_id = game['_id']
         if not game:
             return redirect(url_for('game_history'))
 
+        num_states = len(game['states_list'])
+        
         return render_template(
-            'game_stats.html', game=game,
-            app_id=FB_APP_ID, token=access_token,
+            'game_stats.html', game=game, game_id=game_id,
+            app_id=FB_APP_ID, token=access_token, num_states=num_states,
             app=fb_app, me=me, current_user=current_user,
             url=url, name=FB_APP_NAME)
     else:
@@ -567,6 +584,7 @@ def login():
     # # --temp
     db.users.remove()
     db.games.remove()
+    db.play_requests.remove()
 
     if access_token:
         me = fb_call('me', args={'access_token': access_token})
@@ -602,8 +620,9 @@ def login():
 def logout():
     session.pop('uid', None)
     app.config.pop('token', None)
+    url = request.url
     return render_template('login.html', app_id=FB_APP_ID,
-     token=access_token, url=request.url, channel_url=channel_url, name=FB_APP_NAME)
+        url=request.url, name=FB_APP_NAME)
 
 @app.route('/channel.html', methods=['GET', 'POST'])
 def get_channel():
