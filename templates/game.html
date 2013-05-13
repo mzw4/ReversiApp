@@ -8,6 +8,10 @@
 
 {% block scripts %}
 <script src="/static/js/game.js"></script>
+<script>
+	
+	$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
 
 {% endblock %}
 

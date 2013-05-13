@@ -1,0 +1,113 @@
+/* line 1, R:/ReversiApp/static/game_stats.scss */
+div.game_stats {
+  text-align: center;
+}
+
+/* line 5, R:/ReversiApp/static/game_stats.scss */
+div.history_wrapper {
+  position: relative;
+}
+
+/* line 9, R:/ReversiApp/static/game_stats.scss */
+div.board_history {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 100;
+  width: 400px;
+  height: 400px;
+}
+
+/* line 18, R:/ReversiApp/static/game_stats.scss */
+div.row_wrapper {
+  width: 400px;
+  height: 50px;
+}
+
+/* line 23, R:/ReversiApp/static/game_stats.scss */
+a.boardspot {
+  display: inline-block;
+  border: 1px #aaa solid;
+  background: #337;
+  height: 48px;
+  width: 48px;
+}
+
+/* line 30, R:/ReversiApp/static/game_stats.scss */
+a.empty {
+  background: #337;
+}
+
+/* line 34, R:/ReversiApp/static/game_stats.scss */
+a.white {
+  background: #fff;
+}
+
+/* line 37, R:/ReversiApp/static/game_stats.scss */
+a.black {
+  background: #000;
+}
+
+/* line 41, R:/ReversiApp/static/game_stats.scss */
+div.state_nav {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 100px;
+  width: 200px;
+  height: 400px;
+}
+
+/* line 50, R:/ReversiApp/static/game_stats.scss */
+div.state_nav > h3 {
+  text-align: center;
+}
+
+/* line 54, R:/ReversiApp/static/game_stats.scss */
+div.current_state_wrapper {
+  position: relative;
+  text-align: center;
+  font-size: 30px;
+  height: 40px;
+}
+
+/* line 61, R:/ReversiApp/static/game_stats.scss */
+div.current_state_wrapper > span {
+  vertical-align: bottom;
+}
+
+/* line 65, R:/ReversiApp/static/game_stats.scss */
+a.earlier_state {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  left: 20px;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 20px solid #337;
+}
+/* line 78, R:/ReversiApp/static/game_stats.scss */
+a.earlier_state:hover {
+  cursor: pointer;
+  border-right: 20px solid #559;
+}
+
+/* line 84, R:/ReversiApp/static/game_stats.scss */
+a.later_state {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  right: 20px;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid #337;
+}
+/* line 97, R:/ReversiApp/static/game_stats.scss */
+a.later_state:hover {
+  cursor: pointer;
+  border-left: 20px solid #559;
+}

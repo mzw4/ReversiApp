@@ -7,3 +7,31 @@
 .player_stats {
 	
 }
+
+	.player_stats > h2 {
+		padding-bottom: 5px;
+		border-bottom: 1px #000 solid;
+	}
+
+	div.field_wrapper {
+		width: 800px;
+		height: 40px;
+	}
+
+		div.field {
+			display: inline-block;
+			width: 300px;
+			float: left;
+
+			font-weight: bold;
+			font-size: 22px;
+		}
+
+		div.value {
+			display: inline-block;
+			width: 300px;
+			float: left;
+
+			font-size: 20px;
+		}
+

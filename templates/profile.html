@@ -9,15 +9,34 @@
 <div class="player_stats">
 	<h2>{{ current_user.name }}'s Stats</h2>
 
-	<p>Wins: {{ current_user.wins }}</p>
-	<p>Percent Wins as Black: {{ current_user.wins }}</p>
-	<p>Percent Wins as White: {{ current_user.wins }}</p>
-	<p>Losses: {{ current_user.losses }}</p>
-	<p>Draws: {{ current_user.draws }}</p>
-
-	<p>Rank Amongst Friends: {{ current_user.rank }}</p>
-	<p>Elo: {{ current_user.elo_rating }}</p>
-	<p>Total games played: {{ num_games }} </p>
+	<div class="field_wrapper">
+		<div class="field">Wins: </div>
+		<div class="value">{{ current_user.wins }}</div>
+	</div>
+	<div class="field_wrapper">
+		<div class="field">Losses:</div>
+		<div class="value">{{ current_user.losses }}</div>
+	</div>
+	<div class="field_wrapper">
+		<div class="field">Draws: </div>
+		<div class="value">{{ current_user.draws }}</div>
+	</div>
+	<div class="field_wrapper">
+		<div class="field">Rank Amongst Friends: </div>
+		<div class="value">{{ current_user.rank }}</div>
+	</div>
+	<div class="field_wrapper">
+		<div class="field">Elo: </div>
+		<div class="value">{{ current_user.elo_rating }}</div>
+	</div>
+	<div class="field_wrapper">
+		<div class="field">Total Games played: </div>
+		<div class="value">{{ num_games }}</div>
+	</div>
 </div>
 
+{% endblock %}
+
+{% block footer %}
+<div class="fb-comments" data-href="http://stark-brook-9725.herokuapp.com/profile" data-width="470" data-num-posts="10"></div>
 {% endblock %}

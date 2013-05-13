@@ -1,1 +1,29 @@
 /*** CONTENT MODULE ***/
+/* line 11, R:/ReversiApp/static/profile.scss */
+.player_stats > h2 {
+  padding-bottom: 5px;
+  border-bottom: 1px #000 solid;
+}
+
+/* line 16, R:/ReversiApp/static/profile.scss */
+div.field_wrapper {
+  width: 800px;
+  height: 40px;
+}
+
+/* line 21, R:/ReversiApp/static/profile.scss */
+div.field {
+  display: inline-block;
+  width: 300px;
+  float: left;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+/* line 30, R:/ReversiApp/static/profile.scss */
+div.value {
+  display: inline-block;
+  width: 300px;
+  float: left;
+  font-size: 20px;
+}
