@@ -52,7 +52,9 @@ function setUpReversi() {
 // - for adding click handlers to each boardspot
 function activateBoardSpots() {
 	console.log("Activate boardspots!");
-	$(".boardspot").on("click", ajax_spotClicked);
+	if ($turn) {
+		$(".boardspot").on("click", ajax_spotClicked);
+	}
 }
 
 // AJAX FUNCTION
@@ -75,7 +77,30 @@ function ajax_spotClicked() {
 function ajax_spotClicked_cb(data) {
 	console.log("Reached the start of ajax_spotClicked_cb()");
 	alert(data);
+	displayGame(data);
 	console.log("Reached the end of ajax_spotClicked_cb()");
+}
+
+// $index: the index representing the appropriate game state,
+// from the array: states_list_array
+function displayGame($gameArray) {
+	console.log("Reached displayGame()");
+	
+	for ($i = 0; $i < 8; $i++) {
+		for ($j = 0; $j < 8; $j++) {
+			switch ($gameArray[$i][$j]) {
+				case -1:
+					togglePiece($i, $j, "empty");
+					break;
+				case 0:
+					togglePiece($i, $j, "white");
+					break;
+				case 1:
+					togglePiece($i, $j, "black");
+					break;
+			}
+		}
+	}
 }
 
 // HELPER FUNCTION
