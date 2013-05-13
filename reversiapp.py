@@ -448,7 +448,6 @@ def quickplay():
         # game_update.save()
         db.games.insert(game)
         # game2.save()
-        game.save()
 
         current_user['current_games'].append(game['_id'])
         opponent_dummy['current_games'].append(game['_id'])
