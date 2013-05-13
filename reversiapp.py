@@ -496,6 +496,8 @@ def make_move():
                 or (not game['turn'] and current_user['_id'] 
                     == game['white']['_id']):
             move = perform_move(game, y, x)
+            if move == None:
+                return 'invalid move'
             #if move == None:
             #    make_move()
             #update_scores(game)
@@ -530,6 +532,8 @@ def make_move():
         # testing:
         if x == y:
             game_over = True
+        
+        
         return jsonify(game=game, game_over=game_over)
             # return redirect(url_for('game_stats', game_id=game_id))
 
