@@ -491,13 +491,24 @@ def make_move():
         game_over = False
         # check if game is over
         if game_over(game):
+            white = game['white']
+            black = game['black']
             game_over = True
-            game['white']['past_games'].append(game_id)
-            game['black']['past_games'].append(game_id)
-            game['white']['current_games'].remove(game_id)
-            game['black']['current_games'].remove(game_id)
-            (game['white']).save()
-            (game['black']).save()
+            white['past_games'].append(game_id)
+            black['past_games'].append(game_id)
+            white['current_games'].remove(game_id)
+            black['current_games'].remove(game_id)
+            if winner['id'] == white['_id']:
+                white['wins'] += 1
+                black['losses'] +=1
+            elif winner['id'] == black['_id']:
+                black['wins'] += 1
+                white['losses'] += 1
+            else:
+                black['draws'] += 1
+                white['draws'] += 1
+            white.save()
+            black.save()
             game['completed'] = True
             game.save()
 
