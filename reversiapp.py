@@ -372,17 +372,20 @@ def game(game_id):
         current_board = game['states_list'][-1]
 
         # determine turn and score
-        if game['turn'] and game['black']['_id'] == current_user['_id']:
-            turn = True
+        if game['black']['_id'] == current_user['_id']:
+            #turn = True
             player_score = game['black_score']
             opponent_score = game['white_score']
             opponent = game['white']
-        else:
-            turn = False
+        elif game['white']['_id'] == current_user['_id']:
+            #turn = False
             player_score = game['white_score']
             opponent_score = game['black_score']
             opponent = game['black']
+        else:
+            # need to handle case of 3rd party observer
 
+        turn = game['turn']
         return render_template('game.html', game=game, game_id=game_id,
             turn=turn, just_started=just_started,
             player_score=player_score, opponent_score=opponent_score,
