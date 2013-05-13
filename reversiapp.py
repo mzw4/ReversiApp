@@ -472,7 +472,7 @@ def quickplay():
     else:
         return redirect(url_for('login'))
 
-@app.route('/move', methods=['GET', 'POST'])
+@app.route('/game/<game_id>/move', methods=['GET', 'POST'])
 def make_move():
 
     redirect(url_for('login'))
