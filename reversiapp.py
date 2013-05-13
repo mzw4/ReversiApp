@@ -487,8 +487,10 @@ def make_move():
         # else: 
         #     #notify 
 
+        game_over = False
         # check if game is over
         if game_over(game):
+            game_over = True
             game['white']['past_games'].append(game_id)
             game['black']['past_games'].append(game_id)
             game['white']['current_games'].remove(game_id)
@@ -497,11 +499,15 @@ def make_move():
             (game['black']).save()
             game['completed'] = True
             game.save()
-            return redirect(url_for('game_stats', game_id=game_id))
 
-        return redirect(url_for('game', game_id=game_id))
+        return {'game': game, 'game_over': game_over}
+            # return redirect(url_for('game_stats', game_id=game_id))
+
+        # return redirect(url_for('game', game_id=game_id))
     else:
-        return redirect(url_for('home'))
+        return {}
+    # else:
+    #     return redirect(url_for('home'))
 
 @app.route('/game_history', methods=['GET', 'POST'])
 def game_history():
@@ -566,7 +572,7 @@ def game_stats(game_id):
             return redirect(url_for('game_history'))
 
         num_states = len(game['states_list'])
-        
+
         return render_template(
             'game_stats.html', game=game, game_id=game_id,
             app_id=FB_APP_ID, token=access_token, num_states=num_states,
